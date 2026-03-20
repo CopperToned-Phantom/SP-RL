@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 19-Mar-2026 às 13:49
+-- Tempo de geração: 20-Mar-2026 às 17:23
 -- Versão do servidor: 10.4.21-MariaDB
 -- versão do PHP: 8.0.12
 
@@ -58,11 +58,18 @@ INSERT INTO `acaocriaturas` (`id`, `idFichaCriatura`, `nome`, `efeito`) VALUES
 DROP TABLE IF EXISTS `campanha`;
 CREATE TABLE `campanha` (
   `id` int(11) NOT NULL,
-  `idMestre` int(11) NOT NULL,
   `nome` varchar(100) NOT NULL,
   `descricao` text NOT NULL,
   `notas` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `campanha`
+--
+
+INSERT INTO `campanha` (`id`, `nome`, `descricao`, `notas`) VALUES
+(1, 'abcdef', 'aaa', NULL),
+(2, 'ghijkl', 'ggg', 'hhh');
 
 -- --------------------------------------------------------
 
@@ -73,8 +80,18 @@ CREATE TABLE `campanha` (
 DROP TABLE IF EXISTS `campanha_utilizador`;
 CREATE TABLE `campanha_utilizador` (
   `idCampanha` int(11) NOT NULL,
-  `idUtilizador` int(11) NOT NULL
+  `idUtilizador` int(11) NOT NULL,
+  `mestre` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `campanha_utilizador`
+--
+
+INSERT INTO `campanha_utilizador` (`idCampanha`, `idUtilizador`, `mestre`) VALUES
+(1, 1, 0),
+(1, 3, 1),
+(2, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -248,7 +265,8 @@ CREATE TABLE `personagem` (
 DROP TABLE IF EXISTS `perso_equip`;
 CREATE TABLE `perso_equip` (
   `idPerso` int(11) NOT NULL,
-  `idEquip` int(11) NOT NULL
+  `idEquip` int(11) NOT NULL,
+  `quantia` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -260,7 +278,8 @@ CREATE TABLE `perso_equip` (
 DROP TABLE IF EXISTS `perso_equipcustom`;
 CREATE TABLE `perso_equipcustom` (
   `idPerso` int(11) NOT NULL,
-  `idEquipCustom` int(11) NOT NULL
+  `idEquipCustom` int(11) NOT NULL,
+  `quantia` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -332,6 +351,29 @@ CREATE TABLE `utilizador` (
   `passe` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Extraindo dados da tabela `utilizador`
+--
+
+INSERT INTO `utilizador` (`id`, `nome`, `passe`) VALUES
+(1, 'aaa', 'aaa'),
+(2, 'bbb', 'bbb'),
+(3, 'ccc', 'ccc');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura stand-in para vista `vw_campanhas_membros`
+-- (Veja abaixo para a view atual)
+--
+DROP VIEW IF EXISTS `vw_campanhas_membros`;
+CREATE TABLE `vw_campanhas_membros` (
+`nomeCampanha` varchar(100)
+,`descricao` text
+,`nomeUtilizador` varchar(100)
+,`mestre` tinyint(1)
+);
+
 -- --------------------------------------------------------
 
 --
@@ -388,6 +430,16 @@ CREATE TABLE `vw_fichas_efeitos` (
 -- --------------------------------------------------------
 
 --
+-- Estrutura para vista `vw_campanhas_membros`
+--
+DROP TABLE IF EXISTS `vw_campanhas_membros`;
+
+DROP VIEW IF EXISTS `vw_campanhas_membros`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_campanhas_membros`  AS SELECT `campanha`.`nome` AS `nomeCampanha`, `campanha`.`descricao` AS `descricao`, `utilizador`.`nome` AS `nomeUtilizador`, `campanha_utilizador`.`mestre` AS `mestre` FROM ((`campanha` join `campanha_utilizador` on(`campanha_utilizador`.`idCampanha` = `campanha`.`id`)) join `utilizador` on(`campanha_utilizador`.`idUtilizador` = `utilizador`.`id`)) ORDER BY `campanha`.`nome` ASC, `campanha_utilizador`.`mestre` DESC ;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura para vista `vw_criaturas_fichas`
 --
 DROP TABLE IF EXISTS `vw_criaturas_fichas`;
@@ -423,8 +475,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- Índices para tabela `acaocriaturas`
 --
 ALTER TABLE `acaocriaturas`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `idFichaCriatura` (`idFichaCriatura`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Índices para tabela `campanha`
@@ -442,8 +493,7 @@ ALTER TABLE `criatura`
 -- Índices para tabela `efeitoespecial`
 --
 ALTER TABLE `efeitoespecial`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `idFichaCriatura` (`idFichaCriatura`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Índices para tabela `equipamento`
@@ -461,8 +511,7 @@ ALTER TABLE `equipamentocustom`
 -- Índices para tabela `fichacriaturas`
 --
 ALTER TABLE `fichacriaturas`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `idCriatura` (`idCriatura`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Índices para tabela `magia`
@@ -508,7 +557,7 @@ ALTER TABLE `acaocriaturas`
 -- AUTO_INCREMENT de tabela `campanha`
 --
 ALTER TABLE `campanha`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `criatura`
@@ -568,7 +617,7 @@ ALTER TABLE `sessao`
 -- AUTO_INCREMENT de tabela `utilizador`
 --
 ALTER TABLE `utilizador`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
