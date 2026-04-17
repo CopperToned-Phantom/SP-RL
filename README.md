@@ -3,5 +3,6 @@
   <img src="/media/Logo SPIRL.png" width="500">
 </p>
 
-
-Possuirá suporte tanto para Mestres de Jogo tanto para Jogadores.
+<p align="center">
+Site feito com PHP e SQL com o intuito de oferecer auxílio a Jogadores e Mestres de Jogo que utilizam o "Sistema Suprenima"
+</p>
