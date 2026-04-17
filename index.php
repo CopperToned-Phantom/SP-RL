@@ -7,11 +7,13 @@
         <title>Página Inicial</title>
     </head>
     <body>
-        <h1 style="font-size: 150%;"> SP/RL Init..</h1>
+        <!-- HEADER -->
+        <?php include('templates/header.php'); ?>
+
 
         <button type="button"> button 1 </button> <br>
         <button type="button"> button 2 </button> <br>
-        <button type="button"> button 3 </button> <br>
+        <button type="button"> button 3 </button> <br> <br>
 
         <a href="url">teste link</a>
     </body>
