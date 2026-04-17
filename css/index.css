@@ -5,6 +5,15 @@
     font : 'VCR';
 }
 
+h1 {
+  font-style: italic;
+}
+
+button {
+  border-color: #FFE5E5;
+  border-radius: 2px;
+}
+
 a {
   color: #96695A;
 }
