@@ -2,8 +2,14 @@
     background-color : #1e0f0f;
     color : #FFE5E5;
     padding : 10px;
+    font : VCR;
 }
 
 a {
   color: #96695A;
+}
+
+@font-face {
+        font-family : VCR;
+        src : url(VCR_OSD_MONO_1.001.ttf);
 }
