@@ -18,6 +18,13 @@ a {
   color: #96695A;
 }
 
+.header {
+  background-color : #96695A !important;
+  padding : 15px !important; 
+  width : 100%;
+
+}
+
 .header-color {
     background-color : #96695A;
 }
