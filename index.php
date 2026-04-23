@@ -6,16 +6,14 @@
         <link rel="stylesheet" href="css/index.css">
         <title>Página Inicial</title>
     </head>
-    <body>
-        <header class="header">
-            <aside class="header-color" >
-                <h1 class="header-color" style="text-align : right; color : #1e0f0f"> SP/RL Init.. </h1>
-            </aside>
-            <aside class="header-color" >
-                <img src="media/LogoSPIRLblack.png" width="100px" class="header-color">
-            </aside>
-        </header>
 
+    <body>
+        <!-- HEADER -->
+        <?php include('templates/header.php'); ?>
+
+        
+        <br> <br>
+        
         <button type="button"> Personagem </button> <br>
         <button type="button"> Campanhas/Sessões </button> <br>
         <button type="button"> Sistema </button> <br> <br>
