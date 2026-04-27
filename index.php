@@ -16,7 +16,7 @@
         
         <button type="button" class="btn btn-outline-light btn-lg"> Personagem </button> <br>
         <button type="button" class="btn btn-outline-light btn-lg"> Campanhas/Sessões </button> <br>
-        <button type="button" class="btn btn-outline-light btn-lg"> Sistema </button> <br> <br>
+        <button type="button" class="btn btn-outline-light btn-lg"> Sistema </button> <br>
 
         <a href="url"> teste link </a>
     </body>
