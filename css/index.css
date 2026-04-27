@@ -1,5 +1,5 @@
 * {
-    background-color : #1e0f0f;
+    background-color : #1e0f0f !important;
     color : #FFE5E5;
     padding : 10px;
     font : 'VCR';
@@ -15,7 +15,7 @@ button {
 }
 
 a {
-  color: #96695A;
+  color: #96695A !important;
 }
 
 .header {
@@ -26,7 +26,7 @@ a {
 }
 
 .header-color {
-    background-color : #96695A;
+    background-color : #96695A !important;
 }
 
 @font-face {

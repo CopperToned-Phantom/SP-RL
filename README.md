@@ -12,3 +12,5 @@
 <p align="center">
 Site feito com PHP e SQL com o intuito de oferecer auxílio a Jogadores e Mestres de Jogo que utilizam o "Sistema Suprenima"
 </p>
+
+php -S localhost:8000
