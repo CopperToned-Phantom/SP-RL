@@ -1,17 +1,17 @@
 * {
     background-color : #1e0f0f !important;
-    color : #FFE5E5;
+    color : #FFE5E5 !important;
     padding : 10px;
     font : 'VCR';
 }
 
 h1 {
   font-style: italic;
+  color : #1e0f0f !important;
 }
 
 button {
-  border-color: #FFE5E5;
-  border-radius: 2px;
+  border-color: #FFE5E5 !important;
 }
 
 a {
@@ -21,7 +21,7 @@ a {
 .header {
   background-color : #96695A !important;
   padding : 15px !important; 
-  width : 100%;
+  width : 100% !important;
 
 }
 
@@ -31,5 +31,5 @@ a {
 
 @font-face {
         font-family : 'VCR', sans-serif;
-        src : url(/media/VCR_OSD_MONO_1.001.woff) format("woff");;
+        src : local(media/VCR_OSD_MONO_1.001) format("woff");
 }
