@@ -7,7 +7,6 @@
 
 h1 {
   font-style: italic;
-  color : #1e0f0f !important;
 }
 
 button {
@@ -26,10 +25,11 @@ a {
 }
 
 .header-color {
-    background-color : #96695A !important;
+  background-color : #96695A !important;
+  padding : 0px !important;
 }
 
 @font-face {
-        font-family : 'VCR', sans-serif;
-        src : local(media/VCR_OSD_MONO_1.001) format("woff");
+  font-family : 'VCR', sans-serif;
+  src : local(media/VCR_OSD_MONO_1.001) format("woff");
 }

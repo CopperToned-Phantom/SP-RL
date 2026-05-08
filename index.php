@@ -14,9 +14,18 @@
 
         <br> <br>
         
-        <button type="button" class="btn btn-outline-light btn-lg"> Personagem </button> <br>
-        <button type="button" class="btn btn-outline-light btn-lg"> Campanhas/Sessões </button> <br>
-        <button type="button" class="btn btn-outline-light btn-lg"> Sistema </button> <br>
+        <!--BOTÃO PERSONAGENS-->
+        <a href="personagens.php">
+            <button type="button" class="btn btn-outline-light btn-lg"> Personagem </button> <br><br>
+        </a>
+        <!--BOTÃO CAMPANHAS-->
+        <a href="campanhas.php">
+            <button type="button" class="btn btn-outline-light btn-lg"> Campanhas/Sessões </button> <br><br>
+        </a>
+        <!--BOTÃO SISTEMA-->
+        <a href="sistema.php">
+            <button type="button" class="btn btn-outline-light btn-lg"> Sistema </button> <br><br>
+        </a>
 
         <a href="url"> teste link </a>
     </body>
