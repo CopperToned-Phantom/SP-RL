@@ -13,20 +13,23 @@
         <?php include('templates/header.php'); ?>
 
         <br> <br>
-        
+
         <!--BOTÃO PERSONAGENS-->
-        <a href="personagens.php">
+        <a href="personagens.php" class="b_cont">
             <button type="button" class="btn btn-outline-light btn-lg"> Personagem </button> <br><br>
         </a>
+        
         <!--BOTÃO CAMPANHAS-->
-        <a href="campanhas.php">
+        <a href="campanhas.php" class="b_cont">
             <button type="button" class="btn btn-outline-light btn-lg"> Campanhas/Sessões </button> <br><br>
         </a>
+        
         <!--BOTÃO SISTEMA-->
-        <a href="sistema.php">
+        <a href="sistema.php" class="b_cont">
             <button type="button" class="btn btn-outline-light btn-lg"> Sistema </button> <br><br>
         </a>
 
-        <a href="url"> teste link </a>
+        <a href="url" class="b_cont"> teste link </a>
+        
     </body>
 </html>

@@ -1,11 +1,15 @@
 * {
     background-color : #1e0f0f !important;
     color : #FFE5E5 !important;
-    padding : 10px;
     font : 'VCR';
 }
 
-h1 {
+h1, h3, h5 {
+  font-style: italic;
+  color : #96695A !important;
+}
+
+h2, h4, h6 {
   font-style: italic;
 }
 
@@ -32,4 +36,8 @@ a {
 @font-face {
   font-family : 'VCR', sans-serif;
   src : local(media/VCR_OSD_MONO_1.001) format("woff");
+}
+
+.b_cont{
+  margin : 10px;
 }
