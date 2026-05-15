@@ -63,14 +63,14 @@
             <button command="show-modal" commandfor="baseTecnico" class="btn btn-outline-light btn-lg">Base</button>
             <button command="show-modal" commandfor="habilTecnico" class="btn btn-outline-light btn-lg">Habilidades</button>
         </div> <br>
-
         
-        <br><br>
+        <br>
 
         <h3 align="center"> Magias </h3> <br>
 
         <div align="center">
-            <button command="show-modal" commandfor="baseCriacao" class="btn btn-outline-light btn-lg">Criação Base</button>
+            <button command="show-modal" commandfor="baseMagia" class="btn btn-outline-light btn-lg">Magia Base</button>
+            <button command="show-modal" commandfor="listaMagia" class="btn btn-outline-light btn-lg">Lista de Magias</button>
         </div>
 
         <br>
@@ -78,10 +78,33 @@
         <h3 align="center"> Outras Habilidades </h3> <br>
 
         <div align="center">
-            <button command="show-modal" commandfor="baseCriacao" class="btn btn-outline-light btn-lg">Criação Base</button>
+            <button command="show-modal" commandfor="aptidoes" class="btn btn-outline-light btn-lg">Aptidões</button>
+            <button command="show-modal" commandfor="habilGerais" class="btn btn-outline-light btn-lg">Habilidades Gerais</button>
+            <button command="show-modal" commandfor="recomAssi" class="btn btn-outline-light btn-lg">Recompensas por Assimilação</button>
         </div>
 
         <br><br>
+
+        <h2 align="center"> Equipamento </h2> <br>
+
+        <div align="center">
+            <button command="show-modal" commandfor="listaArma" class="btn btn-outline-light btn-lg">Lista de Armas</button>
+            <button command="show-modal" commandfor="propArma" class="btn btn-outline-light btn-lg">Propriedades Armas</button>
+            <button command="show-modal" commandfor="listaUten" class="btn btn-outline-light btn-lg">Lista de Utensílios</button>
+        </div>
+
+        <br><br>
+        
+        <h2 align="center"> Outras Regras </h2> <br>
+
+        <div align="center">
+            <button command="show-modal" commandfor="testes" class="btn btn-outline-light btn-lg">Testes</button>
+            <button command="show-modal" commandfor="distancias" class="btn btn-outline-light btn-lg">Distâncias</button>
+        </div>
+
+        <br><br>
+     
+        
 
         <!-- DIALOGS -->
         <dialog id="testes" class="">
@@ -573,12 +596,543 @@
             <button commandfor="habilTecnico" command="close" class="btn btn-outline-light btn-lg">Fechar</button>
         </dialog>
         
+        <dialog id="baseMagia" class="">
+            <p>Existem 3 formas de magia, elas sendo:</p>
+            <ul>
+                <li><strong>Feitiços</strong> - A forma de magia mais comum da maioria das realidades, gastando estamina ou energia física do ser para realizar a magia. 
+                A peculiaridade dos Feitiços é a sua <em>Maleabilidade</em>. Ao usar um Feitiço, o conjurador pode girar um teste de INT para tentar alterar (com limites) o seu efeito, quanto mais complexa a mudança maior a RN do teste, se passar consegue fazer a alteração que deseja.</li>
+                <li><strong>Rituais</strong> - A alternativa mais comum da maioria das realidades, gastando o bem estar mental do ser para realizar a magia. 
+                A peculiaridade dos Rituais é a sua <em>Amplificação</em>. Ao usar um Ritual, o conjurador pode dobrar o seu preço, amplificando o seu efeito(seja aumentar dados de dano/cura, duração de efeitos. Fica a critério do Mestre).</li>
+                <li><strong>Oferendas</strong> - A forma de magia mais rara da maioria das realidades, sendo até completamente inexistente em algumas, gastando sangue, carne, o bem estar físico do ser para realizar a magia. 
+                A peculiaridade das Oferendas é a sua <em>Cerimônia</em>. Ao usar uma Oferenda, o conjurador pode estender o tempo de execução em uma categoria(ação de movimento&gt;ação padrão&gt;ação completa&gt;ação completa+ação padrão e assim vai), adicionando gestos ou palavras à magia, amplificando o seu efeito(seja aumentar dados de dano/cura, duração de efeitos. Fica a critério do Mestre).</li>
+            </ul>
+            <p>1 de Custo equivale a 1 de SAN/PV(para Rituais e Oferendas) e 2 de PdT(para Feitiços).</p>
+            <h1 id="magias-de-ataque">Magias de Ataque</h1>
+            <p>Magias de Ataque funcionam da mesma forma que um ataque normal, girando um teste de Conexão(<strong>INT</strong>(feitiços), <strong>CAR</strong>(rituais) ou <strong>CON</strong>(oferendas)) para ver se é um acerto.</p>
+
+            <br>
+            <button commandfor="baseMagia" command="close" class="btn btn-outline-light btn-lg">Fechar</button>
+        </dialog>
+        
+        <dialog id="aptidoes" class="">
+            <ul>
+                <li><strong>Debilitar com Arremesso</strong> – Tu aprendeste a arremessar as tuas armas de uma maneira especial, de uma maneira que debilite o teu inimigo. Ao arremessar uma arma, se acertares, o alvo tem -4 no seu próximo teste(não acumula consigo mesmo).</li>
+                <li><strong>Dano Certeiro</strong> – Ao girar o dano de uma arma, tu voltas a girar todos os dados que tiveram como resultado 1 ou 2.</li>
+                <li><strong>Mira Precisa</strong> – Tu ignoras a desvantagem de cobertura parcial e ganhas +4 em testes de pontaria se gastares uma ação de movimento a mirar.</li>
+                <li><strong>Perícia</strong> - Escolhe um tipo de teste, tu ganhas +4 em testes desse tipo.</li>
+                <li><strong>Versátil</strong>  – Tu ganhas +1 em todos os testes.</li>
+                <li><strong>Corpo Robusto</strong> – Ao escolher esta aptidão, tu recebes o dobro da tua CON como PVs, sempre que subires de nível ganhas +3 PVs.</li>
+                <li><strong>Mente Robusta</strong> - Ao escolher esta aptidão, tu recebes o dobro da tua CAR como SAN, sempre que subires de nível ganhas +3 SAN.</li>
+                <li><strong>Cérebro Robusto</strong> - Ao escolher esta aptidão, tu recebes o dobro da tua INT como PdTs, sempre que subires de nível ganhas +3 PdTs.</li>
+                <li><strong>Reflexos Defensivos</strong> – Tu ganhas +2 em testes de bloqueio e esquiva.</li>
+                <li><strong>Sempre Atento</strong> – Tu desenvolves um sexto sentido que alerta-te de perigos inesperados, tu ficas imune ao estado <em>Desprevenido</em></li>
+                <li><strong>Imparável</strong> – Se estiveres <em>A Falecer</em> tu podes continuar a agir, porém testes de cura feitos contra ti têm desvantagem.</li>
+                <li><strong>Empunhadura Dupla</strong> - Ao segurar uma arma leve em cada mão, pode atacar com ambas numa ação.</li>
+                <li><strong>Artes Marciais</strong> - O teu dano físico aumenta em 1D e sobe uma categoria (d6-&gt;d8-&gt;d10...) (Pode ser escolhido duas vezes).</li>
+                <li><strong>Fôlego Extra</strong>  – Uma vez por combate ganhas uma ação de movimento a mais. Podendo tornar as duas ações de movimento numa ação padrão.</li>
+                <li><strong>Adiar Catástrofe</strong>  – Uma vez por <em>Cena de Combate</em>, tu consegues adiar uma desvantagem ou modificador negativo para o próximo teste.</li>
+                <li><strong>Ataque Executor</strong>  – Inimigos com apenas metade da vida têm -2 de <strong>DEF</strong> contra os teus ataques.</li>
+                <li><strong>Corpo Muralha</strong>  – Inimigos têm -4 no teste se tentarem usar a manobra <em>Agarrar</em> em ti.</li>
+                <li><strong>Intercetar</strong> [Requisitos : NdP 4] – Se um aliado em curta distância for alvo de um ataque, poderás sofrer o dano no lugar do aliado.</li>
+                <li><strong>Duelista</strong> [Requisitos : NdP 4] – Durante uma Cena de Duelo de Vontades, ao atingir o Ultimato, o dano armado recebe +1D.</li>
+                <li><strong>Corpo Resiliente</strong> - Ganhas 5 de resistência a um tipo de dano à tua escolha.</li>
+                <li><strong>Corpo Resistente</strong> [Requisitos : NdP 5] - Tu ganhas 5 de resistência a dano. </li>
+                <li><strong>Contra-ataque Atrelado</strong> [Requisitos : NdP 6] – Ao esquivar/bloquear, caso obtenhas um sucesso com uma diferença de +4 contra o teste inimigo realizarás um contra-ataque como ação livre.</li>
+                <li><strong>Adaptação</strong> [Requisitos : NdP 6] – Se um inimigo atacar-te duas vezes seguidas terás +2 na reação do segundo ataque, o efeito amplia caso os ataques continuem, sempre com +2 e mesmo que o ataque não acerte. O efeito reinicia assim que a sequência for quebrada.</li>
+                <li><strong>Defesa Poderosa</strong> [Requisitos : NdP 6] – Tu passas a adicionar o teu Mod. de FOR na tua DEF</li>
+                <li><strong>Tocar na Alma</strong> [Requisitos : NdP 6] - Tu passas a ter uma leve visão das almas, conseguindo senti-las, conseguindo toca-las. Ao atacar um ser, podes escolher acertar a alma e não o corpo, apenas causando metade mas mudando o tipo de dano para <em>Espiritual</em>(não se aplica a magias).</li>
+                <li><strong>Ataque Rutura</strong> [Requisitos : NdP 6]  – Inimigos têm a sua resistência cortada pela metade contra os teus ataques.</li>
+            </ul>
+
+            <br>
+            <button commandfor="aptidoes" command="close" class="btn btn-outline-light btn-lg">Fechar</button>
+        </dialog>
+        
+        <dialog id="listaArma" class="">
+            <h1 id="armas-brancas">Armas Brancas</h1>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Dano</th>
+                        <th>Crítico</th>
+                        <th>Modificador de Crítico</th>
+                        <th>Alcance</th>
+                        <th>Propriedades</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <td><strong>Alabarda</strong></td>
+                    <td>3d6+1 de dano cortante</td>
+                    <td>24</td>
+                    <td>+4d6</td>
+                    <td>Curto</td>
+                    <td>Duas Mãos, Manha</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Bastão</strong></td>
+                    <td>1d6+4 de dano físico</td>
+                    <td>24</td>
+                    <td>+1d6</td>
+                    <td>Corpo-a-Corpo</td>
+                    <td>Duas Mãos, Impactante</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Chicote</strong></td>
+                    <td>1d8+1 de dano cortante</td>
+                    <td>24</td>
+                    <td>2x</td>
+                    <td>Curto</td>
+                    <td>Leve, Cabo, Sagaz</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Desmontador</strong></td>
+                    <td>1d12+1 de dano cortante</td>
+                    <td>24</td>
+                    <td>+2d6</td>
+                    <td>Curto</td>
+                    <td>Duas Mãos, Manha, Especial</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Espada</strong></td>
+                    <td>1d10+1d6 de dano cortante</td>
+                    <td>24</td>
+                    <td>2x</td>
+                    <td>Corpo-a-Corpo</td>
+                    <td>Leve, Manha</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Espada Gancho</strong></td>
+                    <td>1d10+2 de dano cortante</td>
+                    <td>23, 24</td>
+                    <td>+3d6</td>
+                    <td>Corpo-a-Corpo</td>
+                    <td>Leve, Sagaz, Manha, Especial</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Faca</strong></td>
+                    <td>1d8 de dano cortante</td>
+                    <td>24</td>
+                    <td>+1d6</td>
+                    <td>Corpo-a-Corpo</td>
+                    <td>Leve, Manha</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Facão</strong></td>
+                    <td>1d10+1 de dano cortante</td>
+                    <td>24</td>
+                    <td>2x</td>
+                    <td>Corpo-a-Corpo</td>
+                    <td>Leve</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Foice</strong></td>
+                    <td>1d6 de dano cortante</td>
+                    <td>24</td>
+                    <td>+1d8</td>
+                    <td>Corpo-a-Corpo</td>
+                    <td>Leve, Sagaz</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Gadanho</strong></td>
+                    <td>4d4+2 de dano cortante</td>
+                    <td>24</td>
+                    <td>+2d4</td>
+                    <td>Curto</td>
+                    <td>Duas Mãos, Afiada</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Katana</strong></td>
+                    <td>1d12+1d6 de dano cortante</td>
+                    <td>23, 24</td>
+                    <td>+2d6</td>
+                    <td>Corpo-a-Corpo</td>
+                    <td>Duas Mãos, Manha</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Katar</strong></td>
+                    <td>1d4+3 de dano cortante</td>
+                    <td>24</td>
+                    <td>+1d10</td>
+                    <td>Corpo-a-Corpo</td>
+                    <td>Leve, Sagaz</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Kusarigama</strong></td>
+                    <td>1d8 de dano cortante</td>
+                    <td>24</td>
+                    <td>2x</td>
+                    <td>Curto</td>
+                    <td>Duas Mãos, Especial</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Lança</strong></td>
+                    <td>1d12+1 de dano cortante</td>
+                    <td>24</td>
+                    <td>+2d6</td>
+                    <td>Curto</td>
+                    <td>Duas Mãos, Manha, Arremessável</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Maça</strong></td>
+                    <td>1d10+1d4+2 de dano físico</td>
+                    <td>24</td>
+                    <td>2x</td>
+                    <td>Corpo-a-Corpo</td>
+                    <td>Leve, Impactante</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Machadinha</strong></td>
+                    <td>1d8+2 de dano cortante</td>
+                    <td>24</td>
+                    <td>2x</td>
+                    <td>Corpo-a-Corpo</td>
+                    <td>Leve, Sagaz, Arremessável</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Machado</strong></td>
+                    <td>1d10+1d4 de dano cortante</td>
+                    <td>24</td>
+                    <td>+2d6</td>
+                    <td>Corpo-a-Corpo</td>
+                    <td>Duas Mãos</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Macuahuitl</strong></td>
+                    <td>2d12 de dano cortante</td>
+                    <td>24</td>
+                    <td>2x</td>
+                    <td>Curto</td>
+                    <td>Duas Mãos, Pesada</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Manopla</strong></td>
+                    <td>1d8 de dano físico</td>
+                    <td>24</td>
+                    <td>+1d8</td>
+                    <td>Corpo-a-Corpo</td>
+                    <td>Leve, Especial</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Martelo</strong></td>
+                    <td>1d8 de dano físico</td>
+                    <td>24</td>
+                    <td>+1d8</td>
+                    <td>Corpo-a-Corpo</td>
+                    <td>Leve, Sagaz</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Martelo Meteoro</strong></td>
+                    <td>2d6 de dano físico</td>
+                    <td>24</td>
+                    <td>+2d4</td>
+                    <td>Curto</td>
+                    <td>Duas Mãos, Manha, Impactante</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Martelo-de-Guerra</strong></td>
+                    <td>2d8+1 de dano físico</td>
+                    <td>24</td>
+                    <td>2x</td>
+                    <td>Curto</td>
+                    <td>Duas Mãos, Manha, Impactante</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Motoserra</strong></td>
+                    <td>3d6 de dano cortante</td>
+                    <td>24</td>
+                    <td>2x</td>
+                    <td>Corpo-a-Corpo</td>
+                    <td>Duas Mãos, Especial</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Nunchaku</strong></td>
+                    <td>1d10+1 de dano físico</td>
+                    <td>23, 24</td>
+                    <td>+1d12</td>
+                    <td>Corpo-a-Corpo</td>
+                    <td>Leve, Sagaz, Manha</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Punhal</strong></td>
+                    <td>1d8+2 de dano cortante</td>
+                    <td>24</td>
+                    <td>+1d6</td>
+                    <td>Corpo-a-Corpo</td>
+                    <td>Leve, Manha</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Rapieira</strong></td>
+                    <td>1d10 de dano cortante</td>
+                    <td>23, 24</td>
+                    <td>+1d10</td>
+                    <td>Corpo-a-Corpo</td>
+                    <td>Leve, Manha</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Soqueira</strong></td>
+                    <td>1d6 de dano físico</td>
+                    <td>24</td>
+                    <td>+1d6</td>
+                    <td>Corpo-a-Corpo</td>
+                    <td>Leve, Especial</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h1 id="armas-dist-ncia">Armas à Distância</h1>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Dano</th>
+                        <th>Crítico</th>
+                        <th>Modificador de Crítico</th>
+                        <th>Alcance</th>
+                        <th>Propriedades</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <td><strong>Arco</strong></td>
+                    <td>1d10+1 de dano cortante</td>
+                    <td>23, 24</td>
+                    <td>2x</td>
+                    <td>Médio</td>
+                    <td>Duas Mãos</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Arco Composto</strong></td>
+                    <td>1d12+1 de dano cortante</td>
+                    <td>23, 24</td>
+                    <td>2x</td>
+                    <td>Longo</td>
+                    <td>Duas Mãos</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Balestra</strong></td>
+                    <td>1d10+3 de dano cortante</td>
+                    <td>23, 24</td>
+                    <td>+1d12</td>
+                    <td>Médio</td>
+                    <td>Duas Mãos</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Besta</strong></td>
+                    <td>1d10+3 de dano cortante</td>
+                    <td>23, 24</td>
+                    <td>+1d12</td>
+                    <td>Médio</td>
+                    <td>Leve</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Espingarda</strong></td>
+                    <td>5d8 de dano balístico</td>
+                    <td>24</td>
+                    <td>2x</td>
+                    <td>Médio</td>
+                    <td>Duas Mãos, Especial</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Fisga</strong></td>
+                    <td>1d8 de dano físico</td>
+                    <td>23, 24</td>
+                    <td>2x</td>
+                    <td>Curto</td>
+                    <td>Leve</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Fuzil de Caça</strong></td>
+                    <td>1d12+1d6 de dano balístico</td>
+                    <td>23, 24</td>
+                    <td>2x</td>
+                    <td>Longo</td>
+                    <td>Duas Mãos</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Lança-Chamas</strong></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Curto</td>
+                    <td>Duas Mãos,  Especial</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Lança-Mísseis</strong></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Médio</td>
+                    <td>Duas Mãos, Pesada, Especial</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Pistola</strong></td>
+                    <td>1d12+2 de dano balístico</td>
+                    <td>24</td>
+                    <td>+1d12</td>
+                    <td>Médio</td>
+                    <td>Leve</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Revólver</strong></td>
+                    <td>1d12+1d4 de dano balístico</td>
+                    <td>23, 24</td>
+                    <td>2x</td>
+                    <td>Médio</td>
+                    <td>Leve</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Sniper</strong></td>
+                    <td>3d10+5 de dano balístico</td>
+                    <td>22, 23, 24</td>
+                    <td>2x</td>
+                    <td>Longo</td>
+                    <td>Duas Mãos, Especial</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Submetralhadora</strong></td>
+                    <td>2d6 de dano balístico</td>
+                    <td>24</td>
+                    <td>2x</td>
+                    <td>Médio</td>
+                    <td>Leve, Especial</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Uzi</strong></td>
+                    <td>1d8+5 de dano balístico</td>
+                    <td>23, 24</td>
+                    <td>+1d8</td>
+                    <td>Médio</td>
+                    <td>Leve, Sagaz</td>
+                    </tr>
+                </tbody>
+            </table>
+                    
+            <br>
+            <button commandfor="listaArma" command="close" class="btn btn-outline-light btn-lg">Fechar</button>
+        </dialog>
+ 
+        <dialog id="listaUten" class="">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Efeito</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <td><strong>Bandoleira</strong></td>
+                    <td>Guarda 1 Arma ou 2 Utensílios, sacar esses itens passa a ser ação livre.</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Binóculos</strong></td>
+                    <td>Garante +4 em testes de <em>Perceção</em> que envolvam observar algo distante.</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Bússola</strong></td>
+                    <td>Garante +4 em <em>Testes de Jornada</em>.</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Condutor</strong></td>
+                    <td>Um objeto usado como condutor de aura do Desconhecido.<br>Quando portado, garante +4 em testes de Conexão.</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Escudo</strong></td>
+                    <td>Quando portado, garante +4 na reação <em>Bloquear</em>.</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Escudo Militar</strong></td>
+                    <td>Quando portado, garante 5 de resistência a dano (não inclui dano <em>Mental</em> e de <em>Essências</em>) e 10 de resistência a dano balístico</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Frasco de Óleo</strong></td>
+                    <td>Usado para recarregar uma Lamparina, concedendo 3 recargas.<br>Pode ser usado para encharcar um ser com o óleo, se o ser sofrer dano incendiário, entra <em>Em Chamas</em>.</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Gazua</strong></td>
+                    <td>Garante +4 em testes de <em>Crime</em> para destrancar portas, janelas e caixas trancadas.</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Granada</strong></td>
+                    <td>Ao usar uma ação padrão para a arremessar, explode, causando 6d6 de dano explosivo em todos em alcance curto.</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Granada de Atordoamento</strong></td>
+                    <td>Ao usar uma ação padrão para a arremessar, estoura, causando um clarão acompanhado dum som alto, todos os seres em alcance médio devem girar um teste de <strong>CON</strong> contra o teste de arremesso, quem passar fica <em>Vulnerável</em> durante 1 rodada, quem falhar fica <em>Atordoado</em> durante 1 rodada.</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Granada de Fragmentação</strong></td>
+                    <td>Ao usar uma ação padrão para a arremessar, explode em estilhaços, causando 6d6 de dano cortante em todos em alcance curto.</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Granada de Fumo</strong></td>
+                    <td>Ao usar uma ação padrão para a arremessar, explode, criando uma grande nuvem cinza, o terreno passa a <em>Ambiente Nublado</em>.</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Granada Incendiária</strong></td>
+                    <td>Ao usar uma ação padrão para a arremessar, explode em chamas, causando 6d6 de dano incendiário em todos em alcance curto, aqueles que falharem no teste de esquiva, entram <em>Em Chamas</em>.</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Lamparina</strong></td>
+                    <td>Quando acesa, anula <em>Penumbra Total</em> e <em>Parcial</em><br>Dura 5 cenas, precisando ser recarregada para uso futuro.</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Lanterna Simples</strong></td>
+                    <td>Quando ligada, anula <em>Penumbra Parcial</em> e torna <em>Penumbra Total</em> em <em>Parcial</em>. <br>Dura 5 cenas, precisando ser recarregada para uso futuro.</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Lanterna Tática</strong></td>
+                    <td>Quando ligada, anula <em>Penumbra Total</em> e <em>Parcial</em><br>Dura 3 cenas, precisando ser recarregada para uso futuro.</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Máscara de Gás</strong></td>
+                    <td>Garante +4 em testes de <strong>CON</strong> contra efeitos que dependam da respiração.</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Memorabilia</strong></td>
+                    <td>Um objeto importante, repleto de boas memórias.<br>Quando portado, garante +4 em testes para resistir a dano mental.</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Óculos de Visão Noturna</strong></td>
+                    <td>Quando ligado, dá te imunidade aos efeitos de <em>Penumbra Parcial</em> e <em>Total</em>.<br>Dura 5 cenas, precisando ser recarregada para uso futuro.</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Pé de Cabra</strong></td>
+                    <td>Garante +4 em testes de <em>Crime</em> para abrir portas, janelas e caixas trancadas à força.<br>Pode ser usado como arma, tendo os mesmos status dum <em>Bastão</em></td>
+                    </tr>
+                    <tr>
+                    <td><strong>Rolo de Bandagem</strong></td>
+                    <td>Ao usar uma ação padrão, enrola as bandagens num ser, curando 1d12+2 de PVs.<br>Pode ser usado 5 vezes antes de acabar.</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Saco Cama</strong></td>
+                    <td>Se durante uma Cena de Interlúdio, a ação <em>Descansar</em> for do tipo <em>Desconfortável</em>, o tipo muda para <em>Normal</em>.</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Spray de Pimenta</strong></td>
+                    <td>Ao usar uma ação padrão para disparar contra um ser, o ser gira <strong>CON</strong> contra a tua <strong>AGI</strong>, se falhar, fica <em>Vulnerável</em> durante 1d4 rodadas. <br>Pode ser usado 3 vezes antes de esvaziar.</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Tocha</strong></td>
+                    <td>Quando ligada, anula <em>Penumbra Parcial</em> e torna <em>Penumbra Total</em> em <em>Parcial</em>. <br>Dura 1 cena, apagando-se logo depois.</td>
+                    </tr>
+                </tbody>
+            </table>
+        
+            <br>
+            <button commandfor="listaUten" command="close" class="btn btn-outline-light btn-lg">Fechar</button>
+        </dialog>
+        
+
+
         <!-- TEMPLATE DIALOG
         <dialog id="distancias" class="">
 
             <br>
             <button commandfor="distancias" command="close" class="btn btn-outline-light btn-lg">Fechar</button>
         </dialog>
+        
         -->
 
     </body>
