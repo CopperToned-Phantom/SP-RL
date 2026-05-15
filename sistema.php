@@ -96,11 +96,29 @@
         <br><br>
         
         <h2 align="center"> Outras Regras </h2> <br>
+        
+        <h3 align="center"> Tipos de Cena </h3> <br>
+
+        <div align="center">
+            <button command="show-modal" commandfor="cenaCombate" class="btn btn-outline-light btn-lg">Cenas de Combate</button>
+            <button command="show-modal" commandfor="cenaDebate" class="btn btn-outline-light btn-lg">Cenas de Debate</button>
+            <button command="show-modal" commandfor="cenaDuelo" class="btn btn-outline-light btn-lg">Cenas de Duelo de Vontades</button>
+            <button command="show-modal" commandfor="cenaFurti" class="btn btn-outline-light btn-lg">Cenas de Furtividade</button>
+            <button command="show-modal" commandfor="cenaGuerra" class="btn btn-outline-light btn-lg">Cenas de Guerra de Vontades</button>
+            <button command="show-modal" commandfor="cenaInteracao" class="btn btn-outline-light btn-lg">Cenas de Interação</button>
+            <button command="show-modal" commandfor="cenaInterludio" class="btn btn-outline-light btn-lg">Cenas de Interlúdio</button>
+            <button command="show-modal" commandfor="cenaInvesti" class="btn btn-outline-light btn-lg">Cenas de Investigação</button>
+            <button command="show-modal" commandfor="cenaJornada" class="btn btn-outline-light btn-lg">Cenas de Jornada</button>
+            <button command="show-modal" commandfor="cenaPerigo" class="btn btn-outline-light btn-lg">Cenas de Perigo Complexo</button>
+            <button command="show-modal" commandfor="cenaPersegu" class="btn btn-outline-light btn-lg">Cenas de Perseguição</button>
+        </div> <br>
+
+        <h3 align="center"> Regras Extra </h3> <br>
 
         <div align="center">
             <button command="show-modal" commandfor="testes" class="btn btn-outline-light btn-lg">Testes</button>
             <button command="show-modal" commandfor="distancias" class="btn btn-outline-light btn-lg">Distâncias</button>
-        </div>
+        </div> <br>
 
         <br><br>
      
