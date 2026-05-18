@@ -1142,7 +1142,134 @@
             <button commandfor="listaUten" command="close" class="btn btn-outline-light btn-lg">Fechar</button>
         </dialog>
         
+        <dialog id="cenaDebate" class="">
+            <p>Em certos momentos, os personagens precisam resolver a situação duma forma menos agressiva, por vezes, a situação precisa ser resolvida na base da discussão, para isso existem <em>Cenas de Debate</em>.</p>
+            <p><em>Cenas de Debate</em>, similar a <em>Cenas de Combate</em>, são divididas em rodadas e turnos, cada personagem participando de 1 de 2 lados.</p>
+            <h1 id="lados-do-debate">Lados do Debate</h1>
+            <p>Toda a <em>Cena de Debate</em> tem dois lados, o <em>Lado a ser Convencido</em>(<strong>LC</strong>) e o <em>Lado Oposto</em>(<strong>LO</strong>), o <strong>LC</strong> toma uma posição passiva e defensiva enquanto que o <em>Lado Oposto</em> toma a posição ativa e atacante. Nomeadamente, o <strong>LO</strong> tenta convencer o <strong>LC</strong> a acreditar em algo, enquanto o <strong>LC</strong> argumenta contra.</p>
+            <h1 id="regras-do-debate">Regras do Debate</h1>
+            <p>O <strong>LC</strong> tem um <em>Valor de Desconfiança</em>(<strong>VD</strong>), por rodada, 2 membros do <strong>LO</strong> devem girar testes de <strong>INT</strong>/<strong>CAR</strong>, o resultado dos testes reduz o <strong>VD</strong>, por exemplo, se um ser tirar 18 no teste, o <strong>VD</strong> diminui em 18, se o valor for reduzido a 0, o <strong>LC</strong> é convencido. Dependendo da interpretação do personagem e das palavras ditas, o <em>Mestre</em> pode escolher conceder ao seu teste um modificador positivo ou negativo.
+            Durante essa rodada, porém, os lados podem escolher usar, antes de girar o teste, uma das suas ações especiais para mudar ou adicionar condições aos seus testes. Cada ação só pode ser usada uma vez por cena.</p>
+            <h2 id="a-es-especiais-do-lc">Ações Especiais do LC</h2>
+            <ul>
+            <li><strong>Questionar</strong> - O <strong>LC</strong> questiona algo dito, o <strong>LC</strong> escolhe um membro do <strong>LO</strong>, esse membro gira um teste de <em>Diplomacia</em>(<strong>CAR</strong>) contra o <strong>LC</strong>, se falhar, tem desvantagem na próxima rodada, se passar, tem +6 na próxima rodada.</li>
+            <li><strong>Interromper</strong> - O <strong>LC</strong> corta a fala do <strong>LO</strong> a meio, na próxima rodada, um dos membros do <strong>LO</strong> tem -1D nos testes.</li>
+            <li><strong>Distorcer</strong> - O <strong>LC</strong> distorce as palavras de um membro do <strong>LO</strong>, o resultado do teste desse membro é reduzido pela metade.<h2 id="a-es-especiais-do-lo">Ações Especiais do LO</h2>
+            </li>
+            <li><strong>Falácia</strong> - O <strong>LO</strong> usa-se duma falácia, o membro do <strong>LO</strong> gira um teste de <em>Diplomacia</em>(<strong>CAR</strong>) contra o <strong>LC</strong>, se falhar, o <strong>LC</strong> recupera 1d8+4 de <strong>VD</strong>, se passar, tem vantagem na próxima rodada.</li>
+            <li><strong>Mentira</strong> - O <strong>LO</strong> conta uma mentira superficial, que a princípio parece verídica mas que com pouco pensamento era desmentida, o membro do <strong>LO</strong> gira um teste de <em>Enganação</em>(<strong>CAR</strong>) contra o <strong>LC</strong>, se passar, tem +4 na próxima rodada, se falhar, tem -4 na próxima rodada.</li>
+            <li><strong>Compaixão</strong> - O <strong>LO</strong> diz um argumento que vai contra si mesmo, tentando demonstrar-se empático e reconhecer a dúvida do <strong>LC</strong>, o membro do <strong>LO</strong> gira um teste de <em>Diplomacia</em>(<strong>CAR</strong>) contra o <strong>LC</strong>, se passar, diminui o <strong>VD</strong> em 1d6+4, se falhar, perde o seu turno.</li>
+            </ul>
 
+            <br>
+            <button commandfor="cenaDebate" command="close" class="btn btn-outline-light btn-lg">Fechar</button>
+        </dialog>
+
+        <dialog id="cenaDuelo" class="">
+            <p>Quando dois seres de similar força se encontram, existe a chance da própria Espiral sentir o confronto, o conflito intenso da vontade de ambos, vontades que, por seu número de membros reduzido, de destacam muito mais que outras, com a vontade e a aura de ambos os seres a transbordarem de seus eus, um foco intenso causado pela distorção da Espiral força esse mesmo duelo a acontecer sem interrupções.</p>
+            <p>Um <em>Duelo de Vontades</em> é igual a uma <em>Cena de Combate</em> porém com algumas regras e condições adicionais. Ao invés de girar testes de <em>Iniciativa(<strong>AGI</strong>)</em>, os envolvidos giram um ataque com suas armas, aquele que tiver o maior resultado é o primeiro a acertar um golpe, um golpe meramente narrativo, golpe esse que define quem agirá primeiro. Depois disso, o combate segue como sempre, sendo afetados pelas seguintes regras e condições.</p>
+            <h1 id="coreografia-de-combate">Coreografia de Combate</h1>
+            <p>Durante o Duelo, ao ser alvo de um ataque, as reações funcionam duma forma diferente. Ao invés de escolher uma das 3 reações e girar um teste oposto, o ser atacado simplesmente narra o que faz como reação, fazer isso dá ao atacante a chance de narrar uma reação e um novo ataque, o ser atacado pode então narrar outra reação e o atacante narrar um terceiro, e último, ataque, uma última tentativa de acertar.
+            Para cada ataque adicional, o ser ganha uma desvantagem no teste mas o dano é aumentado (2x para 2 ataques e 3x para 3 ataques), o ser atacado não gira nada, dependendo inteiramente do teste do atacante. O ser atacado pode também escolher não reagir, não garantindo ao atacante a chance de causar esse dano aumentado.
+            Esta regra aplica-se apenas a ataques normais, não se aplicando a magias.</p>
+            <h1 id="ultimato">Ultimato</h1>
+            <p>Após 5 rodadas de combate, os dois participantes podem começar um <em>Ultimato</em>, ao começar o Ultimato, os dois participantes devem apenas girar o seu dano armado, ao mesmo tempo, sem teste, apenas dano, continuado até um cair, sem interrupções.</p>
+            <h1 id="condi-es">Condições</h1>
+            <ul>
+            <li>Seres que tentem se infiltrar a meio do Duelo têm desvantagem em todos os testes. Testes dos Duelistas que sejam direcionados a esses seres têm vantagem.</li>
+            <li>Ao começar o Duelo, todos os envolvidos recuperam 20 de todos os status.</li>
+            <li>Vencer o duelo traz ao vencedor uma resolução intensa e incomparável, demonstrando a si mesmo o esplendor da sua vontade superior. O ser ganha um poder de Apostasia.</li>
+            </ul>
+
+            <br>
+            <button commandfor="cenaDuelo" command="close" class="btn btn-outline-light btn-lg">Fechar</button>
+        </dialog>
+        
+        <dialog id="cenaFurti" class="">
+            <p>Em certos momentos, os personagens precisam ser discretos, esconder-se do mal ao invés do enfrentar, para isso existem <em>Cenas de Furtividade</em>.
+            <em>Cenas de Furtividade</em> possuem dois lados opostos: O <em>Buscador</em> e os <em>Escondidos</em>.</p>
+            <h1 id="o-buscador">O Buscador</h1>
+            <p>O <em>Buscador</em> representa o ser ou seres que procuram aqueles que se escondem, tomando a posição ofensiva na cena.
+            O <em>Buscador</em> possui um <em>Nível de Perceção</em>(<strong>NP</strong>), sendo esse um valor de 1 a 10, esse valor define o quão bom o <em>Buscador</em> é a notar os <em>Escondidos</em>(quanto menor o valor, melhor), definindo o limite de exposição que os <em>Escondidos</em> podem chegar antes de serem notados.</p>
+            <p>No começo da cena, o <em>Buscador</em> faz um teste de <em>Perceção</em>(<strong>INT</strong>/<strong>CAR</strong>), o resultado define a <strong>RN</strong> dos testes de <em>Furtividade</em> dos <em>Escondidos</em>. A partir daí, por rodada, pode então escolher fazer uma ação especial.</p>
+            <h2 id="a-es-especiais-de-buscador">Ações Especiais de Buscador</h2>
+            <ul>
+            <li><strong>Nova Perspetiva</strong> - O <em>Buscador</em> muda a forma como está a tentar encontrar os <em>Escondidos</em>, re-rolando o teste de <em>Perceção</em>(<strong>INT</strong>/<strong>CAR</strong>) e definindo uma nova <strong>RN</strong>.</li>
+            <li><strong>Desfazer Esconderijo</strong> - O <em>Buscador</em> destrói um dos possíveis esconderijos da cena, todos os testes de <em>Furtividade</em> dos <em>Escondidos</em> passam a ter -2 até o fim da cena. Esta ação só poder ser tomada 2 vezes por cena.</li>
+            <li><strong>Forçar Erro</strong> - O <em>Buscador</em> faz uma ação inesperada, um som alto, um movimento brusco, tentando tirar um som ou movimento dos <em>Escondidos</em>, o <em>Buscador</em> escolhe um <em>Escondido</em> e gira <em>Intimidação</em>(<strong>CAR</strong>) contra o mesmo, se passar, o <strong>NE</strong> do <em>Escondido</em> aumenta em 1.</li>
+            </ul>
+            <h1 id="os-escondidos">Os Escondidos</h1>
+            <p>Os <em>Escondidos</em> representam o ser ou seres que se estão a esconder, tomando a posição defensiva na cena.
+            Os <em>Escondidos</em> possuem um <em>Nível de Exposição</em>(<strong>NE</strong>), representando o quão exposto o <em>Escondido</em> está, esse nível começa a 0 e aumenta em 1(ou mais) a cada teste que o <em>Escondido</em> fracassar. Se o <strong>NE</strong> de um <em>Escondido</em> for igual ou maior ao <strong>NP</strong> do <em>Buscador</em>, o <em>Escondido</em> é encontrado pelo <em>Buscador</em>.
+            Um grupo de <em>Escondidos</em> compartilha um único <strong>NE</strong>, sendo igual ao maior <strong>NE</strong> do grupo
+            (Por exemplo, se num grupo de 3 <em>Escondidos</em>, um deles tiver <strong>NE</strong> : 2, outro <strong>NE</strong> : 1 e o outro <strong>NE</strong> : 0, o <strong>NE</strong> do grupo é 2). Se o <em>Buscador</em> encontrar um membro do grupo, ele encontra todos.</p>
+            <p>No começo de cada rodada, os <em>Escondidos</em> fazem um teste de <em>Furtividade</em>(<strong>AGI</strong>) contra a <strong>RN</strong> do <em>Buscador</em>, podendo então escolher fazer uma ação especial.</p>
+            <h2 id="a-es-especiais-de-escondido">Ações Especiais de Escondido</h2>
+            <ul>
+            <li><strong>Esconder</strong> - O <em>Escondido</em> tenta mudar seu esconderijo, esconder-se melhor, o jogador descreve como o <em>Escondido</em> se esconde e faz um teste de <em>Furtividade</em>(<strong>AGI</strong>; <strong>RN</strong> fica a critério do <em>Mestre</em>), se passar, o <strong>NE</strong> do <em>Escondido</em> diminui em 1.</li>
+            <li><strong>Distração</strong> - O <em>Escondido</em> tenta distrair o <em>Buscador</em>, fazendo um teste de <em>Enganação</em>(<strong>CAR</strong>) contra o mesmo, se passar, diminui o <strong>NE</strong> de outro <em>Escondido</em>(à escolha do <em>Escondido</em>) em 1, se falhar, aumenta o seu <strong>NE</strong> próprio em 1. Só 1 <em>Escondido</em> pode tomar esta ação por rodada, a cada vez que esta ação é tomada na cena, o <em>Buscador</em> ganha +4 no teste de <strong>CAR</strong> para resistir à distração.</li>
+            <li><strong>Atenção</strong> - O <em>Escondido</em> chama atenção para si mesmo, para evitar que outro <em>Escondido</em> seja encontrado, o <strong>NE</strong> do <em>Escondido</em> aumenta em 2, o <strong>NE</strong> de outro <em>Escondido</em>(à escolha do personagem) diminui em 1.</li>
+            <li><strong>Importunar</strong> - O <em>Escondido</em> tenta chamar atenção para outro <em>Escondido</em>, girando <strong>INT</strong> contra o mesmo, se passar, o <strong>NE</strong> do outro <em>Escondido</em> aumenta em 1, se falhar, o <strong>NE</strong> próprio aumenta em 1.</li>
+            <li><strong>Sacrificar</strong> - O <em>Escondido</em> revela-se ao <em>Buscador</em>, sendo encontrado mas diminuindo a <strong>NE</strong> de todos os outros <em>Escondidos</em> em 2.</li>
+            <li><strong>Outro</strong> - O <em>Escondido</em> pode tomar qualquer outra ação, necessitando sempre fazer um teste de <em>Furtividade</em>(<strong>AGI</strong>) contra a <strong>RN</strong> do Buscador, se falhar no teste, pode fazer a ação na mesma.</li>
+            </ul>
+
+            <br>
+            <button commandfor="cenaFurti" command="close" class="btn btn-outline-light btn-lg">Fechar</button>
+        </dialog>
+        
+        <dialog id="cenaGuerra" class="">
+            <p>Quando dois grupos de similares números e força se encontram, existe a chance da própria Espiral sentir o confronto, o conflito das vontades dos envolvidos, existe a chance da Espiral tomar interesse em tal conflito, o céu coberto pela sua influência, uma distorção na realidade com um formato de espiral e um confronto que é forçado a acontecer.</p>
+            <p>Uma <em>Guerra de Vontades</em> é igual a uma <em>Cena de Combate</em> porém com algumas condições adicionais. Antes do começo do combate, as equipas devem escolher os Rivais de Vontades, associando cada membro duma equipa com um membro da outra, sem repetições. A equipe que foi atacada escolhe primeiro, as equipas então alternam até todos terem um Rival.
+            Apenas a equipe que atacou gira Iniciativa, os membros da outra equipe tendo o seu turno na ordem de iniciativa logo depois do seu rival.</p>
+            <h1 id="condi-es-dos-rivais">Condições dos Rivais</h1>
+            <ul>
+            <li>Testes feitos contra o teu Rival têm +2 e causam 1d10 de dano extra.</li>
+            <li>Testes feitos contra alguém que não seja o teu Rival têm -10 e o dano reduzido em 1D</li>
+            <li>Matar o teu Rival traz uma resolução absoluta, uma vitória como nenhuma outra, uma prova da tua vontade superior. Ao matar o teu Rival, tu recuperas 20 de PV, PdT e SAN e perdes as outras condições de Rival.</li>
+            </ul>
+
+            <br>
+            <button commandfor="cenaGuerra" command="close" class="btn btn-outline-light btn-lg">Fechar</button>
+        </dialog>
+        
+        <dialog id="cenaInteracao" class="">
+            <p>As Cenas de Interação são as cenas que se encontram entre as cenas importantes, entre os combates, investigações, descansos e etc, os personagens têm momentos para falar e se conhecerem melhor.</p>
+            <p>Cenas de Interação não possuem regras mecânicas, sendo puramente narrativas, servindo para os personagens comunicarem, aprofundar laços, discutir temas da história, fazer planos e etc. É importante o <em>Mestre</em> incentivar tais interações para, assim, formar uma história mais aprofundada e mais conectada com os jogadores, melhorando a experiência para todos. Importante clarificar também que os personagens podem, obviamente, interagir fora de Cenas de Interação.</p>
+        
+            <br>
+            <button commandfor="cenaInteracao" command="close" class="btn btn-outline-light btn-lg">Fechar</button>
+        </dialog>
+        
+        <dialog id="cenaInterludio" class="">
+            <p>Por mais que passem por muitas dificuldades, em certos momentos, os personagens precisam de descansar, recuperar antes de seguir caminho, para isso existem Cenas de Interlúdio.</p>
+            <h1 id="a-es-e-atividades">Ações e Atividades</h1>
+            <p>Durante uma cena de Interlúdio, todos os personagens têm um número de ações que podem fazer. O número varia dependendo do tempo que a cena durará, um momento breve para descansar só daria aos personagens 1 ação, enquanto que umas horas de descanso dariam 3, por exemplo. O limite de ações por <em>Cena de Interlúdio</em> é 3.
+            Eles gastam as ações para fazer as seguintes atividades, podendo escolher como quiserem quais fazer, cada ação tendo o seu custo :</p>
+            <ul>
+            <li><strong>Relaxar(<em>1 Ação</em>)</strong> - Aproveita o tempo para fazer uma atividade que considere relaxante, um hobby, algo para relaxar a mente. Recuperando 2d12 ou de <strong>PV</strong> ou de <strong>PdT</strong> ou de <strong>SAN</strong>.</li>
+            <li><strong>Descansar(<em>2 Ações</em>)</strong>  - Aproveita o tempo para dormir, recuperando o corpo inteiro. Existem 3 tipos de descanso, o tipo depende do estado do ambiente :<ul>
+            <li><strong>Normal</strong> - Um descanso normal, obtido ao dormir numa cama normal ou num lugar similar, recupera 2d12 de <strong>PV</strong> e <strong>PdT</strong> e 1d12 de <strong>SAN</strong>.</li>
+            <li><strong>Desconfortável</strong> - Um descanso num lugar desconfortável, obtido ao dormir no interior dum carro, numa tenda ou num lugar similar, recupera 1d12 de <strong>PV</strong> e <strong>PdT</strong>.</li>
+            <li><strong>Luxuoso</strong> - Um descanso num lugar chique, obtido ao dormir num hotel de luxo, uma cama almofadada ou num lugar similar, recupera 3d12 de <strong>PV</strong> e <strong>PdT</strong> e 2d12 de <strong>SAN</strong>.</li>
+            </ul>
+            </li>
+            <li><strong>Alimentação(<em>1 Ação</em>)</strong> - Aproveita o tempo para comer algo, recuperando 1d12+6 de <strong>PV</strong> e <strong>PdT</strong>.</li>
+            <li><strong>Aquecimento(<em>1 Ação</em>)</strong> - Aproveita o tempo para fazer um aquecimento físico, fazendo uns exercícios simples e rápidos. Até o fim da próxima cena, +2 em testes de <strong>FOR</strong>, <strong>AGI</strong> e <strong>CON</strong></li>
+            <li><strong>Informar(<em>1 Ação</em>)</strong> - Aproveita o tempo para fazer um aquecimento mental, lendo livros ou artigos para poder o cérebro a trabalhar. Até o fim da próxima cena, +2 em testes de <strong>INT</strong> e <strong>CAR</strong>.</li>
+            <li><strong>Ofício(2 Ações)</strong> - Tu aproveitas o tempo para tentar fazer um item que te vá ajudar no futuro, tu crias um item da Lista de Utensílios.</li>
+            <li><strong>Treinar(<em>Varia</em>)</strong> - Faz um longo treino, durando horas onde o personagem foca-se em melhorar algo. Pode fazer 1 dos seguintes treinos :<ul>
+            <li><strong>Aprimorar(<em>2 Ações</em>)</strong> - Ganha 1 <em>Proficiência</em>.</li>
+            <li><strong>Aprender(<em>3 Ação</em>)</strong> - Aprende 1 <em>Habilidade Geral</em>.</li>
+            <li><strong>Estudar(<em>3 Ação</em>)</strong> - Aprende 1 <em>Magia</em>.</li>
+            </ul>
+            </li>
+            </ul>
+        
+            <br>
+            <button commandfor="cenaInterludio" command="close" class="btn btn-outline-light btn-lg">Fechar</button>
+        </dialog>
+        
 
         <!-- TEMPLATE DIALOG
         <dialog id="distancias" class="">
