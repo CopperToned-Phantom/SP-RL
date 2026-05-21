@@ -14,22 +14,24 @@
 
         <br> <br>
 
-        <!--BOTÃO PERSONAGENS-->
-        <a href="personagens.php" class="b_cont">
-            <button type="button" class="btn btn-outline-light btn-lg"> Personagem </button> <br><br>
-        </a>
+        <aside class="aside-index">
         
-        <!--BOTÃO CAMPANHAS-->
-        <a href="campanhas.php" class="b_cont">
-            <button type="button" class="btn btn-outline-light btn-lg"> Campanhas/Sessões </button> <br><br>
-        </a>
-        
-        <!--BOTÃO SISTEMA-->
-        <a href="sistema.php" class="b_cont">
-            <button type="button" class="btn btn-outline-light btn-lg"> Sistema </button> <br><br>
-        </a>
+            <!--BOTÃO PERSONAGENS-->
+            <a href="personagens.php" class="b_cont">
+                <button type="button" class="btn btn-outline-light btn-lg btn-index"> Personagem </button> <br><br><br>
+            </a>
+            
+            <!--BOTÃO CAMPANHAS-->
+            <a href="campanhas.php" class="b_cont">
+                <button type="button" class="btn btn-outline-light btn-lg btn-index"> Campanhas/Sessões </button> <br><br><br>
+            </a>
+            
+            <!--BOTÃO SISTEMA-->
+            <a href="sistema.php" class="b_cont">
+                <button type="button" class="btn btn-outline-light btn-lg btn-index"> Sistema </button> <br><br><br>
+            </a>
 
-        <a href="url" class="b_cont"> teste link </a>
+        </aside>
         
     </body>
 </html>

@@ -1,7 +1,7 @@
 * {
     background-color : #1e0f0f !important;
     color : #FFE5E5 !important;
-    font : 'VCR';
+    font-family : 'VCR';
 }
 
 h1, h3, h5 {
@@ -34,10 +34,24 @@ a {
 }
 
 @font-face {
-  font-family : 'VCR', sans-serif;
-  src : local(media/VCR_OSD_MONO_1.001) format("woff");
+  font-family : 'VCR';
+  src : url(/media/VCR_OSD_MONO_1.001.woff);
 }
 
 .b_cont{
   margin : 10px;
+}
+
+.btn-index{
+  width : 30vw; 
+  margin : auto;
+
+}
+
+.aside-index{
+  width : 45vw; 
+  left : 0; 
+  position : absolute; 
+  margin : auto;
+  align-items: center !important;
 }
