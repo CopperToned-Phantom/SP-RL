@@ -139,8 +139,13 @@
             <h3 align="center"> Regras Extra </h3> <br>
 
             <div align="center">
-                <button command="show-modal" commandfor="testes" class="btn btn-outline-light btn-lg">Testes</button>
-                <button command="show-modal" commandfor="distancias" class="btn btn-outline-light btn-lg">Distâncias</button>
+                <button command="show-modal" commandfor="dificilTerreno" class="btn btn-outline-light btn-lg">Dificuldades de Terreno</button>
+                <button command="show-modal" commandfor="EfeitoLouco" class="btn btn-outline-light btn-lg">Efeitos de Loucura</button>
+                <button command="show-modal" commandfor="EstadoTrauma" class="btn btn-outline-light btn-lg">Estados e Traumas</button>
+                <button command="show-modal" commandfor="Fagulha" class="btn btn-outline-light btn-lg">Fagulha Inversa</button>
+                <button command="show-modal" commandfor="Profici" class="btn btn-outline-light btn-lg">Proficiências</button>
+                <button command="show-modal" commandfor="RegrasCriatura" class="btn btn-outline-light btn-lg">Regras Criaturas/Máquinas</button>
+                <button command="show-modal" commandfor="TipoDano" class="btn btn-outline-light btn-lg">Tipos de Dano</button>
             </div> <br>
         
         </aside>
@@ -1290,6 +1295,364 @@
         
             <br>
             <button commandfor="cenaInterludio" command="close" class="btn btn-outline-light btn-lg">Fechar</button>
+        </dialog>
+        
+        <dialog id="cenaInvesti" class="">
+            <p>Em certos momentos, os personagens precisam parar e explorar os seus arredores, investigar para aprender mais sobre a situação onde se encontram, para isso existem <em>Cenas de Investigação</em>.</p>
+            <p><em>Cenas de Investigação</em>, similar a <em>Cenas de Combate</em>, são divididas em rodadas e turnos, cada personagem tendo 1 turno. A área que vão investigar é então dividida em diversos <em>Pontos de Interesse</em> e a cena começa.</p>
+            <h1 id="pontos-de-interesse">Pontos de Interesse</h1>
+            <p>Locais específicos dentro do ambiente que se destacam dos outros, parecendo pontos vitais do mistério a ser investigado, podendo, ou não, possuir pistas.
+            Um <em>Ponto de Interesse</em> pode possuir mais que 1 pista, cada pista escondida no <em>Ponto de Interesse</em> possui a sua própria <strong>RN</strong>, requirindo um teste para ser descoberta. Normalmente, o teste é de <em>Investigação</em>(<strong>INT</strong>) mas pode ser de qualquer tipo ou atributo, dependendo do que fizer mais sentido para a cena.</p>
+            <h1 id="a-es-dos-personagens">Ações dos Personagens</h1>
+            <p>No começo, todos os participantes giram <em>Iniciativa</em>(<strong>AGI</strong>) para definir a ordem dos turnos.</p>
+            <p>No seu turno, o personagem pode tomar 1 das seguintes ações:</p>
+            <ul>
+            <li><strong>Investigar</strong> - Escolhe um <em>Ponto de Interesse</em>, decidindo investigá-lo, gira o teste necessário para descobrir a pista e, se passar, descobre a mesma. Se o <em>Ponto de Interesse</em> possuir mais que 1 pista, o <em>Mestre</em> deve dizer ao jogador os tipos de teste que pode girar para as diferentes pistas e deixá-lo escolher uma, descobrindo a pista respetiva ao teste. 
+            Se o mesmo personagem investigar o mesmo <em>Ponto de Interesse</em> mais que uma vez, depois de uma falha, ele ganha uma desvantagem por cada vez consecutiva. 
+            <strong>Ex</strong> : Se um personagem investigar o mesmo ponto 3 vezes, na 1º vez não tem desvantagem, na 2º vez tem 1 desvantagem e na 3º vez tem 2 desvantagens e assim vai.</li>
+            <li><strong>Auxiliar</strong> - Ao invés de investigar, decide ajudar outra personagem a investigar, concedendo ao personagem +4 no teste.</li>
+            <li><strong>Analisar</strong> - Ao invés de investigar, analisa o ambiente num geral, o personagem gira <em>Perceção</em>(<strong>INT</strong>; <strong>RN</strong> varia com o número de <em>Pontos de Interesse</em>), se passar, descobre se existem <em>Pontos de Interesse</em> que não possuem pistas, descobrindo também quais são.</li>
+            <li><strong>Prevenir</strong> - Ao invés de investigar, analisa os arredores exteriores do ambiente, o personagem gira <em>Sobrevivência</em>(<strong>INT</strong>), se passar, descobre a <em>Duração</em> da cena.</li>
+            </ul>
+            <h1 id="dura-o">Duração</h1>
+            <p>A <em>Duração</em> duma <em>Cena de Investigação</em> pode variar, podendo ou durar até todas as pistas serem encontradas ou ter uma <em>Duração</em> definida, tendo um número de rodadas limite, a cena acabando com algum evento exterior que interrompe a investigação, forçando os personagens a entrarem noutro tipo de cena.</p>
+
+            <br>
+            <button commandfor="cenaInvesti" command="close" class="btn btn-outline-light btn-lg">Fechar</button>
+        </dialog>
+
+        <dialog id="cenaJornada" class="">
+            <p>Em certos momentos, os personagens precisam realizar uma viagem, longa ou não, para poder chegar ao seu objetivo, para isso existem Cenas de Jornada.</p>
+            <p>Cenas de Jornada são simples em execução, todos os envolvidos devem girar um <em>Teste de Jornada</em>, o tipo de teste pode variar, dependendo da forma que o ser descrever como percorre a trajetória a ser feita. O RN do <em>Teste de Jornada</em> depende do tempo e do terreno a ser percorrido.
+            Seres que passem no teste, recebem um <em>Benefício de Jornada</em> à escolha do Mestre, seres que falhem, recebem um <em>Malefício de Jornada</em>, também à escolha do Mestre.</p>
+            <h1 id="benef-cios-de-jornada">Benefícios de Jornada</h1>
+            <ul>
+            <li>Recupera 2d12 ou de <strong>PV</strong> ou de <strong>PdT</strong> ou de <strong>SAN</strong>.</li>
+            <li>Até o fim da próxima cena, +2 em testes de <strong>FOR</strong>, <strong>AGI</strong> e <strong>CON</strong></li>
+            <li>Imune a <em>Terreno Complexo</em> até a próxima <em>Cena de Interlúdio</em>.</li>
+            <li>Recupera 1d12 de <strong>PV</strong>, <strong>PdT</strong> e <strong>SAN</strong>.</li>
+            <li>+4 em um tipo de teste(à escolha do Mestre) até o fim da próxima cena.</li>
+            <li>Cura <em>Fraco</em> ou <em>Cansado</em>.</li>
+            </ul>
+            <h1 id="malef-cios-de-jornada">Malefícios de Jornada</h1>
+            <ul>
+            <li>Perde 1d12+6 ou de <strong>PV</strong> ou de <strong>PdT</strong>.</li>
+            <li>Até o fim da próxima cena, -2 em testes de <strong>FOR</strong>, <strong>AGI</strong> e <strong>CON</strong></li>
+            <li>Fica <em>Fraturado</em> até o fim da próxima cena.</li>
+            <li>Perde 1d8 de <strong>PV</strong>, <strong>PdT</strong> e <strong>SAN</strong>.</li>
+            <li>-4 em um tipo de teste(à escolha do Mestre) até o fim da próxima cena.</li>
+            <li>Fica <em>Cansado</em> até o fim da próxima cena.</li>
+            </ul>
+        
+            <br>
+            <button commandfor="cenaJornada" command="close" class="btn btn-outline-light btn-lg">Fechar</button>
+        </dialog>
+
+        <dialog id="cenaPersegu" class="">
+            <p>Em certos momentos, os personagens não conseguem enfrentar uma ameaça diretamente, precisando fugir, correr para chegar a um lugar seguro, para isso existem <em>Cenas de Perseguição</em>.</p>
+            <p><em>Cenas de Perseguição</em>, similar a <em>Cenas de Combate</em>, são divididas em rodadas e turnos, cada personagem tendo 1 turno e 1 ação. No começo da cena, todos os envolvidos giram um teste de iniciativa(<strong>AGI</strong>), assim definindo a ordem dos turnos, após isso a cena finalmente começa.
+            Uma <em>Cena de Perseguição</em> envolve perseguidores e perseguidos. Os personagens não precisam de necessariamente ser os perseguidos, a sua função na cena pode alterar.</p>
+            <h1 id="regras-de-persegui-o">Regras de Perseguição</h1>
+            <p><em>Cenas de Perseguição</em> são resolvidas com diversos testes de <strong>AGI</strong>, para sobreviver, um personagem necessita de acumular um número específico de sucessos(o número depende da cena). 
+            Nomeadamente, se um <em>Perseguido</em> alcançar o número de sucessos necessários ele está salvo, ficando fora da cena. 
+            Se um <em>Perseguidor</em> alcançar esse mesmo número de sucessos ele alcança um Perseguido à sua escolha, dando um ataque direto no mesmo.</p>
+            <p>A RN dos testes é definida pelos perseguidores no começo da cena, o perseguidor gira um teste de <strong>AGI</strong>, o seu resultado vira a RN (o mestre pode, ao invés disso, escolher uma RN fixa), depois de definir a RN, todos giram. 
+            Se um <em>Perseguido</em> acumular 3 falhas, ele é apanhado, sofrendo um ataque direto e inevitável do <em>Perseguidor</em>, se um <em>Perseguidor</em> acumular 3 falhas, todos os <em>Perseguidos</em> ganham 1 sucesso.
+            Depois de girar o testes de <strong>AGI</strong>, os envolvidos podem escolher usar uma ação especial.</p>
+            <h1 id="a-es-especiais">Ações Especiais</h1>
+            <h2 id="perseguidos">Perseguidos</h2>
+            <ul>
+            <li><strong>Auxiliar</strong> - O personagem tenta ajudar outro perseguido a correr mais rápido. O personagem faz o teste normal porém com -4, mas concede ao outro perseguido +4 no seu próximo teste.</li>
+            <li><strong>Cortar Caminho</strong> - O personagem tenta tomar um caminho mais curto porém mais difícil. O personagem faz o teste normal porém com uma desvantagem, mas, se passar, ganha 2 sucessos. (O Mestre pode determinar que não existe forma de cortar caminho, impossibilitando esta ação).</li>
+            <li><strong>Esforço Extra</strong> - O personagem dá o seu máximo. O personagem faz o teste normal porém com +4, mas perde 1d6 <strong>PVs</strong> para cada vez que usou esta ação na cena (1d6 na primeira, 2d6 na segunda, 3d6 na terceira e assim vai).</li>
+            <li><strong>Criar Obstáculo</strong> - O personagem tenta criar um obstáculo para os <em>Perseguidores</em>. O personagem faz o teste normal porém com desvantagem, fazendo também um teste de <strong>FOR</strong> ou <strong>INT</strong> (RN depende do obstáculo que o perseguido queira criar), se passar, cria o obstáculo, diminuindo a RN do teste de <strong>AGI</strong> em -4 para todos. Só um personagem pode fazer esta ação por cena. (Assim como em <em>Cortar Caminho</em>, o mestre pode escolher que está ação é impossível).</li>
+            <li><strong>Sacrificar</strong> - O personagem para de correr, tentando atrapalhar ao máximo os <em>Perseguidores</em>. O personagem automaticamente falha no teste, mas fornece aos outros <em>Perseguidos</em> +4 no seu próximo teste.</li>
+            </ul>
+            <h2 id="perseguidores">Perseguidores</h2>
+            <ul>
+            <li><strong>Cortar Caminho</strong> - O personagem tenta tomar um caminho mais curto porém mais difícil. O personagem faz o teste normal porém com uma desvantagem, mas, se passar, ganha 2 sucessos. (O Mestre pode determinar que não existe forma de cortar caminho, impossibilitando esta ação).</li>
+            <li><strong>Esforço Extra</strong> - O personagem dá o seu máximo. O personagem faz o teste normal porém com +4, mas perde 1d6 PVs para cada vez que usou esta ação na cena (1d6 na primeira, 2d6 na segunda, 3d6 na terceira e assim vai).</li>
+            <li><strong>Criar Obstáculo</strong> - O personagem tenta criar um obstáculo para os <em>Perseguidos</em>. O personagem faz o teste normal porém com desvantagem, fazendo também um teste de <strong>FOR</strong> ou <strong>INT</strong> (RN depende do obstáculo que o perseguido queira criar), se passar, cria o obstáculo, aumentando a RN do teste de <strong>AGI</strong> em +4 para todos. Só um personagem pode fazer esta ação por cena. (Assim como em <em>Cortar Caminho</em>, o mestre pode escolher que está ação é impossível).</li>
+            <li><strong>Forçar Erro</strong> - O personagem tenta bater num dos Perseguidos, não para o ferir, mas para estragar o seu equilíbrio forçando-o a abrandar. O personagem faz o teste normal porém com uma desvantagem, mas, se passar, escolhe 1 <em>Perseguido</em>, esse <em>Perseguido</em> ganha 1 falha.</li>
+            <li><strong>Desafiar</strong> - O personagem tenta mudar o ritmo da sua corrida. Gira um novo teste de <strong>AGI</strong>, definindo uma nova RN para a cena. Se fizer isso depois de algum teste de <strong>AGI</strong> dos participantes, todos re-rolam.</li>
+            </ul>
+
+            <br>
+            <button commandfor="cenaPersegu" command="close" class="btn btn-outline-light btn-lg">Fechar</button>
+        </dialog>
+        
+        <dialog id="dificilTerreno" class="">
+            <p>Nem sempre o ambiente é propenso para combate, podendo gerar desvantagens para aqueles que lutarem nele</p>
+            <h1 id="lista-de-dificuldades-de-terreno">Lista de Dificuldades de Terreno</h2>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                    <th style="text-align:left"></th>
+                    <th>Efeito</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <td style="text-align:left"><strong>Ambiente Nublado</strong></td>
+                    <td>O ambiente é ocultado por uma neblina forte, seres dentro da neblina têm -4 em testes de perceção que envolvam visão e +4 em testes de furtividade.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:left"><strong>Ambiente Sufocado</strong></td>
+                    <td>O ambiente não possui ar respirável, seres conseguem aguentar a respiração por um número de rodadas igual ao seu valor de <strong>CON</strong>, depois disso devem girar testes de <strong>CON</strong> por rodada (RN : 5(+5 para cada teste feito anteriormente)), se falhar fica <em>Desacordado</em> e começa a perder 1d12 de vida por rodada, só parando quando respirar novamente.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:left"><strong>Cheia</strong></td>
+                    <td>O ambiente tem um nível de água que chega até os joelhos dos seres. Os seres têm o movimento reduzido pela metade e -4 em testes de <strong>AGI</strong></td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:left"><strong>Extremas Temperaturas</strong></td>
+                    <td>O ambiente tem uma temperatura extremamente elevada ou reduzida, seres nesse ambiente sofrem 1 dos seguintes efeitos :<br><em>Calor</em> - -4 em testes de <strong>CON</strong> <br><em>Frio</em> - -4 em testes de <strong>AGI</strong></td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:left"><strong>Incêndio</strong></td>
+                    <td>O ambiente está em chamas, todos os seres ganham o estado <em>Em Chamas</em>, só conseguindo sair dele quando o incêndio for apagado ou quando saírem da área em chamas. Se o incêndio ocorrer num espaço fechado, adiciona os efeitos de <em>Ambiente Sufocado</em> além dos normais.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:left"><strong>Penumbra Parcial</strong></td>
+                    <td>O ambiente está escuro, com baixa visibilidade, tem os mesmos efeitos que ambiente nublado. Pode ser anulado por fontes de luz como lanternas.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:left"><strong>Penumbra Total</strong></td>
+                    <td>O ambiente está completamente escuro, todos os testes de perceção que envolvam visão falham imediatamente e testes de furtividade têm vantagem. Pode ser anulado ou reduzido a <em>Parcial</em> por fontes de luz como lanternas.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:left"><strong>Terreno Complexo</strong></td>
+                    <td>O chão é desnivelado ou instável, todo o movimento é reduzido pela metade.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:left"><strong>Vento Forte</strong></td>
+                    <td>O ambiente tem uma corrente de ar constante e muito forte, -4 em testes de ataque à distância, por rodada gira 1d4, se calhar 1 ou 2, chamas são apagadas e névoas dissipadas.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:left"><strong>Queda Livre</strong></td>
+                    <td>O ambiente não possui chão, a cena acontecendo enquanto os seres rapidamente caem dum ponto alto. Testes de <em>Pontaria</em> têm falha garantida, todo o movimento é reduzido pela metade e todos os seres ficam <em>Vulneráveis</em> e <em>Fracos</em>. As penalidades, excluindo a que afeta <em>Pontaria</em>, não afetam seres que consigam voar.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:left"><strong>Submerso</strong></td>
+                    <td>O ambiente está completamente submerso por água ou outro líquido similar. A ação de movimento <em>Deslocar</em> requer um teste de <strong>AGI</strong>/<strong>FOR</strong>(<strong>RN</strong> varia dependendo do movimento da água), possui as mesmas condições de <em>Ambiente Sufocado</em>, ataques à distância têm o seu alcance reduzido em uma categoria e todos os seres ficam <em>Fracos</em>.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <br>
+            <button commandfor="dificilTerreno" command="close" class="btn btn-outline-light btn-lg">Fechar</button>
+        </dialog>       
+
+        <dialog id="EfeitoLouco" class="">
+            <p>Presenciar a grandeza da Espiral do Desconhecido pode causar danos severos na mente frágil que o Homem possui, rasgar a mente, levar memórias, distorcer a distorção que possuímos do próprio real. Para refletir isso, existem os <em>Efeitos de Loucura</em>.</p>
+            <p> Ao chegar a 0 ou menos de <strong>SAN</strong>, o personagem ganha um <em>Efeito de Loucura</em>, enquanto a <strong>SAN</strong> estiver igual ou menor a 0, todo dano mental que o personagem sofrer causa 1 Efeito extra. A única forma de perder os <em>Efeitos de Loucura</em> é ao recuperar a <strong>SAN</strong> a valores positivos.</p>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                    <th></th>
+                    <th><strong>Efeito</strong></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <td><strong>Perfeccionista</strong></td>
+                    <td>O personagem ganha um foco intenso pelos mínimos detalhes. Ao girar um teste, se o resultado for ímpar, o teste falha.</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Piromaníaco</strong></td>
+                    <td>O personagem ganha um fascínio incontrolável por fogo. Se o personagem estiver no estado <em>Em Chamas</em>, ele não pode removê-lo conscientemente, fazendo também um esforço para impedir outros de apagarem as suas chamas.</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Invencível</strong></td>
+                    <td>O personagem julga-se imortal, impossível de ser derrotado, agindo sem cuidado algum. O ser não pode reagir a ataques.</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Auto Mutilador</strong></td>
+                    <td>O personagem possui um desejo sádico por dor, por causar dor a si mesmo. O ser deve gastar pelo menos 1 ação padrão por rodada a se auto-atacar.</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Covarde</strong></td>
+                    <td>O personagem possui um medo enorme pelos seus arredores. O ser ganha vulnerabilidade a dano Mental.</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Alucinado</strong></td>
+                    <td>O personagem começa a ver alucinações. Uma vez por cena, o personagem irá começar a ver coisas que não existem, acreditando inteiramente que o que vê é real e agindo de acordo.</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Mania</strong></td>
+                    <td>O personagem fica obcecado por uma atividade específica, querendo realizá-la sempre que possível. O <em>Mestre</em> escolhe um <em>Tipo de Teste</em>, o personagem terá -2 em todos os testes que não sejam desse tipo.</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Traumatizado</strong></td>
+                    <td>O personagem começa a julgar possuir uma fraqueza que não possui. O personagem sofre do efeito de um <em>Trauma</em> à escolha do <em>Mestre</em>(excluindo <em>Em Coma</em>).</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Fóbico</strong></td>
+                    <td>O personagem ganha uma fobia extremamente forte. Testes mentais que envolvam essa fobia têm falha garantida.</td>
+                    </tr>
+                </tbody>
+            </table>
+        
+            <br>
+            <button commandfor="EfeitoLouco" command="close" class="btn btn-outline-light btn-lg">Fechar</button>
+        </dialog>
+
+        <dialog id="EstadoTrauma" class="">
+            <h1 id="estados">Estados</h1>
+            <p>Estados representam certas condições temporárias em que o ser se encontra, normalmente ganhando uma vantagem ou desvantagem dependendo do estado.</p>
+            <h2 id="lista-de-estados">Lista de Estados</h2>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                    <th></th>
+                    <th>Efeito</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <td><strong>A Falecer</strong></td>
+                    <td>Fica incapaz de agir, ao entrar no estado faz um teste de CON(RN : 20), se falhar fica <em>Desacordado</em>, se ficar 3 rodadas não consecutivas neste estado morre, pode ser removido deste estado via cura. <br>Se voltar a entrar neste estado na mesma cena, o número de rodadas até morrer mantém-se. Por exemplo, se um ser ficar 1 rodada neste estado, for curado e depois voltar a este estado, ele só terá 2 rodadas para ser salvo.</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Agarrado</strong></td>
+                    <td>-4 em reações e testes de ataque. Não pode se locomover. Acaba quando o ser se soltar de quem o agarra.</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Amedrontado</strong></td>
+                    <td>-4 em testes contra o ser que causou o estado, se for um teste de <strong>CAR</strong>, tem desvantagem. Não consegue aproximar-se do ser que causou o estado.</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Apaixonado</strong></td>
+                    <td>-4 em testes contra o ser que causou a paixão, +2 em testes para auxiliar o mesmo. Dano mental sofrido por danos realizados ao ser que causou a paixão têm o seu dano aumentado em 1D.</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Atordoado</strong></td>
+                    <td>O ser não pode agir ou reagir.</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Cansado</strong></td>
+                    <td>-4 em todos os testes, se voltar a ficar <em>Cansado</em> fica <em>Exausto</em>.</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Cura Acelerada</strong></td>
+                    <td>O ser recupera x PVs por rodada, o valor de x deve ser especificado poder/magia que concede este estado.</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Débil</strong></td>
+                    <td>Desvantagem em testes de <strong>FOR</strong>, <strong>AGI</strong> e <strong>CON</strong>.</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Derrubado</strong></td>
+                    <td>-4 em testes de ataque corpo a corpo, o movimento é reduzido pela metade, ataques corpo a corpo contra o ser têm +4, ataques à distância contra o ser têm -4. <br>Pode gastar uma ação de movimento para se levantar, acabando a condição.</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Desacordado</strong></td>
+                    <td>O ser não pode agir ou reagir, estando inconsciente e não podendo absorver informações.</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Desprevenido</strong></td>
+                    <td>-4 de <strong>DEF</strong> e não consegue reagir.</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Determinado</strong></td>
+                    <td>+2 em testes de <strong>FOR</strong>, <strong>AGI</strong> e <strong>CON</strong></td>
+                    </tr>
+                    <tr>
+                    <td><strong>Em Chamas</strong></td>
+                    <td>O ser sofre 2d8 de dano incendiário por rodada. <br>Pode gastar uma ação de movimento para apagar o fogo, acabando o estado. Mergulhar em água também acaba o estado.</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Envenenado</strong></td>
+                    <td>O ser sofre dano venenoso por rodada, o dano varia com a força do veneno, sendo 1 dos seguintes:<br>    - <strong>Veneno Fraco</strong> - 1d8<br>    - <strong>Veneno Médio</strong> - 2d8<br>    - <strong>Veneno Forte</strong> - 2d10<br>    - <strong>Veneno Extremo</strong> - 2d12</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Exausto</strong></td>
+                    <td>Desvantagem em todos os testes, se voltar a ficar <em>Exausto</em> fica <em>Desacordado</em>.</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Êxtase</strong></td>
+                    <td>+2 em todos os testes.</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Flankeado</strong></td>
+                    <td>O ser tem -2 em testes de reação e testes de ataque contra o ser têm +2</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Fraco</strong></td>
+                    <td>-4 em testes de <strong>FOR</strong>, <strong>AGI</strong> e <strong>CON</strong>, se voltar a ficar <em>Fraco</em> fica <em>Débil</em>.</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Fragmentado</strong></td>
+                    <td>Afeta um dos atributos físicos(<strong>FOR</strong>, <strong>AGI</strong> e <strong>CON</strong>) do ser, o ser tem desvantagem em testes com esse atributo.</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Fraturado</strong></td>
+                    <td>Afeta um dos atributos físicos(<strong>FOR</strong>, <strong>AGI</strong> e <strong>CON</strong>) do ser, o ser tem -4 em testes com esse atributo. Se um ser voltar a ficar <em>Fraturado</em> no mesmo atributo, ele fica <em>Fragmentado</em>.</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Inspirado</strong></td>
+                    <td>+2 em testes de <strong>INT</strong> e <strong>CAR</strong></td>
+                    </tr>
+                    <tr>
+                    <td><strong>Mouco</strong></td>
+                    <td>Testes que necessitem de audição têm falha garantida, -4 em outros testes que dependam de audição.</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Ofuscado</strong></td>
+                    <td>Testes que necessitem de visão têm falha garantida, -4 em outros testes que dependam de visão. Um ser <em>Ofuscado</em> também fica <em>Desprevinido</em>.</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Sangramento</strong></td>
+                    <td>O ser perde 1d12 de vida por rodada, se curado, sai deste estado</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Seco</strong></td>
+                    <td>Imune ao estado <em>Sangramento</em></td>
+                    </tr>
+                    <tr>
+                    <td><strong>Vulnerável</strong></td>
+                    <td>Testes de ataque contra o ser têm +4</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h1 id="traumas">Traumas</h1>
+            <p>Traumas representam o mesmo que Estados, a sua diferença sendo que ao invés de serem temporários, são permanentes, garantindo uma desvantagem que varia de acordo com o Trauma.</p>
+            <h2 id="lista-de-traumas">Lista de Traumas</h2>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                    <th></th>
+                    <th>Efeito</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <td><strong>Cego</strong></td>
+                    <td>Incapaz de ver, o ser sofre do estado <em>Ofuscado</em> permanentemente.</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Desmembrado</strong></td>
+                    <td>Tendo perdido um de seus membros principais, o ser sofre do estado <em>Fragmentado</em> permanentemente. É possível possuir este <em>Trauma</em> até 3 vezes.</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Em Coma</strong></td>
+                    <td>Num estado de inconsciência profunda, o ser sofre do estado <em>Desacordado</em> permanentemente.</td>
+                    </tr>
+                    <tr>
+                    <td><strong>Surdo</strong></td>
+                    <td>Incapaz de ouvir, o ser sofre do estado <em>Mouco</em> permanentemente.</td>
+                    </tr>
+                </tbody>
+            </table>
+        
+            <br>
+            <button commandfor="EstadoTrauma" command="close" class="btn btn-outline-light btn-lg">Fechar</button>
+        </dialog>
+
+        <dialog id="template" class="">
+
+            <br>
+            <button commandfor="template" command="close" class="btn btn-outline-light btn-lg">Fechar</button>
         </dialog>
         
 
