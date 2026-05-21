@@ -15,114 +15,136 @@
         <br>
         
         <h1> -- Sistema </h1>
-        <!-- REGRAS BASICAS -->
-        <h2 align="center"> Regras Básicas </h2> <br>
 
-        <div align="center">
-            <button command="show-modal" commandfor="testes" class="btn btn-outline-light btn-lg">Testes</button>
-            <button command="show-modal" commandfor="distancias" class="btn btn-outline-light btn-lg">Distâncias</button>
-        </div>
+        <aside style="padding : 15px; position : fixed; width : 15vw; left : 0;">
+            <h2> Quick Access.. </h2>
+            <ul>
+                <li>
+                    <a href="#RegrasBasicas" class="b_cont"> Regras Básicas </a>
+                </li>
+                <li>
+                    <a href="#CriaPerso" class="b_cont"> Criação de Personagem </a>
+                </li>
+                <li>
+                    <a href="#Equipamento" class="b_cont"> Equipamento </a>
+                </li>
+                <li>
+                    <a href="#OutraRegra" class="b_cont"> Outras Regras </a>
+                </li>
+            </ul>        
+        </aside>
 
-        <br><br>
+        <aside style="width : 80vw; position : absolute; left : 15vw; right : 0;">
+                
+            <!-- REGRAS BASICAS -->
+            <h2 align="center" id="RegrasBasicas"> Regras Básicas </h2> <br>
+
+            <div align="center">
+                <button command="show-modal" commandfor="testes" class="btn btn-outline-light btn-lg">Testes</button>
+                <button command="show-modal" commandfor="distancias" class="btn btn-outline-light btn-lg">Distâncias</button>
+            </div>
+
+            <br><br>
+            
+            <!-- CRIACAO DE PERSONAGEM -->
+            <h2 align="center" id="CriaPerso"> Criação de Personagem </h2> <br>
+
+            <div align="center">
+                <button command="show-modal" commandfor="baseCriacao" class="btn btn-outline-light btn-lg">Criação Base</button>
+                <button command="show-modal" commandfor="listaOrigens" class="btn btn-outline-light btn-lg"> Lista Origens</button>
+            </div>
+
+            <br>
+
+            <h3 align="center"> Classes </h3>
+            <h4 align="center"> Cultista </h3> <br>
+
+            <div align="center">
+                <button command="show-modal" commandfor="baseCultista" class="btn btn-outline-light btn-lg">Base</button>
+            </div> <br>
+            <h4 align="center"> Feiticeiro </h3> <br>
+
+            <div align="center">
+                <button command="show-modal" commandfor="baseFeiticeiro" class="btn btn-outline-light btn-lg">Base</button>
+            </div> <br>
+            <h4 align="center"> Lutador </h3> <br>
+
+            <div align="center">
+                <button command="show-modal" commandfor="baseLutador" class="btn btn-outline-light btn-lg">Base</button>
+                <button command="show-modal" commandfor="habilLutador" class="btn btn-outline-light btn-lg">Habilidades</button>
+            </div> <br>
+            <h4 align="center"> Ritualista </h3> <br>
+
+            <div align="center">
+                <button command="show-modal" commandfor="baseRitualista" class="btn btn-outline-light btn-lg">Base</button>
+            </div> <br>
+            <h4 align="center"> Técnico </h3> <br>
+
+            <div align="center">
+                <button command="show-modal" commandfor="baseTecnico" class="btn btn-outline-light btn-lg">Base</button>
+                <button command="show-modal" commandfor="habilTecnico" class="btn btn-outline-light btn-lg">Habilidades</button>
+            </div> <br>
+            
+            <br>
+
+            <h3 align="center"> Magias </h3> <br>
+
+            <div align="center">
+                <button command="show-modal" commandfor="baseMagia" class="btn btn-outline-light btn-lg">Magia Base</button>
+                <button command="show-modal" commandfor="listaMagia" class="btn btn-outline-light btn-lg">Lista de Magias</button>
+            </div>
+
+            <br>
+
+            <h3 align="center"> Outras Habilidades </h3> <br>
+
+            <div align="center">
+                <button command="show-modal" commandfor="aptidoes" class="btn btn-outline-light btn-lg">Aptidões</button>
+                <button command="show-modal" commandfor="habilGerais" class="btn btn-outline-light btn-lg">Habilidades Gerais</button>
+                <button command="show-modal" commandfor="recomAssi" class="btn btn-outline-light btn-lg">Recompensas por Assimilação</button>
+            </div>
+
+            <br><br>
+
+            <!-- EQUIPAMENTO -->
+            <h2 align="center" id="Equipamento"> Equipamento </h2> <br>
+
+            <div align="center">
+                <button command="show-modal" commandfor="listaArma" class="btn btn-outline-light btn-lg">Lista de Armas</button>
+                <button command="show-modal" commandfor="propArma" class="btn btn-outline-light btn-lg">Propriedades Armas</button>
+                <button command="show-modal" commandfor="listaUten" class="btn btn-outline-light btn-lg">Lista de Utensílios</button>
+            </div>
+
+            <br><br>
+            
+            <!-- OUTRAS REGRAS -->
+            <h2 align="center" id="OutraRegra"> Outras Regras </h2> <br>
+            
+            <h3 align="center"> Tipos de Cena </h3> <br>
+
+            <div align="center">
+                <button command="show-modal" commandfor="cenaCombate" class="btn btn-outline-light btn-lg">Cenas de Combate</button>
+                <button command="show-modal" commandfor="cenaDebate" class="btn btn-outline-light btn-lg">Cenas de Debate</button>
+                <button command="show-modal" commandfor="cenaDuelo" class="btn btn-outline-light btn-lg">Cenas de Duelo de Vontades</button>
+                <button command="show-modal" commandfor="cenaFurti" class="btn btn-outline-light btn-lg">Cenas de Furtividade</button>
+                <button command="show-modal" commandfor="cenaGuerra" class="btn btn-outline-light btn-lg">Cenas de Guerra de Vontades</button>
+                <button command="show-modal" commandfor="cenaInteracao" class="btn btn-outline-light btn-lg">Cenas de Interação</button>
+                <button command="show-modal" commandfor="cenaInterludio" class="btn btn-outline-light btn-lg">Cenas de Interlúdio</button>
+                <button command="show-modal" commandfor="cenaInvesti" class="btn btn-outline-light btn-lg">Cenas de Investigação</button>
+                <button command="show-modal" commandfor="cenaJornada" class="btn btn-outline-light btn-lg">Cenas de Jornada</button>
+                <button command="show-modal" commandfor="cenaPerigo" class="btn btn-outline-light btn-lg">Cenas de Perigo Complexo</button>
+                <button command="show-modal" commandfor="cenaPersegu" class="btn btn-outline-light btn-lg">Cenas de Perseguição</button>
+            </div> <br>
+
+            <h3 align="center"> Regras Extra </h3> <br>
+
+            <div align="center">
+                <button command="show-modal" commandfor="testes" class="btn btn-outline-light btn-lg">Testes</button>
+                <button command="show-modal" commandfor="distancias" class="btn btn-outline-light btn-lg">Distâncias</button>
+            </div> <br>
         
-        <!-- CRIACAO DE PERSONAGEM -->
-        <h2 align="center"> Criação de Personagem </h2> <br>
+        </aside>
 
-        <div align="center">
-            <button command="show-modal" commandfor="baseCriacao" class="btn btn-outline-light btn-lg">Criação Base</button>
-            <button command="show-modal" commandfor="listaOrigens" class="btn btn-outline-light btn-lg"> Lista Origens</button>
-        </div>
-
-        <br>
-
-        <h3 align="center"> Classes </h3>
-        <h4 align="center"> Cultista </h3> <br>
-
-        <div align="center">
-            <button command="show-modal" commandfor="baseCultista" class="btn btn-outline-light btn-lg">Base</button>
-        </div> <br>
-        <h4 align="center"> Feiticeiro </h3> <br>
-
-        <div align="center">
-            <button command="show-modal" commandfor="baseFeiticeiro" class="btn btn-outline-light btn-lg">Base</button>
-        </div> <br>
-        <h4 align="center"> Lutador </h3> <br>
-
-        <div align="center">
-            <button command="show-modal" commandfor="baseLutador" class="btn btn-outline-light btn-lg">Base</button>
-            <button command="show-modal" commandfor="habilLutador" class="btn btn-outline-light btn-lg">Habilidades</button>
-        </div> <br>
-        <h4 align="center"> Ritualista </h3> <br>
-
-        <div align="center">
-            <button command="show-modal" commandfor="baseRitualista" class="btn btn-outline-light btn-lg">Base</button>
-        </div> <br>
-        <h4 align="center"> Técnico </h3> <br>
-
-        <div align="center">
-            <button command="show-modal" commandfor="baseTecnico" class="btn btn-outline-light btn-lg">Base</button>
-            <button command="show-modal" commandfor="habilTecnico" class="btn btn-outline-light btn-lg">Habilidades</button>
-        </div> <br>
-        
-        <br>
-
-        <h3 align="center"> Magias </h3> <br>
-
-        <div align="center">
-            <button command="show-modal" commandfor="baseMagia" class="btn btn-outline-light btn-lg">Magia Base</button>
-            <button command="show-modal" commandfor="listaMagia" class="btn btn-outline-light btn-lg">Lista de Magias</button>
-        </div>
-
-        <br>
-
-        <h3 align="center"> Outras Habilidades </h3> <br>
-
-        <div align="center">
-            <button command="show-modal" commandfor="aptidoes" class="btn btn-outline-light btn-lg">Aptidões</button>
-            <button command="show-modal" commandfor="habilGerais" class="btn btn-outline-light btn-lg">Habilidades Gerais</button>
-            <button command="show-modal" commandfor="recomAssi" class="btn btn-outline-light btn-lg">Recompensas por Assimilação</button>
-        </div>
-
-        <br><br>
-
-        <h2 align="center"> Equipamento </h2> <br>
-
-        <div align="center">
-            <button command="show-modal" commandfor="listaArma" class="btn btn-outline-light btn-lg">Lista de Armas</button>
-            <button command="show-modal" commandfor="propArma" class="btn btn-outline-light btn-lg">Propriedades Armas</button>
-            <button command="show-modal" commandfor="listaUten" class="btn btn-outline-light btn-lg">Lista de Utensílios</button>
-        </div>
-
-        <br><br>
-        
-        <h2 align="center"> Outras Regras </h2> <br>
-        
-        <h3 align="center"> Tipos de Cena </h3> <br>
-
-        <div align="center">
-            <button command="show-modal" commandfor="cenaCombate" class="btn btn-outline-light btn-lg">Cenas de Combate</button>
-            <button command="show-modal" commandfor="cenaDebate" class="btn btn-outline-light btn-lg">Cenas de Debate</button>
-            <button command="show-modal" commandfor="cenaDuelo" class="btn btn-outline-light btn-lg">Cenas de Duelo de Vontades</button>
-            <button command="show-modal" commandfor="cenaFurti" class="btn btn-outline-light btn-lg">Cenas de Furtividade</button>
-            <button command="show-modal" commandfor="cenaGuerra" class="btn btn-outline-light btn-lg">Cenas de Guerra de Vontades</button>
-            <button command="show-modal" commandfor="cenaInteracao" class="btn btn-outline-light btn-lg">Cenas de Interação</button>
-            <button command="show-modal" commandfor="cenaInterludio" class="btn btn-outline-light btn-lg">Cenas de Interlúdio</button>
-            <button command="show-modal" commandfor="cenaInvesti" class="btn btn-outline-light btn-lg">Cenas de Investigação</button>
-            <button command="show-modal" commandfor="cenaJornada" class="btn btn-outline-light btn-lg">Cenas de Jornada</button>
-            <button command="show-modal" commandfor="cenaPerigo" class="btn btn-outline-light btn-lg">Cenas de Perigo Complexo</button>
-            <button command="show-modal" commandfor="cenaPersegu" class="btn btn-outline-light btn-lg">Cenas de Perseguição</button>
-        </div> <br>
-
-        <h3 align="center"> Regras Extra </h3> <br>
-
-        <div align="center">
-            <button command="show-modal" commandfor="testes" class="btn btn-outline-light btn-lg">Testes</button>
-            <button command="show-modal" commandfor="distancias" class="btn btn-outline-light btn-lg">Distâncias</button>
-        </div> <br>
-
-        <br><br>
-     
-        
 
         <!-- DIALOGS -->
         <dialog id="testes" class="">
