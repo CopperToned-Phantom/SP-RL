@@ -106,3 +106,12 @@ a {
     height : 20vh !important; 
   }
 }
+
+dialog::backdrop{
+  background : rgba(30, 15, 15, 0.7);
+}
+
+::selection {
+  color: #1e0f0f;
+  background: #96695A;
+}

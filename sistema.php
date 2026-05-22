@@ -31,6 +31,12 @@
                 <li>
                     <a href="#OutraRegra" class="b_cont"> Outras Regras </a>
                 </li>
+                <li>
+                    <a href="#Espiral" class="b_cont"> A Espiral </a>
+                </li>
+                <li>
+                    <a href="#Essencias" class="b_cont"> Essências do Desconhecido </a>
+                </li>
             </ul>        
         </aside>
 
@@ -147,6 +153,25 @@
                 <button command="show-modal" commandfor="RegrasCriatura" class="btn btn-outline-light btn-lg">Regras Criaturas/Máquinas</button>
                 <button command="show-modal" commandfor="TipoDano" class="btn btn-outline-light btn-lg">Tipos de Dano</button>
             </div> <br>
+
+            <!-- A ESPIRAL -->
+            <h1 align = "center" id="Espiral"> A Espiral </h1> <br>
+            <p align = "center"> 
+                A Espiral do Desconhecido é o começo de tudo, todas as realidades existentes, universos, mundos, existem nessa grande espiral, uma espiral com 6 longos braços, cada um representando uma das Essências do Desconhecido e demonstrando a sua infinita influência.
+                Essa vasta espiral expande-se sem um fim alcançável ou concebível, do seu ponto de origem saem infinitos fios, como os de uma grande teia, cada fio uma realidade, um universo, realidades essas distorcidas pela influência das 6 essências, pela influência do Desconhecido, resultando em manifestações que consideramos impossíveis, magias, criaturas e outros eventos impossíveis, tudo causado pela existência da mente humana e pela forma como a espiral a consegue distorcer, alimentando-se dela. 
+            </p> <br>
+
+            <h2 align = "center" id="Essencias"> Essências do Desconhecido </h2> <br>
+            <div align="center">
+                <button command="show-modal" commandfor="Apostasia" class="btn btn-outline-light btn-lg">Apostasia</button>
+                <button command="show-modal" commandfor="Caos" class="btn btn-outline-light btn-lg">Caos</button>
+                <button command="show-modal" commandfor="Carnica" class="btn btn-outline-light btn-lg">Carniça</button>
+                <button command="show-modal" commandfor="Energia" class="btn btn-outline-light btn-lg">Energia</button>
+                <button command="show-modal" commandfor="Obscuro" class="btn btn-outline-light btn-lg">Obscuro</button>
+                <button command="show-modal" commandfor="Sabedoria" class="btn btn-outline-light btn-lg">Sabedoria</button>
+                <button command="show-modal" commandfor="Tempo" class="btn btn-outline-light btn-lg">Tempo</button>
+            </div> <br>
+            
         
         </aside>
 
@@ -1650,6 +1675,35 @@
             <button commandfor="EstadoTrauma" command="close" class="btn btn-outline-light btn-lg">Fechar</button>
         </dialog>
 
+        <dialog id="Apostasia" class="">
+            <p>A <strong>Apostasia</strong> é o <em>ato de renegar as Essências</em>, renegar o <em>Desconhecido</em>, a <em>Espiral</em> e qualquer outra coisa associada à mesma, ao invés disso, começando um processo de assimilação à realidade natal, aquilo que te criou.
+            Ao rejeitar o <em>Desconhecido</em>, a aura do ser muda, tomando um semblante místico, possuindo uma cor dourada repleta de brilhos e cintilhos, ainda sendo constituída por aura do <em>Desconhecido</em> mas sem pertencer a nenhuma essência específica, uma espécie de energia além das 6.
+            A <strong>Apostasia</strong>, por mais que extremamente raro, também já se manifestou no formato de criaturas ou objetos, tomando todas formatos variados e únicos, sem limitações, possuindo todas os tons áureos e divinos do rejeitar da <em>Espiral</em>. Manifestações de <strong>Apostasia</strong> são inerentes a uma única realidade, todo o seu ser e força pertencente à aura dos seus arredores, à aura da realidade que a criou, não podendo se manifestar em nenhuma outra realidade, por mais que, teoricamente, consiga habitar noutras.</p>
+        
+            <br>
+            <button commandfor="Apostasia" command="close" class="btn btn-outline-light btn-lg">Fechar</button>
+        </dialog>
+        
+        <dialog id="Caos" class="">
+            <p>O <strong>Caos</strong> é a <em>Essência da Incerteza</em>, estando relacionado à loucura, confusão, desordem e qualquer outra coisa que dependa de probabilidade, representando a fé e a natureza imprevisível do Homem.
+            O <strong>Caos</strong> aprecia lugares desarrumados, caóticos e incoerentes, lugares fortemente associados com essa falta de sentido e certeza que tanto busca, tendo uma preferência profana pela incerteza da religião, lugares religiosos, com presença de mito, culto ou lenda, lugares onde a incerteza é quase que venerada.
+            O <strong>Caos</strong> tende a se manifestar como elementos laranjas, podendo tomar basicamente qualquer forma não viva, chamas, rochas, líquidos, escrituras e etc. As criaturas de <strong>Caos</strong>, por outro lado, tendem a se manifestar como seres mitológicos, imitando duma forma irónica a aparência de figuras religiosas ou pertencentes a mitos, em casos raros podendo se manifestar apenas como uma mescla incoerente de conceitos, mas tentando sempre mostrar e se deleitar na própria confusão e falta de coerência lógica.</p>
+            <p>A natureza inconstante e indecifrável do <strong>Caos</strong> é a única coisa que pode quebrar e fugir do absoluto saber da <strong>Sabedoria</strong>.</p>
+        
+            <br>
+            <button commandfor="Caos" command="close" class="btn btn-outline-light btn-lg">Fechar</button>
+        </dialog>  
+        
+        <dialog id="Carnica" class="">
+            <p>A <strong>Carniça</strong> é a <em>Essência da Emoção</em>, estando relacionado ao ódio, nojo, paixão, fome, violência e qualquer outro sentimento ou necessidade carnal que possuímos, representando as vontades mais carnais do Homem.
+            A <strong>Carniça</strong> aprecia lugares traumáticos, horríveis e sanguinários, lugares fortemente associados a esses sentimentos que tanta idolatra, tendo uma preferência insalubre pelos sentimentos negativos, lugares onde aconteceram eventos terríveis, mortes, torturas, ofensas à vida.
+            A <strong>Carniça</strong> tende a se manifestar como um líquido espesso vermelho, similar a sangue coagulado, exibindo um cheiro metálico e um visual grotesco. As criaturas de <strong>Carniça</strong>, por outro lado, tendem a se manifestar como seres grotescos, imitando duma forma distorcida a aparência de animais da realidade, com uma preferência sadia pela aparência humana, tomando visuais que causam nos outros aqueles sentimentos que os moldam, saboreando o efeito que causam nas suas vítimas.</p>
+            <p>A perceção vil e carnal da <strong>Carniça</strong> é a única coisa que consegue perverter e arruinar a gloriosa vitalidade da <strong>Energia</strong>.</p>
+
+            <br>
+            <button commandfor="Carnica" command="close" class="btn btn-outline-light btn-lg">Fechar</button>
+        </dialog>
+        
         <dialog id="template" class="">
 
             <br>
