@@ -36,6 +36,8 @@
         <aside class="aside-image">
             <img src="media/LogoSPIRL.png" alt="SP/RL" class="img-fluid">
         </aside>
+
+        <!--<img src="./media/reticulas_anim.gif" style="width : 100vh; bottom : 0;">-->
         
     </body>
 </html>
