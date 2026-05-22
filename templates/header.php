@@ -12,6 +12,7 @@
             <h5 class="header-color" style="text-align : right; color : #1e0f0f !important;"> 
                 <a href="personagens.php" class="header-links"> 
                     Personagens
+                    <!--<img src="./media/IconPersonagem.png" class="header-color img-fluid" style="width : 5vw;">-->
                 </a>
                 /
                 <a href="campanhas.php" class="header-links"> 
