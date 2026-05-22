@@ -18,7 +18,7 @@
         
             <!--BOTÃO PERSONAGENS-->
             <a href="personagens.php" class="b_cont" style="display : inline-block; margin-bottom: 0 !important;">
-                <button type="button" class="btn btn-outline-light btn-lg btn-index"> Personagem </button> <br><br><br>
+                <button type="button" class="btn btn-outline-light btn-lg btn-index"> Personagens </button> <br><br><br>
             </a>
             
             <!--BOTÃO CAMPANHAS-->

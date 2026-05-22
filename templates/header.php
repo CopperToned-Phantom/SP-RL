@@ -10,14 +10,17 @@
         </div>
         <div class="header-color" style="vertical-align: middle !important; width : 45vw !important; display : inline-block;">
             <h5 class="header-color" style="text-align : right; color : #1e0f0f !important;"> 
-                <a href="personagens.php" style="background-color : #96695A !important; color : #1e0f0f !important; text-decoration-line : none"> 
+                <a href="personagens.php" class="header-links"> 
                     Personagens
                 </a>
-                <a href="campanhas.php" style="background-color : #96695A !important; color : #1e0f0f !important; text-decoration-line : none"> 
+                /
+                <a href="campanhas.php" class="header-links"> 
                     Campanhas
                 </a>
-                <a href="sistema.php" style="background-color : #96695A !important; color : #1e0f0f !important; text-decoration-line : none"> 
-                    Sistema
+                /
+                <a href="sistema.php" class="header-links"> 
+                    Sistema                    
+                    <!--<img src="./media/LogoSPIRLblack.png" class="header-color img-fluid" style="width : 5vw;">-->
                 </a>
             </h5>
         </div>    
