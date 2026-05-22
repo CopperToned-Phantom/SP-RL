@@ -40,18 +40,59 @@ a {
 
 .b_cont{
   margin : 10px;
+  display : block;
 }
 
 .btn-index{
-  width : 30vw; 
+  width : 35vw !important; 
   margin : auto;
 
 }
 
-.aside-index{
-  width : 45vw; 
+.aside-btn{
   left : 0; 
   position : absolute; 
   margin : auto;
+  vertical-align: middle !important;
+  display : grid !important; 
+  height : 70vh; 
+  width : 45vw !important;
+  justify-content: center;
+  align-items: center;
+}
+
+.aside-image{
+  width : 40vw; 
+  height : 70vh !important; 
+  right : 0; 
+  position : absolute; 
+  display : grid;
+  margin : auto;
   align-items: center !important;
+  justify-content: center;
+  padding-right: 5vw;
+}
+
+.aside-sistema{
+  padding : 15px; 
+  position : fixed; 
+  width : 15vw; 
+  left : 0;
+  display : inline-block;
+}
+
+@media screen and (max-width: 1065px) {
+  .aside-sistema {
+    position : static;
+    width : 80vw;
+  }
+}
+
+@media screen and (min-height: 1300px) {
+  .aside-btn {
+    height : 20vh; 
+  }
+  .aside-image {
+    height : 20vh !important; 
+  }
 }

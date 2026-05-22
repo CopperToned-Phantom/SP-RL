@@ -16,7 +16,7 @@
         
         <h1> -- Sistema </h1>
 
-        <aside style="padding : 15px; position : fixed; width : 15vw; left : 0;">
+        <aside class="aside-sistema">
             <h2> Quick Access.. </h2>
             <ul>
                 <li>

@@ -14,23 +14,27 @@
 
         <br> <br>
 
-        <aside class="aside-index">
+        <aside class="aside-btn container-fluid">
         
             <!--BOTÃO PERSONAGENS-->
-            <a href="personagens.php" class="b_cont">
+            <a href="personagens.php" class="b_cont" style="display : inline-block; margin-bottom: 0 !important;">
                 <button type="button" class="btn btn-outline-light btn-lg btn-index"> Personagem </button> <br><br><br>
             </a>
             
             <!--BOTÃO CAMPANHAS-->
-            <a href="campanhas.php" class="b_cont">
-                <button type="button" class="btn btn-outline-light btn-lg btn-index"> Campanhas/Sessões </button> <br><br><br>
+            <a href="campanhas.php" class="b_cont" style="display : inline-block" margin-bottom: 0 !important;>
+                <button type="button" class="btn btn-outline-light btn-lg btn-index"> Campanhas / Sessões </button> <br><br><br>
             </a>
             
             <!--BOTÃO SISTEMA-->
-            <a href="sistema.php" class="b_cont">
+            <a href="sistema.php" class="b_cont" style="display : inline-block" margin-bottom: 0 !important;>
                 <button type="button" class="btn btn-outline-light btn-lg btn-index"> Sistema </button> <br><br><br>
             </a>
 
+        </aside>
+
+        <aside class="aside-image">
+            <img src="media/LogoSPIRL.png" alt="SP/RL" class="img-fluid">
         </aside>
         
     </body>
