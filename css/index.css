@@ -111,7 +111,19 @@ dialog::backdrop{
   background : rgba(30, 15, 15, 0.7);
 }
 
+dialog{
+  max-width: 80vw;
+}
+
 ::selection {
   color: #1e0f0f;
   background: #96695A;
+}
+
+.class-hr {
+    margin: 1rem 0 !important;
+    color: inherit !important;
+    background-color: currentColor !important;
+    border : solid !important;
+    opacity: 1 !important;
 }

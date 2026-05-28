@@ -1195,6 +1195,55 @@
             <button commandfor="listaUten" command="close" class="btn btn-outline-light btn-lg">Fechar</button>
         </dialog>
         
+        <dialog id="propArma" class="">
+            <h1 id="propriedades-f-sicas">Propriedades Físicas</h1>
+            <ul>
+            <li><strong>Duas mãos</strong> – A arma tem de ser segurada com ambas as mãos para poder ser usada. Adiciona o valor de FOR ao dano. (Se segurar uma arma Leve com ambas as mãos, tem o mesmo efeito). Não se aplica a armas à distância</li>
+            <li><strong>Sagaz</strong> – A arma foi feita para ser usada em conjunto com outra de similar tamanho, ao segurar duas armas com esta propriedade, uma em cada mão, pode atacar duas vezes numa ação, um ataque com cada.</li>
+            <li><strong>Leve</strong> – A arma é leve, podendo ser segurada e usada com só uma mão.</li>
+            <li><strong>Manha</strong> – Ao atacar, podes girar os testes de ataque da arma com FOR ou AGI</li>
+            <li><strong>Pesada</strong> – A arma é mais pesada que o normal, só seres com 3 de FOR ou mais as podem usar</li>
+            <li><strong>Arremessável</strong> - A arma foi feita para ser arremessada, testes de pontaria ao atirar a arma têm +4</li>
+            <li><strong>Afiada</strong> - A arma é extremamente afiada, sempre que acertar um crítico, causa <em>Sangramento</em> no alvo.</li>
+            <li><strong>Impactante</strong> - A arma causa um impacto destruidor, sempre que acertar um crítico, causa <em>Fraturado</em> no alvo(escolhe o atributo).</li>
+            <li><strong>Cabo</strong> - A arma possui um longo cabo/corrente. Enquanto portar, +2 em testes da manobra <em>Desarmar</em>.</li>
+            </ul>
+            <h1 id="propriedades-especiais">Propriedades Especiais</h1>
+            <p>Propriedades únicas para certos tipos de armas</p>
+            <ul>
+            <li><strong>Soqueira</strong> - Ao equipar, o dano da arma é adicionado ao dano físico.</li>
+            <li><strong>Manopla</strong> - Ao equipar, o dano da arma é adicionado ao dano físico. Não ocupa as mãos, podendo segurar outros itens sem problemas.</li>
+            <li><strong>Kusarigama</strong> - Ao atacar, pode escolher atacar com a bola de ferro na outra ponta, mudando o tipo de dano para físico. Enquanto portar, +4 em testes da manobra <em>Desarmar</em>.</li>
+            <li><strong>Desmontador</strong> - Enquanto portar, +4 em testes da manobra <em>Agarrar</em>.</li>
+            <li><strong>Motosserra</strong> – Ao girar o dano, sempre que calhar um 6 o dano aumenta em +1d6</li>
+            <li><strong>Sniper</strong> – Quanto mais longe, menor o acerto da Sniper. Distância corpo-a-corpo - desvantagem; Distância curta – -6; Distância média – -4; Distância longa – Normal;</li>
+            <li><strong>Espingarda</strong> – Quanto mais perto, maior o dano da Escopeta. Distância média : -4D; Distância curta : -2D; Distância corpo-a-corpo – dano normal;</li>
+            <li><strong>Espada Gancho</strong> – Podes gastar uma ação de movimento para juntar as armas, formando uma nova arma que possui alcance curto, causa +1D de dano mas perde a propriedade Sagaz.</li>
+            <li><strong>Lança-Chamas</strong> - Ao acertar um ataque, o alvo fica <em>Em Chamas</em>.</li>
+            <li><strong>Lança-Mísseis</strong> - Ataques causam dano em área, resultando numa explosão. Ao acertar um ponto, todos em alcance curto são alvos do ataque.</li>
+            <li><strong>Submetralhadora</strong> - Pode atacar duas vezes numa ação.</li>
+            </ul>
+            <h1 id="propriedades-customizadas">Propriedades Customizadas</h1>
+            <p>Estas são as propriedades que podes escolher adicionar na arma, aumentando a sua força</p>
+            <ul>
+            <li><strong>Balanceada</strong> – Uma arma perfeitamente balanceada, permitindo uma melhor movimentação. Enquanto portares, +2 em testes de <strong>AGI</strong>(não inclui ataques)</li>
+            <li><strong>Certeira</strong> – A arma dá +4 em testes de ataque feitos com ela (Pode escolher esta propriedade 2 vezes) </li>
+            <li><strong>Cruel</strong> - A arma possui espinhos(ou outras partes) que aumentam o seu perigo, +4 no dano. (Pode escolher esta propriedade 2 vezes) </li>
+            <li><strong>Compartimento</strong> - A arma possui um pequeno compartimento, dentro dele um frasco com veneno. Ao gastar uma ação de movimento, o veneno é aplicado na arma, durante 1 rodada, acertos com a arma causam <em>Envenenado(Fraco)</em> no alvo. Depois de 3 usos, é preciso gastar uma ação numa <em>Cena de Interlúdio</em> para poder voltar a usar.  (Pode escolher esta propriedade 3 vezes, aumentando o patamar do veneno para cada escolha consecutiva).</li>
+            <li><strong>Defensora</strong> – Enquanto segurares a arma a tua <strong>DEF</strong> aumenta em 2 (Pode escolher esta propriedade 3 vezes) </li>
+            <li><strong>Destruidora</strong> – O Modificador de crítico da arma sobe um nível, uma arma não pode ser Destruidora e Perigosa ao mesmo tempo</li>
+            <li><strong>Imponente</strong> – A tua arma tem um aspeto ameaçador, enquanto segurares a arma +4 em testes de *Intimidação</li>
+            <li><strong>Longo</strong> – Tu estendes o tamanho da tua arma, o alcance da arma aumenta em 1 patamar.</li>
+            <li><strong>Otimizada</strong> – Uma arma cujo saque foi otimizado, enquanto segurares a arma +4 em testes de <em>Iniciativa</em></li>
+            <li><strong>Penetrante</strong> – A arma ignora resistências contra o seu tipo de dano, ela só ignora resistências que sejam menores ou iguais à <strong>FOR</strong> ou <strong>AGI</strong> do usuário</li>
+            <li><strong>Perigosa</strong> – A chance de crítico da arma aumenta em 1, uma arma não pode ser Destruidora e Perigosa ao mesmo tempo</li>
+            <li><strong>Potente</strong> – A arma causa +1D de dano (Pode escolher esta propriedade 2 vezes)</li>
+            </ul>
+        
+            <br>
+            <button commandfor="propArma" command="close" class="btn btn-outline-light btn-lg">Fechar</button>
+        </dialog>
+        
         <dialog id="cenaDebate" class="">
             <p>Em certos momentos, os personagens precisam resolver a situação duma forma menos agressiva, por vezes, a situação precisa ser resolvida na base da discussão, para isso existem <em>Cenas de Debate</em>.</p>
             <p><em>Cenas de Debate</em>, similar a <em>Cenas de Combate</em>, são divididas em rodadas e turnos, cada personagem participando de 1 de 2 lados.</p>
@@ -1523,6 +1572,85 @@
             <button commandfor="EfeitoLouco" command="close" class="btn btn-outline-light btn-lg">Fechar</button>
         </dialog>
 
+        <dialog id="Fagulha" class="">
+            <p>O sincronizar da alma e do corpo, a união perfeita de duas coisas feitas para se oporem constantemente.
+            Por mais que sejam forçadas a coexistir, a alma e o corpo naturalmente se repelem, se movem de forma assíncrona, um sempre à frente do outro, porém, num momento de grande foco, essas duas metades do &quot;eu&quot; se sincronizam, tornando a aura do ser em algo além, algo inexplicável, uma expressão pura da própria Espiral. Ao atacar alguém com essa aura, a própria realidade explode, causando uma explosão duma energia que inverte as cores do ambiente, emitindo um brilho multicolorido, uma espécie de junção perfeita das essências.</p>
+            <h1 id="mec-nica">Mecânica</h1>
+            <p>Ao girar um ataque, se o ser obter 12 em 3 dados, ao invés de realizar um crítico ou algo similar, ele realiza uma <em>Fagulha Inversa</em>. Ao realizar a mesma, o ataque beneficia-se dos seguintes efeitos :</p>
+            <ul>
+            <li>O tipo de dano muda para <em>Espiritual</em> e é triplicado.</li>
+            <li>O ser atacado deve girar <strong>CON</strong>(RN : 30), se falhar, perde 1 ação no seu próximo turno.</li>
+            <li>O atacante ganha o estado <em>Êxtase</em> até o fim da cena.</li>
+            </ul>
+        
+            <br>
+            <button commandfor="Fagulha" command="close" class="btn btn-outline-light btn-lg">Fechar</button>
+        </dialog>
+        
+        <dialog id="Profici" class="">
+            <p>Com o subir dos níveis, além da força vinda do Desconhecido, o personagem vai aprendendo, ficando melhor a usar aquilo que já sabe fazer, para representar isso existem as <em>Proficiências</em>. <em>Proficiências</em> podem ser gastas de 2 formas :</p>
+            <ul>
+            <li><strong>Melhorar</strong> - Gastar num item/habilidade/magia, deixando-a mais forte, com um limite de 3 <em>Proficiências</em> para cada item/habilidade/magia, a melhora é decidida pelo <em>Mestre</em>, aumentando dano, diminuindo custo, dando algum bónus, etc. É possível o <em>Mestre</em> decidir que o limite de <em>Proficiências</em> colocadas num item sejam menores ou que não seja possível colocar <em>Proficiências</em> de todo.</li>
+            <li><strong>Aumentar</strong> - Gasta em si mesmo, obtendo 1 ponto para atributo para distribuir como quiser, não ultrapassando o limite de 8 por atributo.</li>
+            </ul>
+            <p>A cada <em>Proficiência</em> consecutiva gasta num item/habilidade/magia, a melhora vinda da <em>Proficiência</em> fica melhor. A 1º <em>Proficiência</em> gasta dá uma melhora simples, a 2º uma melhora um pouco mais forte e a 3º uma melhora grande.</p>
+            <hr class="class-hr">
+            <p>Por exemplo, se uma <em>Espada</em> receber 3 <em>Proficiências</em>, a 1º <em>Proficiência</em> aumenta algo simples, como aumentar o número de d6 de dano em 1.
+            <strong>Acabando assim :</strong></p>
+            <ul>
+            <li><strong>Espada</strong> - 1d10+2d6 de dano cortante- Crítico: 24 - 2x - L {1 Proficiência}</li>
+            </ul>
+            <p>Já a 2º <em>Proficiência</em> vai oferecer um melhora aprimorada, como, por exemplo, além de aumentar o número de d10 de dano em 1, a <em>Espada</em> passa a também ter uma chance maior de crítico.
+            <strong>Acabando assim :</strong></p>
+            <ul>
+            <li><strong>Espada</strong> - 2d10+2d6 de dano cortante - Crítico: 23, 24 - 2x - L {2 Proficiências}</li>
+            </ul>
+            <p>Se então adicionarmos ainda uma 3º <em>Proficiência</em>, seria uma melhora grande, como subir a classe de ambos os dados e aumentar ainda mais a chance de crítico.
+            <strong>Acabando assim :</strong></p>
+            <ul>
+            <li><strong>Espada</strong> - 2d12+2d8 de dano cortante - Crítico: 22, 23, 24 - 2x - L {3 Proficiências}</li>
+            </ul>
+        
+            <br>
+            <button commandfor="Profici" command="close" class="btn btn-outline-light btn-lg">Fechar</button>
+
+        </dialog>
+        
+        <dialog id="RegrasCriatura" class="">
+            <h1 id="geral">Geral</h1>
+            <ul>
+            <li>Não possuem <strong>PdTs</strong> nem <strong>SAN</strong>, dano Mental e Espiritual diminui os <strong>PVs</strong> ao invés do status habitual. </li>
+            <li>Ações não diminuem nenhum status e custam uma ação padrão(a não ser que seja dito diferente na descrição da ação). <h1 id="m-quinas">Máquinas</h1>
+            </li>
+            <li>Possuem um status chamado <em>Calor de Motor</em> (<strong>CdM</strong>), usar certas ações aumenta o valor atual de <strong>CdM</strong>, se o valor chegar no limite, a <em>Máquina</em> sobreaquece, perdendo uma quantia de <strong>PVs</strong>, a quantia depende de <em>Máquina</em> para <em>Máquina</em> e deve ser definido à frente do valor de <strong>CdM</strong>, depois de sobreaquecer, o valor de <strong>CdM</strong> volta a 0.</li>
+            </ul>
+            <h1 id="n-vel-de-dificuldade">Nível de Dificuldade</h1>
+            <p>Perante o Desconhecido e suas manifestações, é possível catalogar os seus Níveis de Dificuldade através da experiência dos agentes e suas habilidades. Normalmente, esta estatística surge pelo nível de personagem.</p>
+            <p>Veja-se o exemplo simples de uma equipa trio de agentes <strong>NdP</strong> 3, 4 e 5. A <em>Média de Dificuldade</em> a qual o grupo pode lidar encaixa na média dos seus níveis. A média de nível do grupo é 4, logo uma criatura <em>Nível de Dificuldade 4</em> seria o desafio ideal, abaixo seria um pequeno desafio e acima seria um grande desafio. </p>
+            <p>É importante notar que nem sempre o nível de personagem condiz com a sua capacidade em lidar com dificuldades. Além da ideia de RPG, onde tudo pode acontecer, dependendo do <em>Mestre</em>, determinado personagem pode possuir habilidades mais poderosas, itens ou magias mais avançadas do que o comum pra sua categoria.
+            Nesta parte, cabe ao <em>Mestre</em> decidir se a <em>Média de Dificuldade</em> deveria subir por esse integrante especial ou não.</p>
+            <hr class="class-hr">
+            <p>Por fim, para determinar o <em>Nível de Dificuldade</em>, é preciso interpretar o seu resultado como &quot;O <strong>NdP</strong> da Criatura&quot;, apesar de que se o mesmo <strong>NdP</strong> fosse para um personagem, o mesmo não teria poder o suficiente para derrotar a criatura. 
+            O cálculo para o <em>Nível de Dificuldade</em> envolve somar todos os seus pontos de atributos e dividir por 2, logo de seguida, tendo por base o número dado, considera-se as habilidades características da criatura juntamente da sua vida e status para um modificador positivo (+1 a 2 ND) ou negativo (-1 a 2 ND).</p>
+            <p>Exemplo do &quot;Criado de Sangue&quot;, os seus pontos juntam-se em 7/2, que resulta em aproximadamente (sempre por defeito, ou seja, mais baixo), 3. Como o &quot;Criado de Sangue&quot; é um ser de pouca vida e baixo leque de habilidades, sofrerá um modificador negativo. </p>
+            <hr class="class-hr">
+            <p><strong>Nível de Dificuldade</strong></p>
+            <blockquote>
+            <p>Atributos Somados/2 + ou - Modificador de Status e Habilidades</p>
+            </blockquote>
+            <p>O conceito de Status baixo e habilidades simples para uma criatura varia para o Mestre se assim o entender.</p>
+        
+            <br>
+            <button commandfor="RegrasCriatura" command="close" class="btn btn-outline-light btn-lg">Fechar</button>
+        </dialog>
+        
+        <dialog id="TipoDano" class="">
+
+            <br>
+            <button commandfor="TipoDano" command="close" class="btn btn-outline-light btn-lg">Fechar</button>
+        </dialog>
+        
+  
         <dialog id="EstadoTrauma" class="">
             <h1 id="estados">Estados</h1>
             <p>Estados representam certas condições temporárias em que o ser se encontra, normalmente ganhando uma vantagem ou desvantagem dependendo do estado.</p>
@@ -1702,6 +1830,46 @@
 
             <br>
             <button commandfor="Carnica" command="close" class="btn btn-outline-light btn-lg">Fechar</button>
+        </dialog>
+        
+        <dialog id="Energia" class="">
+            <p>A <strong>Energia</strong> é a <em>Essência da Vida</em>, estando relacionada ao poder, potência, luz, vitalidade e qualquer outra fonte de energia ou força que exista, representando aquilo que alimenta o viver do Homem.
+            A <strong>Energia</strong> aprecia lugares movimentados, vivos, com a presença forte de fontes de energia, plantas e outros indícios da vida que tanto cultiva, tendo uma preferência pelas energias elementais, coisas como raios, chamas, vento, lugares onde a influência desses fatores é facilmente notável.
+            A <strong>Energia</strong> tende a se manifestar como os elementos que tanto persegue, chamas e raios com tons de azul e ciano, causando um som que parece digitalmente alterado e um visual brilhante. As criaturas de <strong>Energia</strong>, por outro lado, tendem a se manifestar como seres chamativos, imitando a vida dos seres que o rodeiam ou simplesmente tomando uma forma completamente constituída por um dos elementos, tomando visuais que chamam a atenção, que mostram a todos a glória da vida que adora.</p>
+            <p>O interminável rejuvenescer da <strong>Energia</strong> é a única coisa que pode persistir e luzir perante o infinito vácuo da mudança do <strong>Obscuro</strong>.</p>
+        
+            <br>
+            <button commandfor="Energia" command="close" class="btn btn-outline-light btn-lg">Fechar</button>
+        </dialog>
+        
+        <dialog id="Obscuro" class="">
+            <p>O <strong>Obscuro</strong> é a <em>Essência da Mudança</em>, estando relacionado ao indiferente, o vácuo, a falta de algo, o espaço que essa falta causa e as oportunidades que oferece, representando a natureza inerentemente mutável do Homem. 
+            O <strong>Obscuro</strong> aprecia lugares escuros, vazios e solitários, lugares onde a mudança que tanto espalha pode tomar lugar, tendo uma preferência forte por lugares abandonados recentemente, lugares que recentemente foram importantes e que agora foram diminuídos a uma sombra do que eram, lugares onde a sua mudança pode acontecer.
+            O <strong>Obscuro</strong> tende a se manifestar como rabiscos roxos, insetos, impressões digitais negras, os rabiscos representando a inconsistência, os insetos representando a metamorfose, as impressões, que algo foi alterado, podendo também tomar a forma de sombras e escuridão, exibindo um visual escuro e monocromático. As criaturas de <strong>Obscuro</strong>, por outro lado, tendem a se manifestar como seres sombrios, possuindo características góticas, membros pálidos, formatos abstratos e visuais misteriosos, tentando ao máximo demonstrar a liberdade que a transformação constante as oferece.</p>
+            <p>A mudança incontrolável do <strong>Obscuro</strong> é a única coisa que consegue se adaptar e conter a incompreensão causada pela variação eterna do <strong>Caos</strong></p>
+        
+            <br>
+            <button commandfor="Obscuro" command="close" class="btn btn-outline-light btn-lg">Fechar</button>
+        </dialog>
+        
+        <dialog id="Sabedoria" class="">
+            <p>A <strong>Sabedoria</strong> é a <em>Essência da Lógica</em>, estando relacionada ao conhecimento, ordem, juízo e qualquer outra habilidade mental ou contemplativa, representando o lado pensante da mente do Homem.
+            A <strong>Sabedoria</strong> aprecia lugares calmos, organizados e limpos, lugares fortemente associados à busca desses fatos incontestáveis que tanto espalha, tendo uma preferência por formas escritas do seu conhecimento, lugares onde seria fácil absorver conhecimento através de meios físicos.
+            A <strong>Sabedoria</strong> tende a se manifestar como letras e sigilos com um brilho rosado, similar a textos humanos porém incompreensíveis, exibindo um visual chamativo. As criaturas de <strong>Sabedoria</strong>, por outro lado, tendem a se manifestar como seres elegantes, imitando de certa forma visuais reais e soberbos, possuindo sempre um semblante que parece distante, como se pertencesse a algo além, causando naqueles que os observam a curiosidade pelo conhecimento que os fortalece. </p>
+            <p>O saber incontestável e interminável da <strong>Sabedoria</strong> é a única coisa que escapa à influência interminável causada pela degradação do <strong>Tempo</strong>.</p>
+
+            <br>
+            <button commandfor="Sabedoria" command="close" class="btn btn-outline-light btn-lg">Fechar</button>
+        </dialog>
+        
+        <dialog id="Tempo" class="">
+            <p>O <strong>Tempo</strong> é a <em>Essência do Fim</em>, estando relacionado à morte, o apodrecer, o degradar e qualquer outro efeito negativo que o envelhecimento causa,, representando o fim inevitável do Homem.
+            O <strong>Tempo</strong> aprecia lugares antigos, apodrecidos e sujos, lugares fortemente associados à sua influência, tendo uma preferência notável por lugares à muito abandonados, lugares que por causa da sua influência se tornaram nada, que agora não passam de restos sem qualquer indício do que algum dia foi.
+            O <strong>Tempo</strong> tende a se manifestar como numerais verdes, similares a números romanos, exibindo um cheiro putrefato e nojento, porém, mais impercetivelmente, manifesta-se como apodrecimento dos arredores, envelhecendo algo a uma velocidade anormal. As criaturas de <strong>Tempo</strong>, por outro lado, tendem a se manifestar como seres esotéricos, imitando duma forma quase alienada visuais antigos e futuros, tomando aparências que parecem fora de época, muitas vezes podres e empoeirados, espalhando pelos seus arredores a graciosidade da sua influência.</p>
+            <p>O transformar degradante e inevitável do <strong>Tempo</strong> é a única coisa que consegue superar e apodrecer os sentimentos passageiros da <strong>Carniça</strong>.</p>
+
+            <br>
+            <button commandfor="Tempo" command="close" class="btn btn-outline-light btn-lg">Fechar</button>
         </dialog>
         
         <dialog id="template" class="">
