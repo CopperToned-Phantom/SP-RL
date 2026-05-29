@@ -97,7 +97,7 @@
 
             <div align="center">
                 <button command="show-modal" commandfor="baseMagia" class="btn btn-outline-light btn-lg">Magia Base</button>
-                <button command="show-modal" commandfor="listaMagia" class="btn btn-outline-light btn-lg">Lista de Magias</button>
+                <button command="show-modal" commandfor="listaMagias" class="btn btn-outline-light btn-lg">Lista de Magias</button>
             </div>
 
             <br>
@@ -684,6 +684,585 @@
             <br>
             <button commandfor="baseMagia" command="close" class="btn btn-outline-light btn-lg">Fechar</button>
         </dialog>
+
+        <dialog id="listaMagias" class="">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                    <th style="text-align:center">Nome</th>
+                    <th style="text-align:center">Essência</th>
+                    <th style="text-align:center">Tempo de Execução</th>
+                    <th style="text-align:center">Custo</th>
+                    <th style="text-align:center">Efeito</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <td style="text-align:center"><strong>Mutilação</strong></td>
+                    <td style="text-align:center">Carniça</td>
+                    <td style="text-align:center">Ação Padrão</td>
+                    <td style="text-align:center">3</td>
+                    <td style="text-align:center">Tu tocas num ser, cobrindo o seu corpo com diversos cortes superficiais, cortando-o repetidamente, causando 3d6 de dano cortante</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Amarras Violentas</strong></td>
+                    <td style="text-align:center">Carniça</td>
+                    <td style="text-align:center">Ação Padrão</td>
+                    <td style="text-align:center">3</td>
+                    <td style="text-align:center">Tu conjuras tripas grotescas que saem do chão, enrolando-se num alvo, tentando restringir os seus movimentos, o alvo faz um teste de <strong>FOR</strong> contra a tua <strong>INT</strong>/<strong>CAR</strong>, se falhar fica <em>Agarrado</em>.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Desmantelar</strong></td>
+                    <td style="text-align:center">Carniça</td>
+                    <td style="text-align:center">Ação Padrão</td>
+                    <td style="text-align:center">4</td>
+                    <td style="text-align:center">Tu disparas um corte invisível contra um alvo a distância média de ti, causando 3d6 de dano cortante.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Corrente Óssea</strong></td>
+                    <td style="text-align:center">Carniça</td>
+                    <td style="text-align:center">Ação Padrão</td>
+                    <td style="text-align:center">3</td>
+                    <td style="text-align:center">Tu disparas uma corrente criada a partir dos teus ossos contra um alvo a distância curta de ti, tu giras um teste de FOR contra o alvo, se passares, o alvo fica agarrado.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Sabre Medular</strong></td>
+                    <td style="text-align:center">Carniça</td>
+                    <td style="text-align:center">Ação de Movimento</td>
+                    <td style="text-align:center">5</td>
+                    <td style="text-align:center">A tua medula espinal estende-se, saindo pela tua nuca, ao pegares nela, tu sacas-la pra fora, criando um sabre feito d’ossos.  <br>Sabre Medular - 2d12+1d6 dano cortante - Crítico: 23, 24 – +2d6 - Duas Mãos, Manha, Imponente, Potente</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Unha Pútrida</strong></td>
+                    <td style="text-align:center">Carniça</td>
+                    <td style="text-align:center">Ação Padrão</td>
+                    <td style="text-align:center">4</td>
+                    <td style="text-align:center">Uma das tuas unhas cresce, virando um unha afiada rubra, ao a espetar num ser, o ser fica Envenenado(Fraco).</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Limpeza Interna</strong></td>
+                    <td style="text-align:center">Carniça</td>
+                    <td style="text-align:center">Ação Padrão</td>
+                    <td style="text-align:center">5</td>
+                    <td style="text-align:center">Tu tocas num ser, alterando o seu sangue, acelerando o processo de cura, curando 4d6 de PVs do ser, cura Envenenado(Fraco).</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Bomba de Sangue [Requisitos : NdP 4]</strong></td>
+                    <td style="text-align:center">Carniça</td>
+                    <td style="text-align:center">Ação de Padrão</td>
+                    <td style="text-align:center">8</td>
+                    <td style="text-align:center">Tu crias uma enorme bolha de sangue coagulado e atiras contra um alvo a alcance médio, criando uma explosão viscosa e nojenta, causando 6d6 de dano de Carniça em todos a distância curta da explosão.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Corvos Rubros [Requisitos : NdP 4]</strong></td>
+                    <td style="text-align:center">Carniça</td>
+                    <td style="text-align:center">Ação Padrão</td>
+                    <td style="text-align:center">8</td>
+                    <td style="text-align:center">Tu fazes um gesto com as mãos, criando, nos teus pés, uma poça de um líquido vermelho viscoso, desse mesmo líquido, saem dois Corvos Rubros.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Jardim de Espinhos [Requisitos : NdP 4]</strong></td>
+                    <td style="text-align:center">Carniça</td>
+                    <td style="text-align:center">Ação Padrão</td>
+                    <td style="text-align:center">9</td>
+                    <td style="text-align:center">Tu tocas no chão, cobrindo uma área de alcance curto com aura de Carniça, criando inúmeras vinhas espinhosas, seres que entrarem ou acabarem a rodada na área sofrem 2d8 de dano de Carniça, a área conta como Terreno Complexo, dura até o fim da cena.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Transfigurar [Requisitos : NdP 5]</strong></td>
+                    <td style="text-align:center">Carniça</td>
+                    <td style="text-align:center">Ação Padrão</td>
+                    <td style="text-align:center">8</td>
+                    <td style="text-align:center">Tu cobres o teu corpo com aura de Carniça, alterando o formato da tua carne, tomando a aparência que desejares. +4 em testes que envolvam comunicação social até o fim da cena.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Águia de Sangue [Requisitos : NdP 5]</strong></td>
+                    <td style="text-align:center">Carniça</td>
+                    <td style="text-align:center">Ação Padrão</td>
+                    <td style="text-align:center">8</td>
+                    <td style="text-align:center">As tuas costelas expandem, criando costelas longas e curvadas que saem das tuas costas, criando carne entre os ossos, criando duas enormes asas de carne. Podes usar a ação <em>Deslocar</em> para te moveres verticalmente além de horizontalmente. Dura até o fim da cena</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Cortina de Insetos [Requisitos : NdP 5]</strong></td>
+                    <td style="text-align:center">Carniça</td>
+                    <td style="text-align:center">Ação Padrão</td>
+                    <td style="text-align:center">6</td>
+                    <td style="text-align:center">Tu fechas a tua boca, sendo possível começar a ouvir um forte zumbido vindo do fundo da tua garganta, tu abres a boca, vomitando inúmeros insetos deformados que rapidamente se espalham pelo campo de batalha, dificultando a visão dos inimigos. O ambiente torna-se <em>Ambiente Nublado</em> mas tu e os teus aliados não sofrem os efeitos, dura até o fim da cena.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Forçar Ódio [Requisitos : NdP 5]</strong></td>
+                    <td style="text-align:center">Carniça</td>
+                    <td style="text-align:center">Ação Padrão</td>
+                    <td style="text-align:center">8</td>
+                    <td style="text-align:center">Tu tocas num ser, o ser sente como uma fúria incontrolável a começar a toma-lo, os olhos ficam encharcados de sangue, as veias pulsam incontrolavelmente, como se entrasse num estado de adrenalina. Ganha +4 em testes de ataque, +1D dano e +2 em reação durante 1d3 rodadas.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Apunhalo Brutal [Requisitos : NdP 6]</strong></td>
+                    <td style="text-align:center">Carniça</td>
+                    <td style="text-align:center">Ação Padrão</td>
+                    <td style="text-align:center">9</td>
+                    <td style="text-align:center">O teu braço é coberto por uma camada grotesca de carne e sangue coagulado, tomando um formato afiado, com uma marca que brilha carmesim nas costas da tua palma, disparando esse sangue contra um alvo a alcance médio, o sangue tomando o formato duma enorme lâmina vermelha, causando 6d8+5 de dano cortante</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"></td>
+                    <td style="text-align:center"></td>
+                    <td style="text-align:center"></td>
+                    <td style="text-align:center"></td>
+                    <td style="text-align:center"></td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Seta de Fogo</strong></td>
+                    <td style="text-align:center">Energia</td>
+                    <td style="text-align:center">Ação Padrão</td>
+                    <td style="text-align:center">3</td>
+                    <td style="text-align:center">Tu crias uma pequena flecha de fogo, disparando-a contra um alvo, causando 2d8+2 de dano incendiário.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Ataque em Chamas</strong></td>
+                    <td style="text-align:center">Energia</td>
+                    <td style="text-align:center">Ação Livre</td>
+                    <td style="text-align:center">2</td>
+                    <td style="text-align:center">Tu cobres a tua arma em fogo, no próximo ataque a arma causa +1d10 de dano incendiário.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Cúmulo de Raios</strong></td>
+                    <td style="text-align:center">Energia</td>
+                    <td style="text-align:center">Ação Padrão</td>
+                    <td style="text-align:center">5</td>
+                    <td style="text-align:center">Tu crias um amontoado de raios azulados nas tuas mãos e disparas-lo contra um alvo, causando 2d6 de dano elétrico e deixando o inimigo vulnerável durante 1 rodada.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Braço Arcano</strong></td>
+                    <td style="text-align:center">Energia</td>
+                    <td style="text-align:center">Ação Padrão</td>
+                    <td style="text-align:center">3</td>
+                    <td style="text-align:center">Tu crias um braço flutuante feito de aura de Energia, o braço tem 20 PV, ao atacar, causa 2d6+Mod. de INT de dano elétrico ou físico, girando o teste de ataque com a INT do conjurador.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Trovão Potente</strong></td>
+                    <td style="text-align:center">Energia</td>
+                    <td style="text-align:center">Ação Padrão</td>
+                    <td style="text-align:center">4</td>
+                    <td style="text-align:center">Tu puxas um raio azulado de uma fonte de energia próxima ou do céu, disparando-lho contra um inimigo, causando 1d20 de dano elétrico ou de Energia.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Toque Elétrico</strong></td>
+                    <td style="text-align:center">Energia</td>
+                    <td style="text-align:center">Ação Padrão</td>
+                    <td style="text-align:center">3</td>
+                    <td style="text-align:center">Tu cobres a tua mão com raios e tocas num ser, causando 3d6 de dano elétrico.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Cauterização Brutal</strong></td>
+                    <td style="text-align:center">Energia</td>
+                    <td style="text-align:center">Ação Padrão</td>
+                    <td style="text-align:center">3</td>
+                    <td style="text-align:center">Tu aqueces a ferida de um ser ao ponto de a cauterizar, o alvo recupera 4d6 de PV.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Garras Elétricas</strong></td>
+                    <td style="text-align:center">Energia</td>
+                    <td style="text-align:center">Ação de Movimento</td>
+                    <td style="text-align:center">4</td>
+                    <td style="text-align:center">Tu cobres as tuas mãos com aura de Energia, conjurando garras feitas de raios azulados em ambas as mãos. As garras causam 1d10+5 de dano elétrico e possuem as propriedades Sagaz e Manha, duram até o fim da cena.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Anéis Abastecedores</strong></td>
+                    <td style="text-align:center">Energia</td>
+                    <td style="text-align:center">Ação de Movimento</td>
+                    <td style="text-align:center">3/rodada</td>
+                    <td style="text-align:center">Tu conjuras anéis ondulados feitos de aura de Energia ao redor das tuas mãos, enquanto os anéis estiverem ativos, o custo de feitiços diminuí em 2, custando no mínimo 1 (Não afeta esta magia).</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Raios de Outro Mundo</strong></td>
+                    <td style="text-align:center">Energia</td>
+                    <td style="text-align:center">Ação Padrão</td>
+                    <td style="text-align:center">3</td>
+                    <td style="text-align:center">Os teus olhos brilham azul, disparando dois raios, escolhe até 2 alvos, os raios voam até os alvos escolhidos, cada raio causando 1d10+1 de dano de Energia.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Combustão Instantânea</strong></td>
+                    <td style="text-align:center">Energia</td>
+                    <td style="text-align:center">Ação Padrão</td>
+                    <td style="text-align:center">2</td>
+                    <td style="text-align:center">Tu estalas os dedos, cobrindo o corpo de um ser em aura de Energia, aura essa que rapidamente vira uma enorme chama azulada, um alvo (á tua escolha) fica em chamas.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Investida Elétrica [Requisitos : NdP 4]</strong></td>
+                    <td style="text-align:center">Energia</td>
+                    <td style="text-align:center">Ação de Movimento</td>
+                    <td style="text-align:center">5</td>
+                    <td style="text-align:center">Tu investes para a frente, virando um raio azul, tu moves-te o dobro, evitando ataques e conseguindo passar por espaços apertados. <br>Pode gastar +2 para usar como reação, esquivando-se do ataque garantidamente, ou para levar outra pessoa junto, +2 por pessoa.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Carregar [Requisitos :  NdP 4]</strong></td>
+                    <td style="text-align:center">Energia</td>
+                    <td style="text-align:center">Ação de Movimento</td>
+                    <td style="text-align:center">7</td>
+                    <td style="text-align:center">Tu preenches as veias dum ser de eletricidade, fazendo as brilhar azul, dando a tal ser uma vitalidade absurda. O ser ganha 2d10+5 PVs temporários.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Benzer [Requisitos : NdP 4]</strong></td>
+                    <td style="text-align:center">Energia</td>
+                    <td style="text-align:center">Ação Padrão</td>
+                    <td style="text-align:center">6</td>
+                    <td style="text-align:center">Tu cobres uma área a teu redor com aura de Energia, abençoando-a com a beleza da vitalidade. Todos os seres a alcance curto de ti recuperam 3d6+INT de PdTs.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Rajada de Fogo [Requisitos : NdP 6]</strong></td>
+                    <td style="text-align:center">Energia</td>
+                    <td style="text-align:center">Ação Padrão</td>
+                    <td style="text-align:center">10</td>
+                    <td style="text-align:center">Tu conjuras uma chama azul entre as tuas mãos, lançando-a para a frente na forma de um enorme leque de fogo, causando 2d12+10 de dano de Energia em todos os seres a alcance médio.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"></td>
+                    <td style="text-align:center"></td>
+                    <td style="text-align:center"></td>
+                    <td style="text-align:center"></td>
+                    <td style="text-align:center"></td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Veneno Profano</strong></td>
+                    <td style="text-align:center">Obscuro</td>
+                    <td style="text-align:center">Ação de Movimento</td>
+                    <td style="text-align:center">4</td>
+                    <td style="text-align:center">Tu cobres a tua arma com uma substância negra que parece apodrecer tudo que toca, ao acertar um inimigo, ele fica <em>Envenenado(Fraco+3)</em>, ao invés de venenoso é necrótico.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Espinho Negro</strong></td>
+                    <td style="text-align:center">Obscuro</td>
+                    <td style="text-align:center">Ação Padrão</td>
+                    <td style="text-align:center">4</td>
+                    <td style="text-align:center">Tu crias um espinho negro e disparas-lo contra o alvo, causando 4d6 de dano necrótico.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Chama Maldita</strong></td>
+                    <td style="text-align:center">Obscuro</td>
+                    <td style="text-align:center">Ação Padrão</td>
+                    <td style="text-align:center">3/rodada</td>
+                    <td style="text-align:center">Tu crias uma chamas preta que ocupa uma área de alcance curto, se alguém entrar nela ou acabar o turno dentro dela, sofre 1d12+3 de dano necrótico.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Piso Gosmento</strong></td>
+                    <td style="text-align:center">Obscuro</td>
+                    <td style="text-align:center">Ação Padrão</td>
+                    <td style="text-align:center">4</td>
+                    <td style="text-align:center">Tu cobres o chão com uma lama negra, a lama é quente e grotesca, ela quase parece viva, prendendo e puxando tudo que toca, o terreno vira terreno complexo até o fim da cena.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Teia Negra</strong></td>
+                    <td style="text-align:center">Obscuro</td>
+                    <td style="text-align:center">Ação Padrão</td>
+                    <td style="text-align:center">4</td>
+                    <td style="text-align:center">Tu disparas uma teia feita duma gosma negra que se prende ao alvo, se acertado, o alvo fica <em>Agarrado</em>. Precisa passar um teste de FOR(RN : 15+INT/EMO*2), se passar solta-se.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Sentença [Requisitos : NdP 4]</strong></td>
+                    <td style="text-align:center">Obscuro</td>
+                    <td style="text-align:center">Ação de Movimento</td>
+                    <td style="text-align:center">6</td>
+                    <td style="text-align:center">Tu declaras uma sentença de morte a um alvo, gerando uma tatuagem negra que circunda o seu pescoço, sempre que sofrer dano de Obscuro, o ser sofre +3 de dano extra para cada dado girado, dura até o fim da cena.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Duplicatas [Requisitos : NdP 4]</strong></td>
+                    <td style="text-align:center">Obscuro</td>
+                    <td style="text-align:center">Ação de Movimento</td>
+                    <td style="text-align:center">6</td>
+                    <td style="text-align:center">Tu fazes um gesto com as mãos, conjurando, a partir da tua sombra, 3 duplicatas, aumentando a tua DEF em 6, sempre que um ataque direcionado a ti falhar, uma das duplicatas se desfaz, diminuindo a tua DEF em 2.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Forçar Penumbra [Requisitos : NdP 4]</strong></td>
+                    <td style="text-align:center">Obscuro</td>
+                    <td style="text-align:center">Ação Padrão</td>
+                    <td style="text-align:center">5</td>
+                    <td style="text-align:center">Tu fazes um gesto com as mãos, clamando pelas sombras, toda a fonte de luz da área é ofuscada, o ambiente ganha <em>Penumbra Parcial.</em> Se usar num ambiente já em <em>Penumbra Parcial</em>, o ambiente passa a ter <em>Penumbra Total</em>.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Gás Negro [Requisitos : NdP 6]</strong></td>
+                    <td style="text-align:center">Obscuro</td>
+                    <td style="text-align:center">Ação Padrão</td>
+                    <td style="text-align:center">8</td>
+                    <td style="text-align:center">Marcas negras aparecem no teu rosto, logo depois um espesso gás negro começa a sair da tua boca, espalhando pelo ambiente, criando uma enorme nuvem negra a teu redor, o ambiente torna-se <em>Ambiente Sufocado</em> até o fim da cena.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"></td>
+                    <td style="text-align:center"></td>
+                    <td style="text-align:center"></td>
+                    <td style="text-align:center"></td>
+                    <td style="text-align:center"></td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Projétil Sonoro</strong></td>
+                    <td style="text-align:center">Caos</td>
+                    <td style="text-align:center">Ação Padrão</td>
+                    <td style="text-align:center">3</td>
+                    <td style="text-align:center">Tu assobias, conjurando um projétil alaranjado que sai da tua boca, disparando-lho contra um alvo, causando 2d8+4 de dano sónico.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Olhos de Ruído</strong></td>
+                    <td style="text-align:center">Caos</td>
+                    <td style="text-align:center">Ação de Movimento</td>
+                    <td style="text-align:center">5</td>
+                    <td style="text-align:center">Os teus olhos são cobertos por estática de TV, dando te uma  <br>visão bizarra que parece prever trajetórias, tu ganhas +2 em testes de ataque com armas à distância e em testes de esquiva contra ataques à distância até o fim da cena.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Pedra, Papel, Tesoura</strong></td>
+                    <td style="text-align:center">Caos</td>
+                    <td style="text-align:center">Ação Padrão</td>
+                    <td style="text-align:center">5</td>
+                    <td style="text-align:center">Tu jogas um jogo de pedra, papel e tesoura com o Caos (contra o Mestre). Se perderes, perdes 1d6+1 de SAN, se empatares, nada acontece, se venceres, recebes 1 dos seguintes bónus (dependendo do que usaste para vencer) :  <br>Pedra - Tu recebes 5 de resistência a dano até o fim da cena.  <br>Papel - Tu recebes +2 num tipo de teste (à tua escolha) até o fim da cena.  <br>Tesoura - Todos os teus ataques passam a causar +1D de dano cortante até o fim da cena.  <br>Os efeitos não acumulam consigo mesmos.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Rejeitar Sapiência</strong></td>
+                    <td style="text-align:center">Caos</td>
+                    <td style="text-align:center">Ação Padrão</td>
+                    <td style="text-align:center">5</td>
+                    <td style="text-align:center">Tu escolhes um alvo, criando um bloqueio mental nele, o alvo esquece certos conhecimentos, certas habilidades que antes possuía, escolhe um tipo de teste, o alvo terá -4 nesse tipo de teste até o fim da cena.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Energizado</strong></td>
+                    <td style="text-align:center">Caos</td>
+                    <td style="text-align:center">Ação de Movimento</td>
+                    <td style="text-align:center">5</td>
+                    <td style="text-align:center">Uma onda de motivação preenche-te, tu sentes como se tudo fosse possível, basta tentares o suficiente, +2 em todos os testes até o fim da rodada.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Seguir o Ritmo</strong></td>
+                    <td style="text-align:center">Caos</td>
+                    <td style="text-align:center">Ação de Movimento</td>
+                    <td style="text-align:center">4</td>
+                    <td style="text-align:center">Uma música bizarra começa a tocar na tua mente e tu começas a, inconscientemente, seguir o seu ritmo, +4 em testes de esquiva até o fim da cena.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Fraco Sinal</strong></td>
+                    <td style="text-align:center">Caos</td>
+                    <td style="text-align:center">Ação Padrão</td>
+                    <td style="text-align:center">5</td>
+                    <td style="text-align:center">Tu cobres a mente dum alvo com aura de Caos, preenchendo os seus pensamentos de estática e falhas, -4 em testes de <strong>INT</strong> até o fim da cena.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Troca Troca</strong></td>
+                    <td style="text-align:center">Caos</td>
+                    <td style="text-align:center">Ação Padrão</td>
+                    <td style="text-align:center">3</td>
+                    <td style="text-align:center">Estala os dedos, trocando dois seres que estejam a até distância média um do outro de lugar, se um dos seres for um aliado, concede-lhe um <em>Ataque de Oportunidade</em> contra o outro ser. Pode gastar +2 para usar este feitiço como reação, pode gastar +3 para usar este feitiço como reação no turno de outro ser.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Palavras Doem</strong></td>
+                    <td style="text-align:center">Caos</td>
+                    <td style="text-align:center">Ação Padrão</td>
+                    <td style="text-align:center">3</td>
+                    <td style="text-align:center">Tu fazes uma onomatopeia com a voz, criando a palavra com aura de Sabedoria e disparando contra um alvo, causando 2d8 de dano, o tipo de dano varia de acordo com a onomatopeia.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Tu Não Podes Sair Daqui! [Requisitos : NdP 4]</strong></td>
+                    <td style="text-align:center">Caos</td>
+                    <td style="text-align:center">Ação Padrão</td>
+                    <td style="text-align:center">7</td>
+                    <td style="text-align:center">Tu tocas no chão, espalhando aura de Caos pela sala onde te encontras, criando barras laranjas que tapam todas as saídas, inimigos que tentem passar pelas barras sofrem 2d8 de dano de Caos e devem girar um teste de INT/CAR contra ti, se passarem, conseguem atravessar as barras.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Vislumbre Ilusório [Requisitos : NdP 5]</strong></td>
+                    <td style="text-align:center">Caos</td>
+                    <td style="text-align:center">Ação Padrão</td>
+                    <td style="text-align:center">6-12</td>
+                    <td style="text-align:center">Tu passas a mão pelo ar, tecendo com os teus dedos uma ilusão. Todos que presenciarem a ilusão devem girar um teste de Perceção(CAR) contra ti, se passarem conseguem ver através da ilusão, tu adicionas ao teu teste o quanto gastaste para fazer a magia(se for um feitiço ou oferenda, o que gastaste pela metade).</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Estrábico [Requisitos : NdP 5]</strong></td>
+                    <td style="text-align:center">Caos</td>
+                    <td style="text-align:center">Ação de Movimento</td>
+                    <td style="text-align:center">7</td>
+                    <td style="text-align:center">Tu infestas os músculos dum alvo a alcance curto com aura de Caos, causando espasmos e movimentos involuntários que parecem guiar o ser a um direção aleatória. O ser é forçado a usar a sua ação de movimento para se <em>Deslocar</em> em uma direção aleatória, não podendo usar nenhuma outra ação para se <em>Deslocar</em>, dura 1d4+1 rodadas.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"></td>
+                    <td style="text-align:center"></td>
+                    <td style="text-align:center"></td>
+                    <td style="text-align:center"></td>
+                    <td style="text-align:center"></td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Reescrever Feridas</strong></td>
+                    <td style="text-align:center">Sabedoria</td>
+                    <td style="text-align:center">Ação Padrão</td>
+                    <td style="text-align:center">4</td>
+                    <td style="text-align:center">Tu crias sigilos de Sabedoria em volta dos ferimentos, reescrevendo as células do alvo, curando-o instantaneamente. O alvo recupera 3d6 PVs, a cura ignora habilidades que impedem cura.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Paralisia</strong></td>
+                    <td style="text-align:center">Sabedoria</td>
+                    <td style="text-align:center">Ação Padrão</td>
+                    <td style="text-align:center">4</td>
+                    <td style="text-align:center">Tu cobres o corpo de um alvo com sigilos de Sabedoria, o alvo deve fazer um teste de CAR(RN:15+CAR2 do conjurador), se falhar ele fica <em>Vulnerável</em> durante 1 rodada.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Conquistar</strong></td>
+                    <td style="text-align:center">Sabedoria</td>
+                    <td style="text-align:center">Ação Padrão</td>
+                    <td style="text-align:center">5</td>
+                    <td style="text-align:center">Tu cobres o cérebro de um ser em sigilos de Sabedoria, assim manipulando a sua mente, esse ser deve girar um teste de INT ou CAR contra ti, se falhar, não pode te atacar durante 1 rodada</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Decifrar</strong></td>
+                    <td style="text-align:center">Sabedoria</td>
+                    <td style="text-align:center">Ação Padrão</td>
+                    <td style="text-align:center">3</td>
+                    <td style="text-align:center">Tu cobres a tua mão com aura de Sabedoria, ao tocares num objeto com informação (um livro, dispositivo com uma gravação, etc), tu compreendes as palavras(mesmo não conhecendo o idioma), contanto que seja um idioma humano.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Desconcentrar</strong></td>
+                    <td style="text-align:center">Sabedoria</td>
+                    <td style="text-align:center">Ação Padrão</td>
+                    <td style="text-align:center">4</td>
+                    <td style="text-align:center">Tu cobres a tua mão com aura de Sabedoria, formando um círculo rosado na tua palma, ao tocar na cabeça de um alvo, um chiado forte começa a tocar na sua mente, o alvo perde a habilidade de realizar magias sustentadas até o fim da cena.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Ligação Angustiante</strong></td>
+                    <td style="text-align:center">Sabedoria</td>
+                    <td style="text-align:center">Ação Padrão</td>
+                    <td style="text-align:center">5</td>
+                    <td style="text-align:center">Uma vez por cena, tu tocas num alvo, criando uma conexão direta entre a tua mente e o seu corpo, durante 1 rodada, para cada 3 PdT que perderes, o alvo sofre 1d6 de dano de Sabedoria.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Ordens Diretas</strong></td>
+                    <td style="text-align:center">Sabedoria</td>
+                    <td style="text-align:center">Ação Padrão</td>
+                    <td style="text-align:center">4/aliado</td>
+                    <td style="text-align:center">Aparecem diversos sigilos rosados nos teus dedos, sigilos esses que disparas contra até 3 aliados teus, ao serem atingidos, as mentes dos teus aliados recebem ordens de combate, melhores posições, táticas, fraquezas do alvo, os aliados atingidos ganham +2 em testes de Luta e Pontaria até o fim da cena.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Sigilos Marciais</strong></td>
+                    <td style="text-align:center">Sabedoria</td>
+                    <td style="text-align:center">Ação de Movimento</td>
+                    <td style="text-align:center">3</td>
+                    <td style="text-align:center">Tu cravas 4 sigilos rosa numa arma, ao atacar com ela, podes escolher gastar 1 dos sigilos, assim ganhando +4 no teste de ataque.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Carimbar</strong></td>
+                    <td style="text-align:center">Sabedoria</td>
+                    <td style="text-align:center">Ação Padrão</td>
+                    <td style="text-align:center">4</td>
+                    <td style="text-align:center">Tu apontas para um alvo a alcance longo, na ponta do teu dedo surge um grande sigilo rosa que rapidamente viaja contra o alvo, causando 2d6+2 de dano incendiário, queimando a carne do alvo.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Encarar [Requisitos : NdP 4]</strong></td>
+                    <td style="text-align:center">Sabedoria</td>
+                    <td style="text-align:center">Ação de Movimento</td>
+                    <td style="text-align:center">6</td>
+                    <td style="text-align:center">Tu encaras um alvo a distância média de ti, cobrindo o cérebro dele com sigilos. O alvo gira um teste de INT contra ti, se falhar, perde a habilidade de se locomover, ainda conseguindo se mexer mas não podendo sair do lugar. Se sofreres dano, a magia termina.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Manto de Lâminas [Requisitos : NdP 5]</strong></td>
+                    <td style="text-align:center">Sabedoria</td>
+                    <td style="text-align:center">Ação Padrão</td>
+                    <td style="text-align:center">10</td>
+                    <td style="text-align:center">Tu fazes um gesto, conjurando 8 espadas feitas de sigilos rosa que giram a teu redor, se um ser entrar ou terminar o turno na distância corpo-a-corpo de ti, ele sofre 3d6+5 de dano de Sabedoria. Dura até o fim da cena.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Forçar Sinapses [Requisitos : NdP 5]</strong></td>
+                    <td style="text-align:center">Sabedoria</td>
+                    <td style="text-align:center">Ação Padrão</td>
+                    <td style="text-align:center">8</td>
+                    <td style="text-align:center">Tu estendes a mão contra um alvo a até distância média de ti, conjurando sigilos no seu cérebro, forçando certas sinapses a agir. O alvo gira um teste de INT contra ti, se falhar, tu tomas controle duma das suas ações de movimento, dando-lhe uma ordem direta.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Localizar [Requisitos : NdP 5]</strong></td>
+                    <td style="text-align:center">Sabedoria</td>
+                    <td style="text-align:center">Ação Padrão</td>
+                    <td style="text-align:center">8</td>
+                    <td style="text-align:center">Tu conjuras um sigilo rosa a teus pés, a aura emanada por esse sigilo se expande, destacando a presença de todos os seres num raio de 1km. Seres dentro desse raio podem escolher girar um teste de Furtividade(INT/CAR) contra um teste de Perceção(INT/CAR) teu, se passarem, a sua presença não é destacada.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Conexão Mental [Requisitos : NdP 6]</strong></td>
+                    <td style="text-align:center">Sabedoria</td>
+                    <td style="text-align:center">Ação Padrão</td>
+                    <td style="text-align:center">8</td>
+                    <td style="text-align:center">Tu tocas na cabeça dum aliado, tocando na tua simultaneamente, criando um símbolo rosa em ambas, assim estabelecendo uma conexão entre as vossas mentes. Até o fim da cena, conseguem comunicar telepaticamente um com o outro independentemente de distância.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"></td>
+                    <td style="text-align:center"></td>
+                    <td style="text-align:center"></td>
+                    <td style="text-align:center"></td>
+                    <td style="text-align:center"></td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Putrefação</strong></td>
+                    <td style="text-align:center">Tempo</td>
+                    <td style="text-align:center">Ação Padrão</td>
+                    <td style="text-align:center">3/rodada</td>
+                    <td style="text-align:center">Tu cobres um alvo com aura de Tempo, o corpo do alvo entra em estado de decomposição acelerado, sofrendo 2d6 de dano necrótico por rodada.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Olho Clarividente</strong></td>
+                    <td style="text-align:center">Tempo</td>
+                    <td style="text-align:center">Ação de Movimento</td>
+                    <td style="text-align:center">3</td>
+                    <td style="text-align:center">Tu vês um futuro possível, prevendo a ação de um inimigo, tu tens +4 na reação contra o próximo ataque do inimigo.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Acelerar Cura</strong></td>
+                    <td style="text-align:center">Tempo</td>
+                    <td style="text-align:center">Ação de Movimento</td>
+                    <td style="text-align:center">2</td>
+                    <td style="text-align:center">Tu cobres as feridas de um ser em aura de Tempo, assim acelerando o processo de cicatrização, curando 1d12+3 de PV</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Playback</strong></td>
+                    <td style="text-align:center">Tempo</td>
+                    <td style="text-align:center">Ação Livre</td>
+                    <td style="text-align:center">5</td>
+                    <td style="text-align:center">Tu cobres o teu corpo com aura de Tempo, assim conseguindo repetir a última ação feita como ação livre (2 usos por rodada)</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Sono Forçado</strong></td>
+                    <td style="text-align:center">Tempo</td>
+                    <td style="text-align:center">Ação Padrão</td>
+                    <td style="text-align:center">4</td>
+                    <td style="text-align:center">Tu apontas para um ser, cobrindo o seu cérebro com aura de Tempo, acelerando o seu processamento de cansaço, o ser faz um teste de <strong>INT</strong>/<strong>CAR</strong> contra ti, se falhar, o ser fica <em>Cansado</em>.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Velhice Errónea</strong></td>
+                    <td style="text-align:center">Tempo</td>
+                    <td style="text-align:center">Ação Padrão</td>
+                    <td style="text-align:center">3</td>
+                    <td style="text-align:center">Tu apontas para um ser, cobrindo os seus músculos com aura de Tempo, simulando os músculos fracos de um corpo idoso, o ser faz um teste de <strong>INT</strong>/<strong>CAR</strong> contra ti, se falhar, fica <em>Fraco</em>.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Tocar na Ferida</strong></td>
+                    <td style="text-align:center">Tempo</td>
+                    <td style="text-align:center">Ação Padrão</td>
+                    <td style="text-align:center">4</td>
+                    <td style="text-align:center">Tu tocas num ser, forçando uma ferida antes fechada a se reabrir, se o ser tocado tiver se curado de um ataque na última rodada, a cura é anulada. Só consegue anular uma cura por uso.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Inconsistência [Requisitos : NdP 4]</strong></td>
+                    <td style="text-align:center">Tempo</td>
+                    <td style="text-align:center">Ação de Movimento</td>
+                    <td style="text-align:center">6</td>
+                    <td style="text-align:center">Tu cobres o teu corpo com aura de Tempo, mudando a forma que o teu corpo age, criando uma inconsistência temporal, o teu corpo acelerando e desacelerando, dificultando prever os teus movimentos. A tua DEF aumenta em 2 até o fim da cena.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Speed Up [Requisitos : NdP 6]</strong></td>
+                    <td style="text-align:center">Tempo</td>
+                    <td style="text-align:center">Ação de Movimento</td>
+                    <td style="text-align:center">8</td>
+                    <td style="text-align:center">Tu tocas num ser, cobrindo o seu corpo com aura de Tempo, acelerando-o. O ser ganha +1 ação de movimento até o fim da cena.</td>
+                    </tr>
+                    <tr>
+                    <td style="text-align:center"><strong>Speed Up Total [Requisitos : Speed Up]</strong></td>
+                    <td style="text-align:center">Tempo</td>
+                    <td style="text-align:center">Ação de Movimento</td>
+                    <td style="text-align:center">10</td>
+                    <td style="text-align:center">Tu tocas num ser, cobrindo o seu corpo com aura de Tempo, acelerando-o a um ponto intenso. O ser ganha +1 ação padrão até o fim da cena.</td>
+                    </tr>
+                </tbody>
+            </table>
+        
+            <br>
+            <button commandfor="listaMagias" command="close" class="btn btn-outline-light btn-lg">Fechar</button>
+        </dialog>
         
         <dialog id="aptidoes" class="">
             <ul>
@@ -717,6 +1296,48 @@
 
             <br>
             <button commandfor="aptidoes" command="close" class="btn btn-outline-light btn-lg">Fechar</button>
+        </dialog>
+        
+        <dialog id="habilGerais" class="">
+            <h1 id="habilidades-de-aura">Habilidades de Aura</h1>
+            <ul>
+            <li><strong>Armadura Momentânea</strong> – Ao gastar 8 PdT tu cobres o teu corpo com uma aura protetora, essa energia dá te 5 de resistência a um tipo de dano à tua escolha até o fim da cena.</li>
+            <li><strong>Armadura Desconhecida</strong> – Ao gastar 8 PdT tu tornas a aura dentro de ti numa aura protetora, tu ganhas +2 de DEF até o fim da cena.</li>
+            <li><strong>Aura Amedrontadora</strong> - Ao gastar 8 PdT, tu expandes a tua aura, cobrindo uma área de alcance curto, tu então alteras a tua aura, tornando-a numa energia terrível e hedionda, todos dentro da aura devem fazer um teste de <strong>CAR</strong>(RN: 18+Mod. de CAR), se falharem ficam <em>Amedrontados</em>.</li>
+            <li><strong>Aura Curandeira</strong> - Ao gastar 8 PdT, tu expandes a tua aura, cobrindo uma área de alcance curto, tu então alteras a tua aura, tornando-a numa energia benevolente e bondosa, todos os aliados dentro da aura recuperam +2d10+2 de PVs.</li>
+            <li><strong>Estímulo Muscular</strong> - Ao gastar 4 PdT, tu concentras aura do Desconhecido nos teus músculos, aumentando a capacidade física deles, ganhando +4 no próximo teste de <strong>FOR</strong>/<strong>AGI</strong>/<strong>CON</strong> que realizares.</li>
+            </ul>
+            <h1 id="habilidades-de-controle-leitura">Habilidades de Controle/Leitura</h1>
+            <ul>
+            <li><strong>Canalização</strong> – Ao gastar 6 PdT, tu concentras a aura do Desconhecido na tua arma, a arma causa +1d8 de dano até o fim da cena.</li>
+            <li><strong>Canalização Momentânea</strong> [Requisitos: Canalização] – Ao gastar 9 PdT tu rapidamente concentras aura do Desconhecido na tua arma, aumentando a sua potência momentaneamente, ao usar este poder antes de um ataque, a arma causa +3d8 de dano, mas a arma volta ao normal depois do ataque.</li>
+            <li><strong>Canalização Máxima</strong> [Requisitos: Canalização] – Ao gastar 10 PdT, tu concentras uma quantidade massiva de aura do Desconhecido na tua arma, a arma causa +2d6 de dano até o fim da cena.</li>
+            <li><strong>Canalização Momentânea Aperfeiçoada</strong> [Requisitos: Canalização Momentânea] - Ao gastar 13 PdT tu rapidamente concentras uma quantidade massiva de aura do Desconhecido na tua arma, aumentando a sua potência momentaneamente, ao usar este poder antes de um ataque, a arma arma causa +4d6 de dano, mas a arma volta ao normal depois de dois ataques.</li>
+            <li><strong>Impacto Atrasado</strong> – Ao gastar 7 PdT tu divides o teu golpe em dois impactos, ao acertar o golpe tu causas apenas metade do dano, causando a outra metade no próximo turno, esse impacto toma a forma de uma pequena explosão de aura do Desconhecido, o alvo faz um teste de <strong>CON</strong>(RN:15+Mod. de CAR), se falhar fica <em>Vulnerável</em> durante 1 rodada</li>
+            <li><strong>Projeção de Energia</strong> – Ao gastar 4-7 PdT, tu rapidamente converges aura do Desconhecido num pequeno ponto, criando um projétil similar a uma bala feito de pura aura, disparando-o contra um alvo a alcance médio, o projétil causa +1d4 por cada ponto gasto, o tipo de dano é o dano da tua essência. (Se não tiver essência o tipo de dano é elétrico)</li>
+            <li><strong>Projeção de Energia Aperfeiçoada</strong> [Requisitos: Projeção de Energia] – Ao gastar 13 PdT, tu rapidamente converges uma quantidade massiva de aura do Desconhecido num ponto minúsculo, comprimindo esse ponto com as mãos, usando-as para apontar para um alvo a até alcance longo, disparando um raio de aura do Desconhecido que rapidamente viaja contra o alvo, o raio causa 6d6 de dano, o tipo de dano é o dano da tua essência. (Se não tiver essência o tipo de dano é elétrico)</li>
+            <li><strong>Leitura Rápida</strong> - Ao gastar 6 PdT, tu fazes uma análise rápida da aura dum ser ou objeto, descobrindo as essências da aura e tendo uma noção mais aprofundada da sua força/efeito.</li>
+            <li><strong>Leitura Reveladora</strong> - Ao gastar 8 PdT, tu fazes uma análise da aura do ambiente, buscando nas sombras, seres escondidos devem re-rolar o teste de Furtividade contra ti.</li>
+            </ul>
+            <h1 id="habilidades-de-barreira-territ-rio">Habilidades de Barreira/Território</h1>
+            <ul>
+            <li><strong>Conjuração de Barreiras</strong> - Ao gastar 20 PdT, tu conjuras uma barreira, tomando a forma de um domo cobrindo uma área de alcance curto(se tiver 4 ou mais de <strong>CAR</strong>/<strong>INT</strong> cobre alcance médio, se tiver mais de 6 de <strong>CAR</strong>/<strong>INT</strong> cobre alcance longo), o domo tem 20+10x<strong>CAR</strong>/<strong>INT</strong> de PVs (tendo resistência a dano de essências). O portador pode também gastar 1 ação de movimento para alterar o seu tamanho (não ultrapassando o limite). Ninguém, exceto o conjurador, consegue entrar ou sair da barreira sem a quebrar.</li>
+            <li><strong>Brandir Território</strong> - Ao gastar 10 PdT, tu expandes a tua aura, cobrindo uma área de alcance curto(se tiver 4 ou mais de <strong>CAR</strong>/<strong>INT</strong> cobre alcance médio, se tiver mais de 6 de <strong>CAR</strong>/<strong>INT</strong> cobre alcance longo), enquanto dentro dessa área, tens +2 em todos os testes e todos os seres dentro do território estão a teu alcance, como se conseguisses os tocar. O território mantém-se de pé enquanto o conjurador não se deslocar.</li>
+            <li><strong>Território Benigno</strong> [Requisitos : Brandir Território] - Ao gastar 12 PdT, tu expandes a tua aura, cobrindo uma área de alcance curto(se tiver 4 ou mais de <strong>CAR</strong>/<strong>INT</strong> cobre alcance médio, se tiver mais de 6 de <strong>CAR</strong>/<strong>INT</strong> cobre alcance longo), enquanto dentro dessa área, magias com efeito em área são anuladas. O território mantém-se de pé enquanto o conjurador não se deslocar.</li>
+            <li><strong>Estender Território</strong> [Requisitos : Brandir Território] - Ao gastar 6 PdT, enquanto o território está erguido, estende uma porção do território, tomando a forma duma linha que busca um oponente, criando em seus pés uma extensão do teu território. Escolhe um alvo fora do teu território, enquanto ele não se deslocar ele passa a sofrer dos efeitos do teu território.</li>
+            <li><strong>Armar Território</strong> [Requisitos : Brandir Território] - Ao gastar 8 PdT antes dum ataque, tu envolves a arma com o teu território, forçando-a a atingir a alma do oponente. O tipo de dano do próximo ataque muda para dano espiritual.</li>
+            <li><strong>Campo A.P.D</strong> - Ao gastar x PdTs, como reação, tu cobres uma área prestes a ser danificada com uma barreira feita de aura do Desconhecido, resistindo ao dano do ataque, x é igual ao dano do ataque. Se não tiver PdTs o suficiente para resistir o dano inteiro, resiste uma quantia de dano igual aos PdTs restantes.</li>
+            </ul>
+            <h1 id="habilidades-especiais">Habilidades Especiais</h1>
+            <ul>
+            <li><strong>Feitiço Ensinado</strong> – Tu escolhes uma magia da lista e aprendes-la na forma de um feitiço</li>
+            <li><strong>Ritual Ensinado</strong> – Tu escolhes uma magia da lista e aprendes-la na forma de um ritual</li>
+            <li><strong>Oferenda Ensinada</strong> – Tu escolhes uma magia da lista e aprendes-la na forma de um oferenda</li>
+            <li><strong>Adquirir Aptidão</strong> – Tu ganhas uma Aptidão da lista de Aptidões.</li>
+            </ul>
+        
+            <br>
+            <button commandfor="habilGerais" command="close" class="btn btn-outline-light btn-lg">Fechar</button>
         </dialog>
         
         <dialog id="listaArma" class="">

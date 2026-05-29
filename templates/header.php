@@ -23,6 +23,11 @@
                     Sistema                    
                     <!--<img src="./media/LogoSPIRLblack.png" class="header-color img-fluid" style="width : 5vw;">-->
                 </a>
+                /
+                <a href="login.php" class="header-links"> 
+                    Login                    
+                    <!--<img src="./media/LogoSPIRLblack.png" class="header-color img-fluid" style="width : 5vw;">-->
+                </a>
             </h5>
         </div>    
     </div>
