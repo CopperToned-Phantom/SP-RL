@@ -14,3 +14,5 @@ Site feito com PHP e SQL com o intuito de oferecer auxílio a Jogadores e Mestre
 </p>
 
 php -S localhost:8000
+
+docker compose up
