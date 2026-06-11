@@ -16,3 +16,7 @@ Site feito com PHP e SQL com o intuito de oferecer auxílio a Jogadores e Mestre
 php -S localhost:8000
 
 docker compose up
+
+# Tutoriais
+## Tutorial fucking inutil de docker´
+https://www.youtube.com/watch?v=ZX6ENJruhzI

@@ -23,3 +23,9 @@ services:
     environment:
       PMA_HOST: db
       MYSQL_ROOT_PASSWORD: root
+
+  # server:
+    # build:
+      # context: .
+    # ports:
+      # - "9000:80"
