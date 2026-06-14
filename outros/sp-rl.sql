@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.3
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Tempo de geração: 20-Mar-2026 às 17:23
--- Versão do servidor: 10.4.21-MariaDB
--- versão do PHP: 8.0.12
+-- Host: db
+-- Tempo de geração: 14-Jun-2026 às 19:07
+-- Versão do servidor: 8.4.9
+-- versão do PHP: 8.3.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `sp-rl`
+-- Base de dados: `sp-rl`
 --
 CREATE DATABASE IF NOT EXISTS `sp-rl` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `sp-rl`;
@@ -26,340 +26,763 @@ USE `sp-rl`;
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `acaocriaturas`
+-- Estrutura da tabela `AcaoCriaturas`
 --
 
-DROP TABLE IF EXISTS `acaocriaturas`;
-CREATE TABLE `acaocriaturas` (
-  `id` int(11) NOT NULL,
-  `idFichaCriatura` int(11) NOT NULL,
-  `nome` varchar(100) NOT NULL,
-  `efeito` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Extraindo dados da tabela `acaocriaturas`
---
-
-INSERT INTO `acaocriaturas` (`id`, `idFichaCriatura`, `nome`, `efeito`) VALUES
-(1, 1, 'aaa', 'aaa'),
-(2, 1, 'bbb', 'bbb'),
-(3, 2, 'ccc', 'ccc'),
-(4, 2, 'ddd', 'ddd'),
-(5, 3, 'Cortar', 'Tenta cortar um alvo a alcance corpo-a-corpo com a sua espada de fogo, causando 1d8+2 de dano incendiário.'),
-(6, 3, 'Atormentar', 'Escolhe um alvo a alcance longo, o alvo começa a ouvir sussurros perturbadores, causando 1d4+4 de dano mental. Um ser que seja reduzido a 0 de SAN desta forma enlouquece imediatamente, virando um devoto insano, tentando fazer com que todos vejam a natureza celeste do Anjo.');
+DROP TABLE IF EXISTS `AcaoCriaturas`;
+CREATE TABLE `AcaoCriaturas` (
+  `id` int NOT NULL,
+  `idFichaCriatura` int NOT NULL,
+  `nome` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `efeito` text COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `campanha`
+-- Estrutura da tabela `Campanha`
 --
 
-DROP TABLE IF EXISTS `campanha`;
-CREATE TABLE `campanha` (
-  `id` int(11) NOT NULL,
-  `nome` varchar(100) NOT NULL,
-  `descricao` text NOT NULL,
-  `notas` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+DROP TABLE IF EXISTS `Campanha`;
+CREATE TABLE `Campanha` (
+  `id` int NOT NULL,
+  `nome` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `descricao` text COLLATE utf8mb4_general_ci NOT NULL,
+  `notas` text COLLATE utf8mb4_general_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `campanha`
+-- Extraindo dados da tabela `Campanha`
 --
 
-INSERT INTO `campanha` (`id`, `nome`, `descricao`, `notas`) VALUES
-(1, 'abcdef', 'aaa', NULL),
-(2, 'ghijkl', 'ggg', 'hhh');
+INSERT INTO `Campanha` (`id`, `nome`, `descricao`, `notas`) VALUES
+(1, 'testeteste', 'testeteste', NULL),
+(2, 'testeteste2', 'testeteste', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `campanha_utilizador`
+-- Estrutura da tabela `Campanha_Utilizador`
 --
 
-DROP TABLE IF EXISTS `campanha_utilizador`;
-CREATE TABLE `campanha_utilizador` (
-  `idCampanha` int(11) NOT NULL,
-  `idUtilizador` int(11) NOT NULL,
+DROP TABLE IF EXISTS `Campanha_Utilizador`;
+CREATE TABLE `Campanha_Utilizador` (
+  `idCampanha` int NOT NULL,
+  `idUtilizador` int NOT NULL,
   `mestre` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `campanha_utilizador`
+-- Extraindo dados da tabela `Campanha_Utilizador`
 --
 
-INSERT INTO `campanha_utilizador` (`idCampanha`, `idUtilizador`, `mestre`) VALUES
-(1, 1, 0),
-(1, 3, 1),
-(2, 3, 1);
+INSERT INTO `Campanha_Utilizador` (`idCampanha`, `idUtilizador`, `mestre`) VALUES
+(1, 1, 1),
+(1, 2, 0),
+(2, 1, 1);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `criatura`
+-- Estrutura da tabela `Criatura`
 --
 
-DROP TABLE IF EXISTS `criatura`;
-CREATE TABLE `criatura` (
-  `id` int(11) NOT NULL,
-  `nome` varchar(100) NOT NULL,
-  `essencia` varchar(20) NOT NULL,
-  `essenciaSec1` varchar(20) DEFAULT NULL,
-  `essenciaSec2` varchar(20) DEFAULT NULL,
-  `nivelDificuldade` int(11) NOT NULL,
-  `narracao` text NOT NULL,
-  `descricao` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Extraindo dados da tabela `criatura`
---
-
-INSERT INTO `criatura` (`id`, `nome`, `essencia`, `essenciaSec1`, `essenciaSec2`, `nivelDificuldade`, `narracao`, `descricao`) VALUES
-(1, 'Ariete', 'Caos', 'Carnica', NULL, 7, 'a', 'a'),
-(2, 'Anjo Erróneo', 'Caos', NULL, NULL, 3, 'Em inúmeras épocas, em inúmeros lugares, independentemente de quem seja ou de onde se encontre, sempre existiram e sempre existirão relatos de milagres e daqueles que os trazem, os Anjos. Mensageiros benevolentes de Deus, supostos seres de pura luz e bondade, sua única função espalhar a grandiosa palavra do Senhor. O que acontece, porém, quando essa imagem é usada para o mal? Quando a mensagem divina é tornada num clamar pelo pecado? Quando o ser que representa a luz é tornado num ser de pura escuridão?\r\nO Caos sempre se aproveitará da imagem dos mitos e religiões, tudo depende de fé, a falta de informação, de certeza, é crucial para o seu funcionamento, e é essa exata falta de certeza que cria dúvidas como as anteriores, e são essas exatas dúvidas que perfeitamente representam aquilo que o Caos adora, que o Caos representa.', 'O Anjo Erróneo é uma manifestação pura da essência de Caos, surgindo quando uma alta quantia de aura de Caos se mistura, comprimindo-se tanto que origina um ser puro, uma representação física do básico da própria essência. \r\nO Anjo Erróneo costuma tomar a forma dum anjo estereotipado, possuindo uma aparência humana, geralmente masculina, jovem e alta, com traços suaves e um semblante gentil e dócil, olhos claros, pele clara com rubor vermelho, longos cabelos louros encaracolados, largas vestes brancas com um grande pano colorido enrolado em seu corpo, asas brancas, similares às de um pássaro, que saem de suas costas e uma auréola alaranjada.\r\n\r\nO Anjo Erróneo aparenta ter como objetivo principal assassinar o máximo de humanos possíveis, possuindo um escárnio incontrolável pelo Homem e todas as suas criações, vendo as como profanas, indignas da criação de nosso Senhor, fingindo-se de benevolente com o objetivo de punir os tolos que acreditam em si, ganhando a sua confiança, esperando até estarem distraídos, tomando então um formato distorcido e horripilante, invocando sua poderosa espada de labaredas, distribuindo a punição divina que os homens tanto merecem. ');
+DROP TABLE IF EXISTS `Criatura`;
+CREATE TABLE `Criatura` (
+  `id` int NOT NULL,
+  `nome` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `essencia` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `essenciaSec1` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `essenciaSec2` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `nivelDificuldade` int NOT NULL,
+  `narracao` text COLLATE utf8mb4_general_ci NOT NULL,
+  `descricao` text COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `efeitoespecial`
+-- Estrutura da tabela `EfeitoEspecial`
 --
 
-DROP TABLE IF EXISTS `efeitoespecial`;
-CREATE TABLE `efeitoespecial` (
-  `id` int(11) NOT NULL,
-  `idFichaCriatura` int(11) NOT NULL,
-  `nome` varchar(100) NOT NULL,
-  `efeito` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Extraindo dados da tabela `efeitoespecial`
---
-
-INSERT INTO `efeitoespecial` (`id`, `idFichaCriatura`, `nome`, `efeito`) VALUES
-(1, 3, 'Falso Semblante', 'Ao sentir-se ameaçado, revela a sua verdadeira aparência, tomando um formato deformado e assustador. Perdendo *Carisma Natural* e causando dano mental em todos que o virem, além disso ganhando +4 em testes de intimidação e imunidade a *Cegado* e *Amedrontado*.'),
-(2, 3, 'Carisma Natural', '+4 em testes de *Diplomacia*, *Enganação* e *Intuição*. Não causa dano mental ao ser visto.'),
-(3, 3, 'Lábia Divina', 'Uma vez por cena, pode escolher suceder imediatamente num teste de **CAR**');
+DROP TABLE IF EXISTS `EfeitoEspecial`;
+CREATE TABLE `EfeitoEspecial` (
+  `id` int NOT NULL,
+  `idFichaCriatura` int NOT NULL,
+  `nome` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `efeito` text COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `equipamento`
+-- Estrutura da tabela `Equipamento`
 --
 
-DROP TABLE IF EXISTS `equipamento`;
-CREATE TABLE `equipamento` (
-  `id` int(11) NOT NULL,
-  `nome` varchar(100) NOT NULL,
-  `dano` varchar(50) DEFAULT NULL,
-  `criticio` int(11) DEFAULT NULL,
-  `modCritico` varchar(20) DEFAULT NULL,
-  `alcance` varchar(20) DEFAULT NULL,
-  `propriedades` text DEFAULT NULL,
-  `descricao` text DEFAULT NULL,
-  `tipo` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+DROP TABLE IF EXISTS `Equipamento`;
+CREATE TABLE `Equipamento` (
+  `id` int NOT NULL,
+  `nome` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `dano` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `critico` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `modCritico` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `alcance` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `propriedades` text COLLATE utf8mb4_general_ci,
+  `efeito` text COLLATE utf8mb4_general_ci,
+  `tipo` varchar(50) COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `Equipamento`
+--
+
+INSERT INTO `Equipamento` (`id`, `nome`, `dano`, `critico`, `modCritico`, `alcance`, `propriedades`, `efeito`, `tipo`) VALUES
+(1, 'Bandoleira', NULL, NULL, NULL, NULL, NULL, 'Guarda 1 Arma ou 2 Utensílios, sacar esses itens passa a ser ação livre.', 'Utensílio'),
+(2, 'Binóculos', NULL, NULL, NULL, NULL, NULL, 'Garante +4 em testes de *Perceção* que envolvam observar algo distante.', 'Utensílio'),
+(3, 'Bússola', NULL, NULL, NULL, NULL, NULL, 'Garante +4 em *Testes de Jornada*.', 'Utensílio'),
+(4, 'Condutor', NULL, NULL, NULL, NULL, NULL, 'Um objeto usado como condutor de aura do Desconhecido.Quando portado, garante +4 em testes de Conexão.', 'Utensílio'),
+(5, 'Escudo', NULL, NULL, NULL, NULL, NULL, 'Quando portado, garante +4 na reação *Bloquear*.', 'Utensílio'),
+(6, 'Escudo Militar', NULL, NULL, NULL, NULL, NULL, 'Quando portado, garante 5 de resistência a dano (não inclui dano *Mental* e de *Essências*) e 10 de resistência a dano balístico', 'Utensílio'),
+(7, 'Frasco de Óleo', NULL, NULL, NULL, NULL, NULL, 'Usado para recarregar uma Lamparina, concedendo 3 recargas.Pode ser usado para encharcar um ser com o óleo, se o ser sofrer dano incendiário, entra *Em Chamas*.', 'Utensílio'),
+(8, 'Gazua', NULL, NULL, NULL, NULL, NULL, 'Garante +4 em testes de *Crime* para destrancar portas, janelas e caixas trancadas.', 'Utensílio'),
+(9, 'Granada', NULL, NULL, NULL, NULL, NULL, 'Ao usar uma ação padrão para a arremessar, explode, causando 6d6 de dano explosivo em todos em alcance curto.', 'Utensílio'),
+(10, 'Granada de Atordoamento', NULL, NULL, NULL, NULL, NULL, 'Ao usar uma ação padrão para a arremessar, estoura, causando um clarão acompanhado dum som alto, todos os seres em alcance médio devem girar um teste de **CON** contra o teste de arremesso, quem passar fica *Vulnerável* durante 1 rodada, quem falhar fica *Atordoado* durante 1 rodada.', 'Utensílio'),
+(11, 'Granada de Fragmentação', NULL, NULL, NULL, NULL, NULL, 'Ao usar uma ação padrão para a arremessar, explode em estilhaços, causando 6d6 de dano cortante em todos em alcance curto.', 'Utensílio'),
+(12, 'Granada de Fumo', NULL, NULL, NULL, NULL, NULL, 'Ao usar uma ação padrão para a arremessar, explode, criando uma grande nuvem cinza, o terreno passa a *Ambiente Nublado*.', 'Utensílio'),
+(13, 'Granada Incendiária', NULL, NULL, NULL, NULL, NULL, 'Ao usar uma ação padrão para a arremessar, explode em chamas, causando 6d6 de dano incendiário em todos em alcance curto, aqueles que falharem no teste de esquiva, entram *Em Chamas*.', 'Utensílio'),
+(14, 'Lamparina', NULL, NULL, NULL, NULL, NULL, 'Quando acesa, anula *Penumbra Total* e *Parcial*Dura 5 cenas, precisando ser recarregada para uso futuro.', 'Utensílio'),
+(15, 'Lanterna Simples', NULL, NULL, NULL, NULL, NULL, 'Quando ligada, anula *Penumbra Parcial* e torna *Penumbra Total* em *Parcial*. Dura 5 cenas, precisando ser recarregada para uso futuro.', 'Utensílio'),
+(16, 'Lanterna Tática', NULL, NULL, NULL, NULL, NULL, 'Quando ligada, anula *Penumbra Total* e *Parcial*Dura 3 cenas, precisando ser recarregada para uso futuro.', 'Utensílio'),
+(17, 'Máscara de Gás', NULL, NULL, NULL, NULL, NULL, 'Garante +4 em testes de **CON** contra efeitos que dependam da respiração.', 'Utensílio'),
+(18, 'Memorabilia', NULL, NULL, NULL, NULL, NULL, 'Um objeto importante, repleto de boas memórias.Quando portado, garante +4 em testes para resistir a dano mental.', 'Utensílio'),
+(19, 'Óculos de Visão Noturna', NULL, NULL, NULL, NULL, NULL, 'Quando ligado, dá te imunidade aos efeitos de *Penumbra Parcial* e *Total*.Dura 5 cenas, precisando ser recarregada para uso futuro.', 'Utensílio'),
+(20, 'Pé de Cabra', NULL, NULL, NULL, NULL, NULL, 'Garante +4 em testes de *Crime* para abrir portas, janelas e caixas trancadas à força.Pode ser usado como arma, tendo os mesmos status dum *Bastão*', 'Utensílio'),
+(21, 'Rolo de Bandagem', NULL, NULL, NULL, NULL, NULL, 'Ao usar uma ação padrão, enrola as bandagens num ser, curando 1d12+2 de PVs.Pode ser usado 5 vezes antes de acabar.', 'Utensílio'),
+(22, 'Saco Cama', NULL, NULL, NULL, NULL, NULL, 'Se durante uma Cena de Interlúdio, a ação *Descansar* for do tipo *Desconfortável*, o tipo muda para *Normal*.', 'Utensílio'),
+(23, 'Spray de Pimenta', NULL, NULL, NULL, NULL, NULL, 'Ao usar uma ação padrão para disparar contra um ser, o ser gira **CON** contra a tua **AGI**, se falhar, fica *Vulnerável* durante 1d4 rodadas. Pode ser usado 3 vezes antes de esvaziar.', 'Utensílio'),
+(24, 'Tocha', NULL, NULL, NULL, NULL, NULL, 'Quando ligada, anula *Penumbra Parcial* e torna *Penumbra Total* em *Parcial*. Dura 1 cena, apagando-se logo depois.', 'Utensílio'),
+(25, 'Alabarda', '3d6+1 de dano cortante', '24', '+4d6', 'Curto', 'Duas Mãos, Manha', NULL, 'Arma'),
+(26, 'Bastão', '1d6+4 de dano físico', '24', '+1d6', 'Corpo-a-Corpo', 'Duas Mãos, Impactante', NULL, 'Arma'),
+(27, 'Chicote', '1d8+1 de dano cortante', '24', '2x', 'Curto', 'Leve, Cabo, Sagaz', NULL, 'Arma'),
+(28, 'Desmontador', '1d12+1 de dano cortante', '24', '+2d6', 'Curto', 'Duas Mãos, Manha, Especial', NULL, 'Arma'),
+(29, 'Espada', '1d10+1d6 de dano cortante', '24', '2x', 'Corpo-a-Corpo', 'Leve, Manha', NULL, 'Arma'),
+(30, 'Espada Gancho', '1d10+2 de dano cortante', '23, 24', '+3d6', 'Corpo-a-Corpo', 'Leve, Sagaz, Manha, Especial', NULL, 'Arma'),
+(31, 'Faca', '1d8 de dano cortante', '24', '+1d6', 'Corpo-a-Corpo', 'Leve, Manha', NULL, 'Arma'),
+(32, 'Facão', '1d10+1 de dano cortante', '24', '2x', 'Corpo-a-Corpo', 'Leve', NULL, 'Arma'),
+(33, 'Foice', '1d6 de dano cortante', '24', '+1d8', 'Corpo-a-Corpo', 'Leve, Sagaz', NULL, 'Arma'),
+(34, 'Gadanho', '4d4+2 de dano cortante', '24', '+2d4', 'Curto', 'Duas Mãos, Afiada', NULL, 'Arma'),
+(35, 'Katana', '1d12+1d6 de dano cortante', '23, 24', '+2d6', 'Corpo-a-Corpo', 'Duas Mãos, Manha', NULL, 'Arma'),
+(36, 'Katar', '1d4+3 de dano cortante', '24', '+1d10', 'Corpo-a-Corpo', 'Leve, Sagaz', NULL, 'Arma'),
+(37, 'Kusarigama', '1d8 de dano cortante', '24', '2x', 'Curto', 'Duas Mãos, Especial', NULL, 'Arma'),
+(38, 'Lança', '1d12+1 de dano cortante', '24', '+2d6', 'Curto', 'Duas Mãos, Manha, Arremessável', NULL, 'Arma'),
+(39, 'Maça', '1d10+1d4+2 de dano físico', '24', '2x', 'Corpo-a-Corpo', 'Leve, Impactante', NULL, 'Arma'),
+(40, 'Machadinha', '1d8+2 de dano cortante', '24', '2x', 'Corpo-a-Corpo', 'Leve, Sagaz, Arremessável', NULL, 'Arma'),
+(41, 'Machado', '1d10+1d4 de dano cortante', '24', '+2d6', 'Corpo-a-Corpo', 'Duas Mãos', NULL, 'Arma'),
+(42, 'Macuahuitl', '2d12 de dano cortante', '24', '2x', 'Curto', 'Duas Mãos, Pesada', NULL, 'Arma'),
+(43, 'Manopla', '1d8 de dano físico', '24', '+1d8', 'Corpo-a-Corpo', 'Leve, Especial', NULL, 'Arma'),
+(44, 'Martelo', '1d8 de dano físico', '24', '+1d8', 'Corpo-a-Corpo', 'Leve, Sagaz', NULL, 'Arma'),
+(45, 'Martelo Meteoro', '2d6 de dano físico', '24', '+2d4', 'Curto', 'Duas Mãos, Manha, Impactante', NULL, 'Arma'),
+(46, 'Martelo-de-Guerra', '2d8+1 de dano físico', '24', '2x', 'Curto', 'Duas Mãos, Manha, Impactante', NULL, 'Arma'),
+(47, 'Motoserra', '3d6 de dano cortante', '24', '2x', 'Corpo-a-Corpo', 'Duas Mãos, Especial', NULL, 'Arma'),
+(48, 'Nunchaku', '1d10+1 de dano físico', '23, 24', '+1d12', 'Corpo-a-Corpo', 'Leve, Sagaz, Manha', NULL, 'Arma'),
+(49, 'Punhal', '1d8+2 de dano cortante', '24', '+1d6', 'Corpo-a-Corpo', 'Leve, Manha', NULL, 'Arma'),
+(50, 'Rapieira', '1d10 de dano cortante', '23, 24', '+1d10', 'Corpo-a-Corpo', 'Leve, Manha', NULL, 'Arma'),
+(51, 'Soqueira', '1d6 de dano físico', '24', '+1d6', 'Corpo-a-Corpo', 'Leve, Especial', NULL, 'Arma'),
+(52, 'Arco', '1d10+1 de dano cortante', '23, 24', '2x', 'Médio', 'Duas Mãos', NULL, 'Arma'),
+(53, 'Arco Composto', '1d12+1 de dano cortante', '23, 24', '2x', 'Longo', 'Duas Mãos', NULL, 'Arma'),
+(54, 'Balestra', '1d10+3 de dano cortante', '23, 24', '+1d12', 'Médio', 'Duas Mãos', NULL, 'Arma'),
+(55, 'Besta', '1d10+3 de dano cortante', '23, 24', '+1d12', 'Médio', 'Leve', NULL, 'Arma'),
+(56, 'Espingarda', '5d8 de dano balístico', '24', '2x', 'Médio', 'Duas Mãos, Especial', NULL, 'Arma'),
+(57, 'Fisga', '1d8 de dano físico', '23, 24', '2x', 'Curto', 'Leve', NULL, 'Arma'),
+(58, 'Fuzil de Caça', '1d12+1d6 de dano balístico', '23, 24', '2x', 'Longo', 'Duas Mãos', NULL, 'Arma'),
+(59, 'Pistola', '1d12+2 de dano balístico', '24', '+1d12', 'Médio', 'Leve', NULL, 'Arma'),
+(60, 'Revólver', '1d12+1d4 de dano balístico', '23, 24', '2x', 'Médio', 'Leve', NULL, 'Arma'),
+(61, 'Sniper', '3d10+5 de dano balístico', '22, 23, 24', '2x', 'Longo', 'Duas Mãos, Especial', NULL, 'Arma'),
+(62, 'Submetralhadora', '2d6 de dano balístico', '24', '2x', 'Médio', 'Leve, Especial', NULL, 'Arma'),
+(63, 'Uzi', '1d8+5 de dano balístico', '23, 24', '+1d8', 'Médio', 'Leve, Sagaz', NULL, 'Arma');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `equipamentocustom`
+-- Estrutura da tabela `EquipamentoCustom`
 --
 
-DROP TABLE IF EXISTS `equipamentocustom`;
-CREATE TABLE `equipamentocustom` (
-  `id` int(11) NOT NULL,
-  `idUtilizador` int(11) NOT NULL,
-  `nome` varchar(100) NOT NULL,
-  `dano` varchar(50) DEFAULT NULL,
-  `criticio` int(11) DEFAULT NULL,
-  `modCritico` varchar(20) DEFAULT NULL,
-  `alcance` varchar(20) DEFAULT NULL,
-  `propriedades` text DEFAULT NULL,
-  `descricao` text DEFAULT NULL,
-  `tipo` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+DROP TABLE IF EXISTS `EquipamentoCustom`;
+CREATE TABLE `EquipamentoCustom` (
+  `id` int NOT NULL,
+  `idUtilizador` int NOT NULL,
+  `nome` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `dano` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `critico` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `modCritico` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `alcance` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `propriedades` text COLLATE utf8mb4_general_ci,
+  `efeito` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
+  `tipo` varchar(50) COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `fichacriaturas`
+-- Estrutura da tabela `FichaCriaturas`
 --
 
-DROP TABLE IF EXISTS `fichacriaturas`;
-CREATE TABLE `fichacriaturas` (
-  `id` int(11) NOT NULL,
-  `idCriatura` int(11) NOT NULL,
-  `nome` varchar(100) DEFAULT NULL,
-  `forca` int(11) NOT NULL,
-  `agilidade` int(11) NOT NULL,
-  `constituicao` int(11) NOT NULL,
-  `inteligencia` int(11) NOT NULL,
-  `carisma` int(11) NOT NULL,
-  `pvMax` int(11) NOT NULL,
-  `def` int(11) NOT NULL,
-  `resistencias` text DEFAULT NULL,
-  `danoMental` varchar(40) NOT NULL,
-  `rnMental` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Extraindo dados da tabela `fichacriaturas`
---
-
-INSERT INTO `fichacriaturas` (`id`, `idCriatura`, `nome`, `forca`, `agilidade`, `constituicao`, `inteligencia`, `carisma`, `pvMax`, `def`, `resistencias`, `danoMental`, `rnMental`) VALUES
-(1, 1, 'Corpus', 5, 5, 5, 0, 0, 200, 20, NULL, 'a', 10),
-(2, 1, 'Mens', 0, 0, 0, 5, 5, 100, 10, 'a', 'a', 20),
-(3, 2, NULL, 0, 3, 0, 3, 3, 62, 18, 'Resistência a dano de Caos\r\nResistência 5 a dano', '1d6+4', 18);
+DROP TABLE IF EXISTS `FichaCriaturas`;
+CREATE TABLE `FichaCriaturas` (
+  `id` int NOT NULL,
+  `idCriatura` int NOT NULL,
+  `nome` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `forca` int NOT NULL,
+  `agilidade` int NOT NULL,
+  `constituicao` int NOT NULL,
+  `inteligencia` int NOT NULL,
+  `carisma` int NOT NULL,
+  `pvMax` int NOT NULL,
+  `def` int NOT NULL,
+  `resistencias` text COLLATE utf8mb4_general_ci,
+  `danoMental` varchar(40) COLLATE utf8mb4_general_ci NOT NULL,
+  `rnMental` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `magia`
+-- Estrutura da tabela `Magia`
 --
 
-DROP TABLE IF EXISTS `magia`;
-CREATE TABLE `magia` (
-  `id` int(11) NOT NULL,
-  `nome` varchar(200) NOT NULL,
-  `essencia` varchar(20) NOT NULL,
-  `tempoExec` varchar(50) NOT NULL,
-  `custo` int(11) NOT NULL,
-  `efeito` text NOT NULL,
-  `requisitos` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+DROP TABLE IF EXISTS `Magia`;
+CREATE TABLE `Magia` (
+  `id` int NOT NULL,
+  `nome` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
+  `essencia` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `tempoExec` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `custo` int NOT NULL,
+  `efeito` text COLLATE utf8mb4_general_ci NOT NULL,
+  `requisitos` text COLLATE utf8mb4_general_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `Magia`
+--
+
+INSERT INTO `Magia` (`id`, `nome`, `essencia`, `tempoExec`, `custo`, `efeito`, `requisitos`) VALUES
+(1, 'Mutilação', 'Carniça', 'Ação Padrão', 3, 'Tu tocas num ser, cobrindo o seu corpo com diversos cortes superficiais, cortando-o repetidamente, causando 3d6 de dano cortante', NULL),
+(2, 'Amarras Violentas', 'Carniça', 'Ação Padrão', 3, 'Tu conjuras tripas grotescas que saem do chão, enrolando-se num alvo, tentando restringir os seus movimentos, o alvo faz um teste de **FOR** contra a tua **INT**/**CAR**, se falhar fica *Agarrado*.', NULL),
+(3, 'Desmantelar', 'Carniça', 'Ação Padrão', 4, 'Tu disparas um corte invisível contra um alvo a distância média de ti, causando 3d6 de dano cortante.', NULL),
+(4, 'Corrente Óssea', 'Carniça', 'Ação Padrão', 3, 'Tu disparas uma corrente criada a partir dos teus ossos contra um alvo a distância curta de ti, tu giras um teste de FOR contra o alvo, se passares, o alvo fica agarrado.', NULL),
+(5, 'Sabre Medular', 'Carniça', 'Ação de Movimento', 5, 'A tua medula espinal estende-se, saindo pela tua nuca, ao pegares nela, tu sacas-la pra fora, criando um sabre feito d’ossos.  Sabre Medular - 2d12+1d6 dano cortante - Crítico: 23, 24 - +2d6 - Duas Mãos, Manha, Imponente, Potente', NULL),
+(6, 'Unha Pútrida', 'Carniça', 'Ação Padrão', 4, 'Uma das tuas unhas cresce, virando um unha afiada rubra, ao a espetar num ser, o ser fica Envenenado(Fraco).', NULL),
+(7, 'Limpeza Interna', 'Carniça', 'Ação Padrão', 5, 'Tu tocas num ser, alterando o seu sangue, acelerando o processo de cura, curando 4d6 de PVs do ser, cura Envenenado(Fraco).', NULL),
+(8, 'Bomba de Sangue', 'Carniça', 'Ação de Padrão', 8, 'Tu crias uma enorme bolha de sangue coagulado e atiras contra um alvo a alcance médio, criando uma explosão viscosa e nojenta, causando 6d6 de dano de Carniça em todos a distância curta da explosão.', 'NdP 4'),
+(9, 'Corvos Rubros', 'Carniça', 'Ação Padrão', 8, 'Tu fazes um gesto com as mãos, criando, nos teus pés, uma poça de um líquido vermelho viscoso, desse mesmo líquido, saem dois Corvos Rubros.', 'NdP 4'),
+(10, 'Jardim de Espinhos', 'Carniça', 'Ação Padrão', 9, 'Tu tocas no chão, cobrindo uma área de alcance curto com aura de Carniça, criando inúmeras vinhas espinhosas, seres que entrarem ou acabarem a rodada na área sofrem 2d8 de dano de Carniça, a área conta como Terreno Complexo, dura até o fim da cena.', 'NdP 4'),
+(11, 'Transfigurar', 'Carniça', 'Ação Padrão', 8, 'Tu cobres o teu corpo com aura de Carniça, alterando o formato da tua carne, tomando a aparência que desejares. +4 em testes que envolvam comunicação social até o fim da cena.', 'NdP 5'),
+(12, 'Águia de Sangue', 'Carniça', 'Ação Padrão', 8, 'As tuas costelas expandem, criando costelas longas e curvadas que saem das tuas costas, criando carne entre os ossos, criando duas enormes asas de carne. Podes usar a ação *Deslocar* para te moveres verticalmente além de horizontalmente. Dura até o fim da cena', 'NdP 5'),
+(13, 'Cortina de Insetos', 'Carniça', 'Ação Padrão', 6, 'Tu fechas a tua boca, sendo possível começar a ouvir um forte zumbido vindo do fundo da tua garganta, tu abres a boca, vomitando inúmeros insetos deformados que rapidamente se espalham pelo campo de batalha, dificultando a visão dos inimigos. O ambiente torna-se *Ambiente Nublado* mas tu e os teus aliados não sofrem os efeitos, dura até o fim da cena.', 'NdP 5'),
+(14, 'Forçar Ódio', 'Carniça', 'Ação Padrão', 8, 'Tu tocas num ser, o ser sente como uma fúria incontrolável a começar a toma-lo, os olhos ficam encharcados de sangue, as veias pulsam incontrolavelmente, como se entrasse num estado de adrenalina. Ganha +4 em testes de ataque, +1D dano e +2 em reação durante 1d3 rodadas.', 'NdP 5'),
+(15, 'Apunhalo Brutal', 'Carniça', 'Ação Padrão', 9, 'O teu braço é coberto por uma camada grotesca de carne e sangue coagulado, tomando um formato afiado, com uma marca que brilha carmesim nas costas da tua palma, disparando esse sangue contra um alvo a alcance médio, o sangue tomando o formato duma enorme lâmina vermelha, causando 6d8+5 de dano cortante', 'NdP 6'),
+(16, 'Seta de Fogo', 'Energia', 'Ação Padrão', 3, 'Tu crias uma pequena flecha de fogo, disparando-a contra um alvo, causando 2d8+2 de dano incendiário.', NULL),
+(17, 'Ataque em Chamas', 'Energia', 'Ação Livre', 2, 'Tu cobres a tua arma em fogo, no próximo ataque a arma causa +1d10 de dano incendiário.', NULL),
+(18, 'Cúmulo de Raios', 'Energia', 'Ação Padrão', 5, 'Tu crias um amontoado de raios azulados nas tuas mãos e disparas-lo contra um alvo, causando 2d6 de dano elétrico e deixando o inimigo vulnerável durante 1 rodada.', NULL),
+(19, 'Braço Arcano', 'Energia', 'Ação Padrão', 3, 'Tu crias um braço flutuante feito de aura de Energia, o braço tem 20 PV, ao atacar, causa 2d6+Mod. de INT de dano elétrico ou físico, girando o teste de ataque com a INT do conjurador.', NULL),
+(20, 'Trovão Potente', 'Energia', 'Ação Padrão', 4, 'Tu puxas um raio azulado de uma fonte de energia próxima ou do céu, disparando-lho contra um inimigo, causando 1d20 de dano elétrico ou de Energia.', NULL),
+(21, 'Toque Elétrico', 'Energia', 'Ação Padrão', 3, 'Tu cobres a tua mão com raios e tocas num ser, causando 3d6 de dano elétrico.', NULL),
+(22, 'Cauterização Brutal', 'Energia', 'Ação Padrão', 3, 'Tu aqueces a ferida de um ser ao ponto de a cauterizar, o alvo recupera 4d6 de PV.', NULL),
+(23, 'Garras Elétricas', 'Energia', 'Ação de Movimento', 4, 'Tu cobres as tuas mãos com aura de Energia, conjurando garras feitas de raios azulados em ambas as mãos. As garras causam 1d10+5 de dano elétrico e possuem as propriedades Sagaz e Manha, duram até o fim da cena.', NULL),
+(24, 'Anéis Abastecedores', 'Energia', 'Ação de Movimento', 3, 'Tu conjuras anéis ondulados feitos de aura de Energia ao redor das tuas mãos, enquanto os anéis estiverem ativos, o custo de feitiços diminuí em 2, custando no mínimo 1 (Não afeta esta magia). Gasta por rodada.', NULL),
+(25, 'Raios de Outro Mundo', 'Energia', 'Ação Padrão', 3, 'Os teus olhos brilham azul, disparando dois raios, escolhe até 2 alvos, os raios voam até os alvos escolhidos, cada raio causando 1d10+1 de dano de Energia.', NULL),
+(26, 'Combustão Instantânea', 'Energia', 'Ação Padrão', 2, 'Tu estalas os dedos, cobrindo o corpo de um ser em aura de Energia, aura essa que rapidamente vira uma enorme chama azulada, um alvo (á tua escolha) fica em chamas.', NULL),
+(27, 'Investida Elétrica', 'Energia', 'Ação de Movimento', 5, 'Tu investes para a frente, virando um raio azul, tu moves-te o dobro, evitando ataques e conseguindo passar por espaços apertados. Pode gastar +2 para usar como reação, esquivando-se do ataque garantidamente, ou para levar outra pessoa junto, +2 por pessoa.', 'NdP 4'),
+(28, 'Carregar', 'Energia', 'Ação de Movimento', 7, 'Tu preenches as veias dum ser de eletricidade, fazendo as brilhar azul, dando a tal ser uma vitalidade absurda. O ser ganha 2d10+5 PVs temporários.', ' NdP 4'),
+(29, 'Benzer', 'Energia', 'Ação Padrão', 6, 'Tu cobres uma área a teu redor com aura de Energia, abençoando-a com a beleza da vitalidade. Todos os seres a alcance curto de ti recuperam 3d6+INT de PdTs.', 'NdP 4'),
+(30, 'Rajada de Fogo', 'Energia', 'Ação Padrão', 10, 'Tu conjuras uma chama azul entre as tuas mãos, lançando-a para a frente na forma de um enorme leque de fogo, causando 2d12+10 de dano de Energia em todos os seres a alcance médio.', 'NdP 6'),
+(31, 'Veneno Profano', 'Obscuro', 'Ação de Movimento', 4, 'Tu cobres a tua arma com uma substância negra que parece apodrecer tudo que toca, ao acertar um inimigo, ele fica *Envenenado(Fraco+3)*, ao invés de venenoso é necrótico.', NULL),
+(32, 'Espinho Negro', 'Obscuro', 'Ação Padrão', 4, 'Tu crias um espinho negro e disparas-lo contra o alvo, causando 4d6 de dano necrótico.', NULL),
+(33, 'Chama Maldita', 'Obscuro', 'Ação Padrão', 3, 'Tu crias uma chamas preta que ocupa uma área de alcance curto, se alguém entrar nela ou acabar o turno dentro dela, sofre 1d12+3 de dano necrótico. Gasta por rodada.', NULL),
+(34, 'Piso Gosmento', 'Obscuro', 'Ação Padrão', 4, 'Tu cobres o chão com uma lama negra, a lama é quente e grotesca, ela quase parece viva, prendendo e puxando tudo que toca, o terreno vira terreno complexo até o fim da cena.', NULL),
+(35, 'Teia Negra', 'Obscuro', 'Ação Padrão', 4, 'Tu disparas uma teia feita duma gosma negra que se prende ao alvo, se acertado, o alvo fica *Agarrado*. Precisa passar um teste de FOR(RN : 15+INT/EMO*2), se passar solta-se.', NULL),
+(36, 'Sentença', 'Obscuro', 'Ação de Movimento', 6, 'Tu declaras uma sentença de morte a um alvo, gerando uma tatuagem negra que circunda o seu pescoço, sempre que sofrer dano de Obscuro, o ser sofre +3 de dano extra para cada dado girado, dura até o fim da cena.', 'NdP 4'),
+(37, 'Duplicatas', 'Obscuro', 'Ação de Movimento', 6, 'Tu fazes um gesto com as mãos, conjurando, a partir da tua sombra, 3 duplicatas, aumentando a tua DEF em 6, sempre que um ataque direcionado a ti falhar, uma das duplicatas se desfaz, diminuindo a tua DEF em 2.', 'NdP 4'),
+(38, 'Forçar Penumbra', 'Obscuro', 'Ação Padrão', 5, 'Tu fazes um gesto com as mãos, clamando pelas sombras, toda a fonte de luz da área é ofuscada, o ambiente ganha *Penumbra Parcial.* Se usar num ambiente já em *Penumbra Parcial*, o ambiente passa a ter *Penumbra Total*.', 'NdP 4'),
+(39, 'Gás Negro', 'Obscuro', 'Ação Padrão', 8, 'Marcas negras aparecem no teu rosto, logo depois um espesso gás negro começa a sair da tua boca, espalhando pelo ambiente, criando uma enorme nuvem negra a teu redor, o ambiente torna-se *Ambiente Sufocado* até o fim da cena.', 'NdP 6'),
+(40, 'Projétil Sonoro', 'Caos', 'Ação Padrão', 3, 'Tu assobias, conjurando um projétil alaranjado que sai da tua boca, disparando-lho contra um alvo, causando 2d8+4 de dano sónico.', NULL),
+(41, 'Olhos de Ruído', 'Caos', 'Ação de Movimento', 5, 'Os teus olhos são cobertos por estática de TV, dando te uma  visão bizarra que parece prever trajetórias, tu ganhas +2 em testes de ataque com armas à distância e em testes de esquiva contra ataques à distância até o fim da cena.', NULL),
+(42, 'Pedra, Papel, Tesoura', 'Caos', 'Ação Padrão', 5, 'Tu jogas um jogo de pedra, papel e tesoura com o Caos (contra o Mestre). Se perderes, perdes 1d6+1 de SAN, se empatares, nada acontece, se venceres, recebes 1 dos seguintes bónus (dependendo do que usaste para vencer) :  Pedra - Tu recebes 5 de resistência a dano até o fim da cena.  Papel - Tu recebes +2 num tipo de teste (à tua escolha) até o fim da cena.  Tesoura - Todos os teus ataques passam a causar +1D de dano cortante até o fim da cena.  Os efeitos não acumulam consigo mesmos.', NULL),
+(43, 'Rejeitar Sapiência', 'Caos', 'Ação Padrão', 5, 'Tu escolhes um alvo, criando um bloqueio mental nele, o alvo esquece certos conhecimentos, certas habilidades que antes possuía, escolhe um tipo de teste, o alvo terá -4 nesse tipo de teste até o fim da cena.', NULL),
+(44, 'Energizado', 'Caos', 'Ação de Movimento', 5, 'Uma onda de motivação preenche-te, tu sentes como se tudo fosse possível, basta tentares o suficiente, +2 em todos os testes até o fim da rodada.', NULL),
+(45, 'Seguir o Ritmo', 'Caos', 'Ação de Movimento', 4, 'Uma música bizarra começa a tocar na tua mente e tu começas a, inconscientemente, seguir o seu ritmo, +4 em testes de esquiva até o fim da cena.', NULL),
+(46, 'Fraco Sinal', 'Caos', 'Ação Padrão', 5, 'Tu cobres a mente dum alvo com aura de Caos, preenchendo os seus pensamentos de estática e falhas, -4 em testes de **INT** até o fim da cena.', NULL),
+(47, 'Troca Troca', 'Caos', 'Ação Padrão', 3, 'Estala os dedos, trocando dois seres que estejam a até distância média um do outro de lugar, se um dos seres for um aliado, concede-lhe um *Ataque de Oportunidade* contra o outro ser. Pode gastar +2 para usar este feitiço como reação, pode gastar +3 para usar este feitiço como reação no turno de outro ser.', NULL),
+(48, 'Palavras Doem', 'Caos', 'Ação Padrão', 3, 'Tu fazes uma onomatopeia com a voz, criando a palavra com aura de Sabedoria e disparando contra um alvo, causando 2d8 de dano, o tipo de dano varia de acordo com a onomatopeia.', NULL),
+(49, 'Tu Não Podes Sair Daqui!', 'Caos', 'Ação Padrão', 7, 'Tu tocas no chão, espalhando aura de Caos pela sala onde te encontras, criando barras laranjas que tapam todas as saídas, inimigos que tentem passar pelas barras sofrem 2d8 de dano de Caos e devem girar um teste de INT/CAR contra ti, se passarem, conseguem atravessar as barras.', 'NdP 4'),
+(50, 'Vislumbre Ilusório', 'Caos', 'Ação Padrão', 6, 'Tu passas a mão pelo ar, tecendo com os teus dedos uma ilusão. Todos que presenciarem a ilusão devem girar um teste de Perceção(CAR) contra ti, se passarem conseguem ver através da ilusão, tu adicionas ao teu teste o quanto gastaste para fazer a magia(se for um feitiço ou oferenda, o que gastaste pela metade). O custo varia de 6 a 12', 'NdP 5'),
+(51, 'Estrábico', 'Caos', 'Ação de Movimento', 7, 'Tu infestas os músculos dum alvo a alcance curto com aura de Caos, causando espasmos e movimentos involuntários que parecem guiar o ser a um direção aleatória. O ser é forçado a usar a sua ação de movimento para se *Deslocar* em uma direção aleatória, não podendo usar nenhuma outra ação para se *Deslocar*, dura 1d4+1 rodadas.', 'NdP 5'),
+(52, 'Reescrever Feridas', 'Sabedoria', 'Ação Padrão', 4, 'Tu crias sigilos de Sabedoria em volta dos ferimentos, reescrevendo as células do alvo, curando-o instantaneamente. O alvo recupera 3d6 PVs, a cura ignora habilidades que impedem cura.', NULL),
+(53, 'Paralisia', 'Sabedoria', 'Ação Padrão', 4, 'Tu cobres o corpo de um alvo com sigilos de Sabedoria, o alvo deve fazer um teste de CAR(RN:15+CAR2 do conjurador), se falhar ele fica *Vulnerável* durante 1 rodada.', NULL),
+(54, 'Conquistar', 'Sabedoria', 'Ação Padrão', 5, 'Tu cobres o cérebro de um ser em sigilos de Sabedoria, assim manipulando a sua mente, esse ser deve girar um teste de INT ou CAR contra ti, se falhar, não pode te atacar durante 1 rodada', NULL),
+(55, 'Decifrar', 'Sabedoria', 'Ação Padrão', 3, 'Tu cobres a tua mão com aura de Sabedoria, ao tocares num objeto com informação (um livro, dispositivo com uma gravação, etc), tu compreendes as palavras(mesmo não conhecendo o idioma), contanto que seja um idioma humano.', NULL),
+(56, 'Desconcentrar', 'Sabedoria', 'Ação Padrão', 4, 'Tu cobres a tua mão com aura de Sabedoria, formando um círculo rosado na tua palma, ao tocar na cabeça de um alvo, um chiado forte começa a tocar na sua mente, o alvo perde a habilidade de realizar magias sustentadas até o fim da cena.', NULL),
+(57, 'Ligação Angustiante', 'Sabedoria', 'Ação Padrão', 5, 'Uma vez por cena, tu tocas num alvo, criando uma conexão direta entre a tua mente e o seu corpo, durante 1 rodada, para cada 3 PdT que perderes, o alvo sofre 1d6 de dano de Sabedoria.', NULL),
+(58, 'Ordens Diretas', 'Sabedoria', 'Ação Padrão', 4, 'Aparecem diversos sigilos rosados nos teus dedos, sigilos esses que disparas contra até 3 aliados teus, ao serem atingidos, as mentes dos teus aliados recebem ordens de combate, melhores posições, táticas, fraquezas do alvo, os aliados atingidos ganham +2 em testes de Luta e Pontaria até o fim da cena.  Gasta por aliado.', NULL),
+(59, 'Sigilos Marciais', 'Sabedoria', 'Ação de Movimento', 3, 'Tu cravas 4 sigilos rosa numa arma, ao atacar com ela, podes escolher gastar 1 dos sigilos, assim ganhando +4 no teste de ataque.', NULL),
+(60, 'Carimbar', 'Sabedoria', 'Ação Padrão', 4, 'Tu apontas para um alvo a alcance longo, na ponta do teu dedo surge um grande sigilo rosa que rapidamente viaja contra o alvo, causando 2d6+2 de dano incendiário, queimando a carne do alvo.', NULL),
+(61, 'Encarar', 'Sabedoria', 'Ação de Movimento', 6, 'Tu encaras um alvo a distância média de ti, cobrindo o cérebro dele com sigilos. O alvo gira um teste de INT contra ti, se falhar, perde a habilidade de se locomover, ainda conseguindo se mexer mas não podendo sair do lugar. Se sofreres dano, a magia termina.', 'NdP 4'),
+(62, 'Manto de Lâminas', 'Sabedoria', 'Ação Padrão', 10, 'Tu fazes um gesto, conjurando 8 espadas feitas de sigilos rosa que giram a teu redor, se um ser entrar ou terminar o turno na distância corpo-a-corpo de ti, ele sofre 3d6+5 de dano de Sabedoria. Dura até o fim da cena.', 'NdP 5'),
+(63, 'Forçar Sinapses', 'Sabedoria', 'Ação Padrão', 8, 'Tu estendes a mão contra um alvo a até distância média de ti, conjurando sigilos no seu cérebro, forçando certas sinapses a agir. O alvo gira um teste de INT contra ti, se falhar, tu tomas controle duma das suas ações de movimento, dando-lhe uma ordem direta.', 'NdP 5'),
+(64, 'Localizar', 'Sabedoria', 'Ação Padrão', 8, 'Tu conjuras um sigilo rosa a teus pés, a aura emanada por esse sigilo se expande, destacando a presença de todos os seres num raio de 1km. Seres dentro desse raio podem escolher girar um teste de Furtividade(INT/CAR) contra um teste de Perceção(INT/CAR) teu, se passarem, a sua presença não é destacada.', 'NdP 5'),
+(65, 'Conexão Mental', 'Sabedoria', 'Ação Padrão', 8, 'Tu tocas na cabeça dum aliado, tocando na tua simultaneamente, criando um símbolo rosa em ambas, assim estabelecendo uma conexão entre as vossas mentes. Até o fim da cena, conseguem comunicar telepaticamente um com o outro independentemente de distância.', 'NdP 6'),
+(66, 'Putrefação', 'Tempo', 'Ação Padrão', 3, 'Tu cobres um alvo com aura de Tempo, o corpo do alvo entra em estado de decomposição acelerado, sofrendo 2d6 de dano necrótico por rodada. Gasta por rodada.', NULL),
+(67, 'Olho Clarividente', 'Tempo', 'Ação de Movimento', 3, 'Tu vês um futuro possível, prevendo a ação de um inimigo, tu tens +4 na reação contra o próximo ataque do inimigo.', NULL),
+(68, 'Acelerar Cura', 'Tempo', 'Ação de Movimento', 2, 'Tu cobres as feridas de um ser em aura de Tempo, assim acelerando o processo de cicatrização, curando 1d12+3 de PV', NULL),
+(69, 'Playback', 'Tempo', 'Ação Livre', 5, 'Tu cobres o teu corpo com aura de Tempo, assim conseguindo repetir a última ação feita como ação livre (2 usos por rodada)', NULL),
+(70, 'Sono Forçado', 'Tempo', 'Ação Padrão', 4, 'Tu apontas para um ser, cobrindo o seu cérebro com aura de Tempo, acelerando o seu processamento de cansaço, o ser faz um teste de **INT**/**CAR** contra ti, se falhar, o ser fica *Cansado*.', NULL),
+(71, 'Velhice Errónea', 'Tempo', 'Ação Padrão', 3, 'Tu apontas para um ser, cobrindo os seus músculos com aura de Tempo, simulando os músculos fracos de um corpo idoso, o ser faz um teste de **INT**/**CAR** contra ti, se falhar, fica *Fraco*.', NULL),
+(72, 'Tocar na Ferida', 'Tempo', 'Ação Padrão', 4, 'Tu tocas num ser, forçando uma ferida antes fechada a se reabrir, se o ser tocado tiver se curado de um ataque na última rodada, a cura é anulada. Só consegue anular uma cura por uso.', NULL),
+(73, 'Inconsistência', 'Tempo', 'Ação de Movimento', 6, 'Tu cobres o teu corpo com aura de Tempo, mudando a forma que o teu corpo age, criando uma inconsistência temporal, o teu corpo acelerando e desacelerando, dificultando prever os teus movimentos. A tua DEF aumenta em 2 até o fim da cena.', 'NdP 4'),
+(74, 'Speed Up', 'Tempo', 'Ação de Movimento', 8, 'Tu tocas num ser, cobrindo o seu corpo com aura de Tempo, acelerando-o. O ser ganha +1 ação de movimento até o fim da cena.', 'NdP 6'),
+(75, 'Speed Up Total', 'Tempo', 'Ação de Movimento', 10, 'Tu tocas num ser, cobrindo o seu corpo com aura de Tempo, acelerando-o a um ponto intenso. O ser ganha +1 ação padrão até o fim da cena.', 'Speed Up');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `personagem`
+-- Estrutura da tabela `MagiaCustom`
 --
 
-DROP TABLE IF EXISTS `personagem`;
-CREATE TABLE `personagem` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `idUtilizador` int(11) NOT NULL,
-  `nome` varchar(100) NOT NULL,
-  `ndp` int(11) NOT NULL,
-  `classe` varchar(20) DEFAULT NULL,
-  `origem` varchar(50) NOT NULL,
-  `notasPlayer` text NOT NULL,
-  `forca` int(11) NOT NULL,
-  `agilidade` int(11) NOT NULL,
-  `constituicao` int(11) NOT NULL,
-  `inteligencia` int(11) NOT NULL,
-  `carisma` int(11) NOT NULL,
-  `resistencias` text DEFAULT NULL,
-  `pvMax` int(11) NOT NULL,
-  `sanMax` int(11) NOT NULL,
-  `pdtMax` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+DROP TABLE IF EXISTS `MagiaCustom`;
+CREATE TABLE `MagiaCustom` (
+  `id` int NOT NULL,
+  `idUtilizador` int NOT NULL,
+  `nome` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
+  `essencia` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `tempoExec` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `custo` int NOT NULL,
+  `efeito` text COLLATE utf8mb4_general_ci NOT NULL,
+  `requisitos` text COLLATE utf8mb4_general_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `perso_equip`
+-- Estrutura da tabela `Personagem`
 --
 
-DROP TABLE IF EXISTS `perso_equip`;
-CREATE TABLE `perso_equip` (
-  `idPerso` int(11) NOT NULL,
-  `idEquip` int(11) NOT NULL,
-  `quantia` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+DROP TABLE IF EXISTS `Personagem`;
+CREATE TABLE `Personagem` (
+  `id` int NOT NULL,
+  `idUtilizador` int NOT NULL,
+  `nome` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `ndp` int NOT NULL,
+  `classe` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `origem` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `notasPlayer` text COLLATE utf8mb4_general_ci,
+  `forca` int NOT NULL,
+  `agilidade` int NOT NULL,
+  `constituicao` int NOT NULL,
+  `inteligencia` int NOT NULL,
+  `carisma` int NOT NULL,
+  `resistencias` text COLLATE utf8mb4_general_ci,
+  `pvAtual` int NOT NULL,
+  `pvMax` int NOT NULL,
+  `sanAtual` int NOT NULL,
+  `sanMax` int NOT NULL,
+  `pdtAtual` int NOT NULL,
+  `pdtMax` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `Personagem`
+--
+
+INSERT INTO `Personagem` (`id`, `idUtilizador`, `nome`, `ndp`, `classe`, `origem`, `notasPlayer`, `forca`, `agilidade`, `constituicao`, `inteligencia`, `carisma`, `resistencias`, `pvAtual`, `pvMax`, `sanAtual`, `sanMax`, `pdtAtual`, `pdtMax`) VALUES
+(1, 1, 'SQL Test', 1, 'Test', 'Test', 'cli', 1, 1, 1, 1, 1, '', 10, 10, 5, 5, 0, 0),
+(2, 1, 'adsadsdas', 1, '', 'adsadsdas', '', 0, 0, 0, 0, 0, '', 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `perso_equipcustom`
+-- Estrutura da tabela `Perso_Equip`
 --
 
-DROP TABLE IF EXISTS `perso_equipcustom`;
-CREATE TABLE `perso_equipcustom` (
-  `idPerso` int(11) NOT NULL,
-  `idEquipCustom` int(11) NOT NULL,
-  `quantia` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+DROP TABLE IF EXISTS `Perso_Equip`;
+CREATE TABLE `Perso_Equip` (
+  `idPerso` int NOT NULL,
+  `idEquip` int NOT NULL,
+  `quantia` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `Perso_Equip`
+--
+
+INSERT INTO `Perso_Equip` (`idPerso`, `idEquip`, `quantia`) VALUES
+(2, 25, 1);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `perso_magia`
+-- Estrutura da tabela `Perso_EquipCustom`
 --
 
-DROP TABLE IF EXISTS `perso_magia`;
-CREATE TABLE `perso_magia` (
-  `idPerso` int(11) NOT NULL,
-  `idMagia` int(11) NOT NULL,
-  `tipo` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+DROP TABLE IF EXISTS `Perso_EquipCustom`;
+CREATE TABLE `Perso_EquipCustom` (
+  `idPerso` int NOT NULL,
+  `idEquipCustom` int NOT NULL,
+  `quantia` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `perso_poder`
+-- Estrutura da tabela `Perso_Magia`
 --
 
-DROP TABLE IF EXISTS `perso_poder`;
-CREATE TABLE `perso_poder` (
-  `idPerso` int(11) NOT NULL,
-  `idPoder` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+DROP TABLE IF EXISTS `Perso_Magia`;
+CREATE TABLE `Perso_Magia` (
+  `idPerso` int NOT NULL,
+  `idMagia` int NOT NULL,
+  `tipo` varchar(20) COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `Perso_Magia`
+--
+
+INSERT INTO `Perso_Magia` (`idPerso`, `idMagia`, `tipo`) VALUES
+(2, 68, '');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `poder`
+-- Estrutura da tabela `Perso_MagiaCustom`
 --
 
-DROP TABLE IF EXISTS `poder`;
-CREATE TABLE `poder` (
-  `id` int(11) NOT NULL,
-  `nome` varchar(100) NOT NULL,
-  `efeito` text NOT NULL,
-  `tipo` varchar(20) NOT NULL,
-  `requisitos` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+DROP TABLE IF EXISTS `Perso_MagiaCustom`;
+CREATE TABLE `Perso_MagiaCustom` (
+  `idPerso` int NOT NULL,
+  `idMagiaCustom` int NOT NULL,
+  `tipo` varchar(20) COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `sessao`
+-- Estrutura da tabela `Perso_Poder`
 --
 
-DROP TABLE IF EXISTS `sessao`;
-CREATE TABLE `sessao` (
-  `id` int(11) NOT NULL,
-  `idCampanha` int(11) NOT NULL,
-  `nome` varchar(100) NOT NULL,
-  `numEp` int(11) NOT NULL,
-  `enredo` text NOT NULL,
-  `notas` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+DROP TABLE IF EXISTS `Perso_Poder`;
+CREATE TABLE `Perso_Poder` (
+  `idPerso` int NOT NULL,
+  `idPoder` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `Perso_Poder`
+--
+
+INSERT INTO `Perso_Poder` (`idPerso`, `idPoder`) VALUES
+(2, 70),
+(2, 171);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `utilizador`
+-- Estrutura da tabela `Perso_PoderCustom`
 --
 
-DROP TABLE IF EXISTS `utilizador`;
-CREATE TABLE `utilizador` (
-  `id` int(11) NOT NULL,
-  `nome` varchar(100) NOT NULL,
-  `passe` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+DROP TABLE IF EXISTS `Perso_PoderCustom`;
+CREATE TABLE `Perso_PoderCustom` (
+  `idPerso` int NOT NULL,
+  `idPoderCustom` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
 
 --
--- Extraindo dados da tabela `utilizador`
+-- Estrutura da tabela `Poder`
 --
 
-INSERT INTO `utilizador` (`id`, `nome`, `passe`) VALUES
-(1, 'aaa', 'aaa'),
-(2, 'bbb', 'bbb'),
-(3, 'ccc', 'ccc');
+DROP TABLE IF EXISTS `Poder`;
+CREATE TABLE `Poder` (
+  `id` int NOT NULL,
+  `nome` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `efeito` text COLLATE utf8mb4_general_ci NOT NULL,
+  `essencia` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `tipo` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `requisitos` text COLLATE utf8mb4_general_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `Poder`
+--
+
+INSERT INTO `Poder` (`id`, `nome`, `efeito`, `essencia`, `tipo`, `requisitos`) VALUES
+(1, 'Armadura Momentânea', 'Ao gastar 8 PdT tu cobres o teu corpo com uma aura protetora, essa energia dá te 5 de resistência a um tipo de dano à tua escolha até o fim da cena.', NULL, 'Habilidade Geral', NULL),
+(2, 'Armadura Desconhecida', 'Ao gastar 8 PdT tu tornas a aura dentro de ti numa aura protetora, tu ganhas +2 de DEF até o fim da cena.', NULL, 'Habilidade Geral', NULL),
+(3, 'Aura Amedrontadora', 'Ao gastar 8 PdT, tu expandes a tua aura, cobrindo uma área de alcance curto, tu então alteras a tua aura, tornando-a numa energia terrível e hedionda, todos dentro da aura devem fazer um teste de **CAR**(RN: 18+Mod. de CAR), se falharem ficam *Amedrontados*.', NULL, 'Habilidade Geral', NULL),
+(4, 'Aura Curandeira', 'Ao gastar 8 PdT, tu expandes a tua aura, cobrindo uma área de alcance curto, tu então alteras a tua aura, tornando-a numa energia benevolente e bondosa, todos os aliados dentro da aura recuperam +2d10+2 de PVs.', NULL, 'Habilidade Geral', NULL),
+(5, 'Estímulo Muscular', 'Ao gastar 4 PdT, tu concentras aura do Desconhecido nos teus músculos, aumentando a capacidade física deles, ganhando +4 no próximo teste de **FOR**/**AGI**/**CON** que realizares.', NULL, 'Habilidade Geral', NULL),
+(6, 'Canalização', 'Ao gastar 6 PdT, tu concentras a aura do Desconhecido na tua arma, a arma causa +1d8 de dano até o fim da cena.', NULL, 'Habilidade Geral', NULL),
+(7, 'Canalização Momentânea', 'Ao gastar 9 PdT tu rapidamente concentras aura do Desconhecido na tua arma, aumentando a sua potência momentaneamente, ao usar este poder antes de um ataque, a arma causa +3d8 de dano, mas a arma volta ao normal depois do ataque.', NULL, 'Habilidade Geral', 'Canalização'),
+(8, 'Canalização Máxima', 'Ao gastar 10 PdT, tu concentras uma quantidade massiva de aura do Desconhecido na tua arma, a arma causa +2d6 de dano até o fim da cena.', NULL, 'Habilidade Geral', 'Canalização'),
+(9, 'Canalização Momentânea Aperfeiçoada', 'Ao gastar 13 PdT tu rapidamente concentras uma quantidade massiva de aura do Desconhecido na tua arma, aumentando a sua potência momentaneamente, ao usar este poder antes de um ataque, a arma arma causa +4d6 de dano, mas a arma volta ao normal depois de dois ataques.', NULL, 'Habilidade Geral', 'Canalização Momentânea'),
+(10, 'Impacto Atrasado', 'Ao gastar 7 PdT tu divides o teu golpe em dois impactos, ao acertar o golpe tu causas apenas metade do dano, causando a outra metade no próximo turno, esse impacto toma a forma de uma pequena explosão de aura do Desconhecido, o alvo faz um teste de **CON**(RN:15+Mod. de CAR), se falhar fica *Vulnerável* durante 1 rodada', NULL, 'Habilidade Geral', NULL),
+(11, 'Projeção de Energia', 'Ao gastar 4-7 PdT, tu rapidamente converges aura do Desconhecido num pequeno ponto, criando um projétil similar a uma bala feito de pura aura, disparando-o contra um alvo a alcance médio, o projétil causa +1d4 por cada ponto gasto, o tipo de dano é o dano da tua essência. (Se não tiver essência o tipo de dano é elétrico)', NULL, 'Habilidade Geral', NULL),
+(12, 'Projeção de Energia Aperfeiçoada', 'Ao gastar 13 PdT, tu rapidamente converges uma quantidade massiva de aura do Desconhecido num ponto minúsculo, comprimindo esse ponto com as mãos, usando-as para apontar para um alvo a até alcance longo, disparando um raio de aura do Desconhecido que rapidamente viaja contra o alvo, o raio causa 6d6 de dano, o tipo de dano é o dano da tua essência. (Se não tiver essência o tipo de dano é elétrico)', NULL, 'Habilidade Geral', 'Projeção de Energia'),
+(13, 'Leitura Rápida', 'Ao gastar 6 PdT, tu fazes uma análise rápida da aura dum ser ou objeto, descobrindo as essências da aura e tendo uma noção mais aprofundada da sua força/efeito.', NULL, 'Habilidade Geral', NULL),
+(14, 'Leitura Reveladora', 'Ao gastar 8 PdT, tu fazes uma análise da aura do ambiente, buscando nas sombras, seres escondidos devem re-rolar o teste de Furtividade contra ti.', NULL, 'Habilidade Geral', NULL),
+(15, 'Conjuração de Barreiras', 'Ao gastar 20 PdT, tu conjuras uma barreira, tomando a forma de um domo cobrindo uma área de alcance curto(se tiver 4 ou mais de **CAR**/**INT** cobre alcance médio, se tiver mais de 6 de **CAR**/**INT** cobre alcance longo), o domo tem 20+10x**CAR**/**INT** de PVs (tendo resistência a dano de essências). O portador pode também gastar 1 ação de movimento para alterar o seu tamanho (não ultrapassando o limite). Ninguém, exceto o conjurador, consegue entrar ou sair da barreira sem a quebrar.', NULL, 'Habilidade Geral', NULL),
+(16, 'Brandir Território', 'Ao gastar 10 PdT, tu expandes a tua aura, cobrindo uma área de alcance curto(se tiver 4 ou mais de **CAR**/**INT** cobre alcance médio, se tiver mais de 6 de **CAR**/**INT** cobre alcance longo), enquanto dentro dessa área, tens +2 em todos os testes e todos os seres dentro do território estão a teu alcance, como se conseguisses os tocar. O território mantém-se de pé enquanto o conjurador não se deslocar.', NULL, 'Habilidade Geral', NULL),
+(17, 'Território Benigno', 'Ao gastar 12 PdT, tu expandes a tua aura, cobrindo uma área de alcance curto(se tiver 4 ou mais de **CAR**/**INT** cobre alcance médio, se tiver mais de 6 de **CAR**/**INT** cobre alcance longo), enquanto dentro dessa área, magias com efeito em área são anuladas. O território mantém-se de pé enquanto o conjurador não se deslocar.', NULL, 'Habilidade Geral', 'Brandir Território'),
+(18, 'Estender Território', 'Ao gastar 6 PdT, enquanto o território está erguido, estende uma porção do território, tomando a forma duma linha que busca um oponente, criando em seus pés uma extensão do teu território. Escolhe um alvo fora do teu território, enquanto ele não se deslocar ele passa a sofrer dos efeitos do teu território.', NULL, 'Habilidade Geral', 'Brandir Território'),
+(19, 'Armar Território', 'Ao gastar 8 PdT antes dum ataque, tu envolves a arma com o teu território, forçando-a a atingir a alma do oponente. O tipo de dano do próximo ataque muda para dano espiritual.', NULL, 'Habilidade Geral', 'Brandir Território'),
+(20, 'Campo A.P.D', 'Ao gastar x PdTs, como reação, tu cobres uma área prestes a ser danificada com uma barreira feita de aura do Desconhecido, resistindo ao dano do ataque, x é igual ao dano do ataque. Se não tiver PdTs o suficiente para resistir o dano inteiro, resiste uma quantia de dano igual aos PdTs restantes.', NULL, 'Habilidade Geral', NULL),
+(21, 'Feitiço Ensinado', 'Tu escolhes uma magia da lista e aprendes-la na forma de um Feitiço.', NULL, 'Habilidade Geral', NULL),
+(22, 'Ritual Ensinado', 'Tu escolhes uma magia da lista e aprendes-la na forma de um Ritual.', NULL, 'Habilidade Geral', NULL),
+(23, 'Oferenda Ensinada', 'Tu escolhes uma magia da lista e aprendes-la na forma de um Oferenda.', NULL, 'Habilidade Geral', NULL),
+(24, 'Adquirir Aptidão', 'Tu ganhas uma Aptidão da lista de Aptidões.', NULL, 'Habilidade Geral', NULL),
+(25, 'Debilitar com Arremesso', 'Tu aprendeste a arremessar as tuas armas de uma maneira especial, de uma maneira que debilite o teu inimigo. Ao arremessar uma arma, se acertares, o alvo tem -4 no seu próximo teste(não acumula consigo mesmo).', NULL, 'Aptidão', NULL),
+(26, 'Dano Certeiro', 'Ao girar o dano de uma arma, tu voltas a girar todos os dados que tiveram como resultado 1 ou 2.', NULL, 'Aptidão', NULL),
+(27, 'Mira Precisa', 'Tu ignoras a desvantagem de cobertura parcial e ganhas +4 em testes de pontaria se gastares uma ação de movimento a mirar.', NULL, 'Aptidão', NULL),
+(28, '**Perícia**', 'Escolhe um tipo de teste, tu ganhas +4 em testes desse tipo.', NULL, 'Aptidão', NULL),
+(29, 'Versátil', 'Tu ganhas +1 em todos os testes.', NULL, 'Aptidão', NULL),
+(30, 'Corpo Robusto', 'Ao escolher esta aptidão, tu recebes o dobro da tua CON como PVs, sempre que subires de nível ganhas +3 PVs.', NULL, 'Aptidão', NULL),
+(31, 'Mente Robusta', 'Ao escolher esta aptidão, tu recebes o dobro da tua CAR como SAN, sempre que subires de nível ganhas +3 SAN.', NULL, 'Aptidão', NULL),
+(32, 'Cérebro Robusto', 'Ao escolher esta aptidão, tu recebes o dobro da tua INT como PdTs, sempre que subires de nível ganhas +3 PdTs.', NULL, 'Aptidão', NULL),
+(33, 'Reflexos Defensivos', 'Tu ganhas +2 em testes de bloqueio e esquiva.', NULL, 'Aptidão', NULL),
+(34, 'Sempre Atento', 'Tu desenvolves um sexto sentido que alerta-te de perigos inesperados, tu ficas imune ao estado *Desprevenido*', NULL, 'Aptidão', NULL),
+(35, 'Imparável', 'Se estiveres *A Falecer* tu podes continuar a agir, porém testes de cura feitos contra ti têm desvantagem.', NULL, 'Aptidão', NULL),
+(36, 'Empunhadura Dupla', 'Ao segurar uma arma leve em cada mão, pode atacar com ambas numa ação.', NULL, 'Aptidão', NULL),
+(37, 'Artes Marciais', 'O teu dano físico aumenta em 1D e sobe uma categoria (d6->d8->d10...) (Pode ser escolhido duas vezes).', NULL, 'Aptidão', NULL),
+(38, 'Fôlego Extra', 'Uma vez por combate ganhas uma ação de movimento a mais. Podendo tornar as duas ações de movimento numa ação padrão.', NULL, 'Aptidão', NULL),
+(39, 'Adiar Catástrofe', 'Uma vez por *Cena de Combate*, tu consegues adiar uma desvantagem ou modificador negativo para o próximo teste.', NULL, 'Aptidão', NULL),
+(40, 'Ataque Executor', 'Inimigos com apenas metade da vida têm -2 de **DEF** contra os teus ataques.', NULL, 'Aptidão', NULL),
+(41, 'Corpo Muralha', 'Inimigos têm -4 no teste se tentarem usar a manobra *Agarrar* em ti.', NULL, 'Aptidão', NULL),
+(42, 'Corpo Resiliente', 'Ganhas 5 de resistência a um tipo de dano à tua escolha.', NULL, 'Aptidão', NULL),
+(43, 'Intercetar', 'Se um aliado em curta distância for alvo de um ataque, poderás sofrer o dano no lugar do aliado.', NULL, 'Aptidão', 'NdP 4'),
+(44, 'Duelista', 'Durante uma Cena de Duelo de Vontades, ao atingir o Ultimato, o dano armado recebe +1D.', NULL, 'Aptidão', 'NdP 4'),
+(45, 'Corpo Resistente', 'Tu ganhas 5 de resistência a dano.', NULL, 'Aptidão', 'NdP 5'),
+(46, 'Contra-Ataque Atrelado', 'Ao esquivar/bloquear, caso obtenhas um sucesso com uma diferença de +4 contra o teste inimigo realizarás um contra-ataque como ação livre.', NULL, 'Aptidão', 'NdP 6'),
+(47, 'Adaptação', 'Se um inimigo atacar-te duas vezes seguidas terás +2 na reação do segundo ataque, o efeito amplia caso os ataques continuem, sempre com +2 e mesmo que o ataque não acerte. O efeito reinicia assim que a sequência for quebrada.', NULL, 'Aptidão', 'NdP 6'),
+(48, 'Defesa Poderosa', 'Tu passas a adicionar o teu Mod. de FOR na tua DEF', NULL, 'Aptidão', 'NdP 6'),
+(49, 'Tocar na Alma', 'Tu passas a ter uma leve visão das almas, conseguindo senti-las, conseguindo toca-las. Ao atacar um ser, podes escolher acertar a alma e não o corpo, apenas causando metade mas mudando o tipo de dano para *Espiritual*(não se aplica a magias).', NULL, 'Aptidão', 'NdP 6'),
+(50, 'Ataque Rutura', 'Inimigos têm a sua resistência cortada pela metade contra os teus ataques.', NULL, 'Aptidão', 'NdP 6'),
+(51, 'Revelar Caráter', 'O ser revela o seu verdadeiro Eu, uma expressão forçada da sua própria alma toma controle do ser, presenteando-o com o seu verdadeiro nome e a força que esse nome porta. Ao ativar, o ser ganha 3 pontos extra pra distribuir entre os seus atributos, 3 poderes/magias novas e 30 pontos para recuperar em status(podendo ultrapassar o máximo)(tanto os pontos quanto os poderes e os status obtidos são definidos ao aprender esta habilidade e nunca mudam). Enquanto ativo, o ser perderá 6 de SAN por rodada, esta SAN só pode ser recuperada depois de 3 cenas. Pode ser desativado a qualquer momento, ao desativar, todos os efeitos são perdidos.', NULL, 'Aptidão', 'NdP 6'),
+(52, 'Resistência Aprimorada', 'A resistência para dano da tua essência assimilada aumenta para 10', NULL, 'Assimilação', NULL),
+(53, 'Bruxaria Aprimorada', 'O bônus no teste para realizar magias da tua essência assimilada aumenta para +4', NULL, 'Assimilação', NULL),
+(54, 'Defesa Aprimorada', 'O bônus no teste para resistir a magias da tua essência assimilada aumenta para +4', NULL, 'Assimilação', NULL),
+(55, 'Transmutação', 'Escolhe uma magia que possuas, a essência da magia muda para a tua essência (Se a magia der dano de essência, o dano também muda para o da tua essência).', NULL, 'Assimilação', NULL),
+(56, 'Aura Invasiva', 'Qualquer ataque físico feito por ti tem o seu tipo de dano alterado para o dano da tua essência.', NULL, 'Assimilação', NULL),
+(57, 'Manifestar Essência', 'A tua presença é imbuída com a tua essência, denunciando-a aos teus inimigos. Qualquer ataque teu que cause o dano da tua essência tem +2 no teste.', NULL, 'Assimilação', NULL),
+(58, 'Pele Armadurada', 'A tua pele torna-se espessa, mais resistente a danos, +2 de DEF.', 'Carniça', 'Assimilação', NULL),
+(59, 'Células Vivas', 'As tuas células passam a agir como se tivessem consciência própria, tendo um foco em manterem-se vivas, a tua regeneração fica mais rápida, +1D de PVs recuperados ao descansar.', 'Carniça', 'Assimilação', NULL),
+(60, 'Contra Medida', 'O teu corpo cria um reforço, reforço que só ativa quando te encontras mais fraco que o habitual, ao adquirir um estado, +2 em todos os testes até perder o estado (não acumula consigo mesmo).', 'Carniça', 'Assimilação', NULL),
+(61, 'Exterior Volátil', 'O teu corpo passa a estar coberto de uma fina camada de carga elétrica, carga essa que repele aqueles que a tocam, ao sofrer um ataque físico, o atacante sofre 1d8 de dano elétrico.', 'Energia', 'Assimilação', NULL),
+(62, 'Extração Vital', 'Após acertar um crítico, recuperas 1/3 do dano causado como PdTs.', 'Energia', 'Assimilação', NULL),
+(63, 'Sobrecarga', 'A cada magia de Energia que realizares acumulas 1 carga. Ao atingir 3, libertas automaticamente uma explosão que causa dano a todos em alcance curto, causando 1d10+5 de dano de Energia.', 'Energia', 'Assimilação', NULL),
+(64, 'Transferência Vital', 'Uma vez por rodada, podes roubar um estado a um aliado, trocando as suas dores com o bem-estar do teu corpo (não funciona com A Falecer ou A Enlouquecer).', 'Energia', 'Assimilação', NULL),
+(65, 'Rutura de Limite', 'Podes usar habilidades mesmo com PdT a 0, entrando em dívida. Cada PdT negativo custa-te 2 de PV.', 'Energia', 'Assimilação', 'NdP 5'),
+(66, 'Carga Total', 'Se tiveres os PdT cheios, a primeira Magia de Energia que realizares causa +2D de cura/dano.', 'Energia', 'Assimilação', 'NdP 5'),
+(67, 'Descarga', 'Ao desacordares, recebes uma descarga que acelera o teu sistema cardiovascular e a adrenalina. Ganhas imunidade aos estados Desacordado e Atordoado.', 'Energia', 'Assimilação', 'NdP 5'),
+(68, 'Fogo Vivo', 'Ganhas imunidade a dano incendiário.', 'Energia', 'Assimilação', 'NdP 6'),
+(69, 'Aposta', 'Uma vez por cena, ao fazer um teste, ao invés de girar os dados normais, diz um número de 1 a 10 e gira 1d10, se calhar o número que disseste, tu passas o teste.', 'Caos', 'Assimilação', NULL),
+(70, 'Falha Proveitosa', 'Ao errar uma Magia, poderás desviá-la para outro inimigo e refazer o teste.', 'Caos', 'Assimilação', NULL),
+(71, 'Apesar de Tudo', 'Crer, mesmo quando tem tudo pra dar errado. Se obtiveres um sucesso em testes de ataque com condições negativas (desvantagem ou -4, etc…) ganhas um bónus de +2d10 de dano de Caos.', 'Caos', 'Assimilação', NULL),
+(72, 'Os Últimos Serão Primeiros', 'Em testes de Iniciativa, agora, se fores o último colocado, tornaste o primeiro a agir.', 'Caos', 'Assimilação', NULL),
+(73, 'Surpresa!', 'Uma vez por cena, ao acertar um ataque com sucesso, podes forçar o teste a um crítico, independentemente do teste. O dano que for realizado no inimigo será também realizado em ti.', 'Caos', 'Assimilação', 'NdP 5'),
+(74, 'Mente Fragmentada', 'Ganhas resistência a dano mental, mas no início de cada batalha, a tua primeira ação padrão vai ser completamente aleatória.', 'Caos', 'Assimilação', 'NdP 5'),
+(75, 'Instabilidade', 'Quantas mais rodadas um combate durar, maior a tua chance de acertar um ataque. Primeira rodada seria +1, e assim por diante.', 'Caos', 'Assimilação', 'NdP 5'),
+(76, 'Leitura de Padrões', 'Se gastares um turno para observares um inimigo, estritamente sem o atacar durante esse tempo, passas a saber exatamente qual será a próxima ação dele.', 'Sabedoria', 'Assimilação', NULL),
+(77, 'Estratégia', 'Qualquer ataque que realizes num combate sem ser um golpe da tua arma ou uma Magia/Poder, ou seja, uma ideia improvisada, terá +4 no teste.', 'Sabedoria', 'Assimilação', NULL),
+(78, 'Declarar', 'A fim de confundir o inimigo, ao declarares a tua ação terás +2 no teste, no entanto se for um teste contra esse mesmo inimigo, ele já estará avisado da ação.', 'Sabedoria', 'Assimilação', NULL),
+(79, 'Ponto Fraco', 'Com a tua visão atenta, ao acertares um segundo ataque seguido no mesmo inimigo, acertarás no ponto fraco do teu oponente, causando +2d8 de dano.', 'Sabedoria', 'Assimilação', NULL),
+(80, 'Mente Encorpada', 'O teu cérebro deixa de ser um ponto vital, és capaz de mover o corpo mesmo com a cabeça decepada. És imune a estrangulamento.', 'Sabedoria', 'Assimilação', 'NdP 5'),
+(81, 'Memória Perfeita', 'Uma vez por batalha, podes “guardar” o resultado de um dado que rolaste e reutilizar novamente e unicamente num teste futuro. O valor que for guardado não pode ser alterado até ser usado.', 'Sabedoria', 'Assimilação', 'NdP 5'),
+(82, 'O Justo', 'O teu corpo cobre-se em sigilos rosa sempre que és Flankeado ou atacado de surpresa, danificando a arma (ou membro) do agressor instantaneamente para equilibrar a tua justiça. Se danificar uma arma, a arma causará -1D de dano até ser polida, se danificar um membro do inimigo, ele ganha o estado Fraturado nesse membro.', 'Sabedoria', 'Assimilação', 'NdP 6'),
+(83, 'Zona da Razão', 'Ao atacarem-te corpo-a-corpo, seja com arma ou não, inimigos têm de impor-se contra a tua barreira de lógica para te acertarem, obrigando a um teste de INT em vez de FOR ou AGI. Caso optem por atacar sem INT, o conhecimento os castigará com 2d8 de dano de Sabedoria.', 'Sabedoria', 'Assimilação', 'NdP 6'),
+(84, 'Visão Noturna', 'Tu passas a conseguir ver no escuro, ganhas imunidade aos efeitos de *Penumbra Total* e *Parcial*.', 'Obscuro', 'Assimilação', NULL),
+(85, 'Silêncio', 'Tudo que fazes é constantemente silencioso, +2 em testes de furtividade.', 'Obscuro', 'Assimilação', NULL),
+(86, 'Ser de Sombras', 'No início de cada batalha, independentemente se tiveres furtivo ou não, tu não te revelas até realizares o teu primeiro ataque. Inimigos apenas vêm-te antes disso se passarem um teste de Perceção(CAR)(RN : 8 + teste teu de CAR).', 'Obscuro', 'Assimilação', NULL),
+(87, 'Indiferença', 'Se um inimigo acertar um ataque em ti e não causar nenhum dano, recuperas +1d10+4 de PdT.', 'Obscuro', 'Assimilação', NULL),
+(88, 'Vácuo Vocal', 'Ao acertares um inimigo, podes roubar a voz dele, podendo imita-la perfeitamente e tornando o alvo mudo até ele te acertar, onde recuperará a sua voz. Enquanto possuírem a voz do inimigo, não poderás usar a tua.', 'Obscuro', 'Assimilação', 'NdP 5'),
+(89, 'Necrose', 'Ao desacordares, a falta da tua consciência é preenchida pelo Obscuro. Continuarás a agir normalmente, durante este estado, que não pode ser induzido, ganhas imunidade a dano físico, sendo impossível sentires dor, mas após 2 rodadas és obrigado a acordar, com a chance da essência apoderar-se do teu corpo.', 'Obscuro', 'Assimilação', 'NdP 5'),
+(90, 'Fim da Linha', 'Ao finalizar a vida de um ser, recuperas +2d8+2 de PVs.', 'Tempo', 'Assimilação', NULL),
+(91, 'Hora Final', 'Golpes teus são acelerados contra inimigos que estejam próximos do fim. +2 em testes de ataque contra inimigos abaixo da metade dos PVs totais.', 'Tempo', 'Assimilação', NULL),
+(92, 'Saltar', 'Uma vez por cena, efeitos e estados temporários negativos podem ser saltados para ocorrerem apenas uma única vez.', 'Tempo', 'Assimilação', NULL),
+(93, 'Tempo Extra', 'Em Cenas de Investigação, o tempo desacelera, permitindo uma abordagem mais meticulosa da cena. +2 em qualquer teste investigativo.', 'Tempo', 'Assimilação', NULL),
+(94, 'Intervalos', 'Durante qualquer teste de CON, consegues congelar o tempo por um breve momento, recuperando o fôlego, ganhando +2 no teste.', 'Tempo', 'Assimilação', NULL),
+(95, 'Barreira Anacrónica', 'Tu ganhas uma aura especial a teu redor que desacelera aquilo que se aproxima, tu ganhas +4 de DEF.', 'Tempo', 'Assimilação', 'NdP 5'),
+(96, 'Afiação Perpétua', 'As armas que portas são aceleradas, estando sempre prontas para combate e mais fortes que armas comuns, no entanto, estas armas adquirem ferrugem e desgastam mais rapidamente. As tuas armas causam +1D de dano, porém, na 6ª batalha onde a arma é usada, ela perde 2/3 do seu dano permanentemente.', 'Tempo', 'Assimilação', 'NdP 5'),
+(97, 'Ambição', 'A tua vontade pelo sucesso aumenta a um ponto impossível, criando uma aura dourada especial, como se a tua determinação moldasse a realidade a teu favor. Uma vez por cena, tu ignoras um teste falho, sucedendo nesse teste ao invés disso.', 'Apostasia', 'Assimilação', NULL),
+(98, 'Vontade Suprassuma', 'A tua vontade de interferir toma controle, uma vez por cena, tu podes escolher usar 1 ação no turno doutro ser.', 'Apostasia', 'Assimilação', NULL),
+(99, 'Última Lembrança', 'Ao portar um objeto por muito tempo(mínimo 5 cenas), é possível declará-lo como um totem de sorte, com o qual o personagem poderá atrelar e masterizar a sua utilidade. A tua vontade pode ser abaixar o crítico de uma arma, aumentar seu alcance, aumentar 1D de dano, impor uma propriedade customizada ou reduzir a necessidade de duas mãos. A perda de um objeto querido causará dano Mental.', 'Apostasia', 'Assimilação', NULL),
+(100, 'Palavra Profética', 'A tua vontade é manifestada pelo discurso poderoso da tua fala. Uma vez por cena, os aliados que ouvirem tua palavra terão +x (x = 6 a dividir pelo número de alvos Ex: 3 aliados=6/3=2) no próximo teste.', 'Apostasia', 'Assimilação', NULL),
+(101, 'Importância', 'A tua vontade é o que te trouxe até aqui, não morrerás, não hoje. Ao chegar a menos de 1/4 da vida máxima, o personagem causará dano a dobrar.', 'Apostasia', 'Assimilação', NULL),
+(102, 'Presença de Êxtase', 'A tua existência impõe hesitação. Inimigos que iniciem o turno contra ti ou ataquem-te de surpresa terão -4 nos seus testes. Criaturas muito mais fracas que tu escolherão não agir agressivamente contra ti.', 'Apostasia', 'Assimilação', NULL),
+(103, 'Cicatrizes de Batalha', 'Pelas cicatrizes que adquiriste aprendeste uma valiosa lição. Sempre que realizarem um ataque semelhante ao que outra hora feriu-te profundamente terás uma vantagem na reação. Uma cicatriz só considera-se quando um ataque retira mais de metade da vida ou impõem o efeito de A Falecer em ti.', 'Apostasia', 'Assimilação', NULL),
+(104, 'Repulsor', 'A tua vontade é desgostosa para criaturas. É possível, uma vez por cena, chamar a atenção de uma criatura e forçá-la a te atacar, independente do que esta esteja a fazer.', 'Apostasia', 'Assimilação', NULL),
+(105, 'Persistência Rubra', 'Ao chegar a metade dos PVs totais, tu ganhas cura acelerada igual à tua CON', NULL, 'BaseCultista', NULL),
+(106, 'Trocar Corpo e Mente', 'Se uma magia/habilidade/aptidão pedir um teste de INT/CAR, podes, ao invés disso, girar CON.', NULL, 'BaseCultista', NULL),
+(107, 'Reabastecer', 'Uma vez por cena, podes gastar uma ação padrão para recuperar o teu Mod. de INT como PdTs.', NULL, 'BaseFeiticeiro', NULL),
+(108, 'Sono Energético', 'Ao dormir, a quantidade de PdTs recuperados aumenta em 1D.', NULL, 'BaseFeiticeiro', NULL),
+(109, 'Espírito de Batalha', 'Lutar é o que faz um Lutador sentir se vivo, a cada luta que passa, o Lutador aprende mais, torna-se mais motivado, ficando cada vez mais forte. Tu ganhas um novo status chamado de: PE(Ponto de Espírito), tu podes gastar esses PE de 3 formas:<br>- 1 PE - Re-rolar um teste<br>- 3 PE - Forçar um inimigo a re-rolar um teste(ficando com o pior resultado)<br>- 5 PE - Passar num teste imediatamente.<br>Tu começas com 3 PE e ganhas 1 a cada batalha vencida', NULL, 'BaseLutador', NULL),
+(110, 'Golpe Poderoso', 'Podes adicionar +1d6 ao teu dano, custa 4 PdT por d6, o máximo é 3d6', NULL, 'HabLutador', NULL),
+(111, 'Golpe Especial', 'Podes adicionar +1d6 ao teu teste, custa 4 PdT por d6, o máximo é 3d6', NULL, 'HabLutador', NULL),
+(112, 'Golpe Pesado', 'Ao gastar 7 PdT tu causas +1D de dano no próximo ataque', NULL, 'HabLutador', NULL),
+(113, 'Contra-Ataque Veloz', 'Ao gastar 7 PdT tu podes contra-atacar como ação livre', NULL, 'HabLutador', NULL),
+(114, 'Força Devastadora', 'Ao gastar 7 PdT tu adicionas no dano do teu ataque o teu Mod. de FOR x2', NULL, 'HabLutador', NULL),
+(115, 'Ataques Seguidos', 'Ao gastar 7 PdT depois de acertar um ataque podes voltar a atacar como ação livre, se acertares esse ataque podes atacar denovo mas desta vez o preço é dobrado.', NULL, 'HabLutador', NULL),
+(116, 'Esquiva Aperfeiçoada', 'Quando sofreres um ataque que a esquiva reduz o dano pela metade(como explosões), ao invés disso, se esquivares, evitas o dano por completo.', NULL, 'HabLutador', NULL),
+(117, 'Apanhar um Ar', 'Uma vez por cena, tu podes parar para respirar um pouco, assim recuperando xd6 de PVs, x sendo a tua CON.', NULL, 'HabLutador', NULL),
+(118, 'Investida Mortal', 'Uma vez por cena, ao gastar 12 PdT, tu fazes a ação completa Investida como uma ação padrão', NULL, 'HabLutador', NULL),
+(119, 'Agarrão Veloz', 'Ao acertar um ataque corpo-a-corpo, podes gastar 7 PdT para fazer a ação padrão “Agarrar” como ação livre', NULL, 'HabLutador', NULL),
+(120, 'Derrubar Veloz', 'Ao acertar um ataque corpo-a-corpo, podes gastar 6 PdT para fazer a ação padrão Derrubar como ação livre', NULL, 'HabLutador', NULL),
+(121, 'Forçar Crítico', 'Ao gastar 14 PdT, o crítico da tua arma diminui pela metade, precisando obter o novo valor em apenas um dos dados do teste para causar um ataque crítico.', NULL, 'HabLutador', NULL),
+(122, 'Ataque Debilitante', 'Ao acertar um ataque, podes gastar 8 PdT para deixar o alvo Fraco durante 1 rodada.', NULL, 'HabLutador', NULL),
+(123, 'Tontear', 'Tu fazes um ataque especial, tendo o foco de confundir o inimigo. Ao acertar um ataque corpo-a-corpo, podes gastar 10 PdT para forçar o alvo a perder 1 ação padrão no seu próximo turno.', NULL, 'HabLutador', NULL),
+(124, 'Provocar', 'Ao gastar 7 PdT, tu fazes uma ação chamativa e insultuosa contra um ser, testes feitos por esse ser que não sejam direcionados contra ti têm -4, dura 1 rodada.', NULL, 'HabLutador', NULL),
+(125, 'Casca Grossa', 'Tu ganhas 5 de resistência contra dano cortante, balístico e físico.', NULL, 'HabLutador', NULL),
+(126, 'Mente Guardada', 'Tu ganhas resistência a dano mental igual ao teu CARx2', NULL, 'BaseRitualista', NULL),
+(127, 'Sono Confortante', 'Ao descansar, a quantidade de SAN recuperados aumenta em 1D.', NULL, 'BaseRitualista', NULL),
+(128, 'Especialista em Combate', 'Tu giras testes de Luta com a tua INT.', NULL, 'BaseTécnico', NULL),
+(129, 'Especialista em Disparo', 'Tu giras testes de Pontaria com a tua INT.', NULL, 'BaseTécnico', NULL),
+(130, 'Especialista em Furtividade', 'Tu tens +2 em testes de Furtividade e, durante uma Cena de Furtividade, podes gastar 7 PdT para diminuir o teu nível de exposição em 1.', NULL, 'BaseTécnico', NULL),
+(131, 'Especialista em Medicina', 'Tu tens +2 em testes de Medicina e adicionas a tua INTx2 à cura.', NULL, 'BaseTécnico', NULL),
+(132, 'Descobrir Fraqueza', 'Ao gastar 5 PdT para analisar as fraquezas dum inimigo, escolhe um alvo, tu ganhas +4 em testes para atacar o ser durante 1d3 rodadas.', NULL, 'HabTécnico', NULL),
+(133, 'Ataque Perspicaz', 'Ao gastar 7 PdT, tu fazes um ataque que impede a reação do oponente, o inimigo não pode esquivar ou bloquear o teu ataque.', NULL, 'HabTécnico', NULL),
+(134, 'Interferir', 'Ao gastar 10 PdT, tu interferes na ação de um inimigo, quando um inimigo fizer um teste, tu podes dá-lo desvantagem.', NULL, 'HabTécnico', NULL),
+(135, 'Pronto para Agir', 'Tu passas a girar testes de Iniciativa com a tua INT.', NULL, 'HabTécnico', NULL),
+(136, 'Troca Veloz', 'Ao ver um aliado a até distância curta de ti ser atacado, podes gastar 8 PdT para rapidamente trocar de lugar com ele, assim sofrendo o dano por ele, tu reduzes o dano pela metade.', NULL, 'HabTécnico', NULL),
+(137, 'Análise Prévia', 'Ao gastar 9 PdT, tu analisas os teus arredores, tu +2 em testes de Iniciativa e ficas imune à condição Desprevenido durante 2 rodadas.', NULL, 'HabTécnico', NULL),
+(138, 'Apoio Intenso', 'Ao gastar 10 PdT, tu ajudas a ação de um aliado, quando um aliado fizer um teste, tu podes dá-lo vantagem.', NULL, 'HabTécnico', NULL),
+(139, 'Defesa Inesperada', 'Quando um aliado a até distância curta de ti for atacado, podes gastar 10 PdT para aumentar a defesa dele em xd4, x sendo a tua INT/2, se o ataque falhar, o aliado ganha um ataque como ação livre contra o atacante.', NULL, 'HabTécnico', NULL),
+(140, 'Ataque Duplo', 'Ao gastar 7 PdT, tu atacas duas vezes numa ação padrão.', NULL, 'HabTécnico', NULL),
+(141, 'Ataque Furtivo', 'Ao acertar um ataque num ser Desprevenido ou que esteja Flankeado por ti, tu causas +1D de dano.', NULL, 'HabTécnico', NULL),
+(142, 'Dor na Vista', 'Ao acertar um ataque, podes gastar 8 PdT para deixar o alvo Ofuscado durante 1 rodada.', NULL, 'HabTécnico', NULL),
+(143, 'Mestre do Esconderijo', 'Ao gastar 7 PdT, podes fazer a ação de movimento Esconder-se como ação livre.', NULL, 'HabTécnico', NULL),
+(144, 'Arremesso Múltiplo', 'Ao atirar um item, podes gastar 7 PdT para atirar mais 2 itens como ação livre.', NULL, 'HabTécnico', NULL),
+(145, 'Ofício Veloz', 'Durante uma Cena de Interlúdio, ao fazer a ação Ofício, consegues criar 1 item extra.', NULL, 'HabTécnico', NULL),
+(146, 'Profissional', 'Ao gastar 6 PdT, tu giras +1d8 no próximo teste que realizares.', NULL, 'HabTécnico', NULL),
+(147, 'Ordenar', 'Ao gastar 8 PdT, tu gritas uma ordem para um aliado, o aliado gasta uma das tuas ações para realizar a ordem que gritaste.', NULL, 'HabTécnico', NULL),
+(148, 'Apoiar e Bater', 'Ao usar a ação padrão Apoiar num aliado, podes gastar 8 PdT para atacar um ser em alcance como ação livre.', NULL, 'HabTécnico', NULL),
+(149, 'O que sou?', 'Começas com +1 ponto de Atributo para gastar.', NULL, 'HabOrigem', NULL),
+(150, 'Paixão pela Arte', 'Ao fazer a ação Relaxar numa Cena de Interlúdio, se praticares a tua arte, tu recuperas +1D que o normal.', NULL, 'HabOrigem', NULL),
+(151, 'Flexível e Resiliente', 'Tu tens +2 em qualquer teste atlético. Durante uma Cena de Perseguição, a vantagem torna-se um bónus de +4 em AGI.', NULL, 'HabOrigem', NULL),
+(152, 'Saudade de Casa', 'Ao lembrar de casa, podes perder 3 de SAN em troca de +4 em qualquer teste de FOR ou CON, como um esforço esperançoso de voltar aos tempos antigos.', NULL, 'HabOrigem', NULL),
+(153, 'Saber Científico', 'Por causa dos teus estudos, tu ganhaste um grande senso de ciências, +4 em testes de Ciência.', NULL, 'HabOrigem', NULL),
+(154, 'Ofício Ilegal', 'Por causa dos teus crimes recorrentes, tu aprendeste a garantir um crime bem sucedido, +4 em testes de Crime.', NULL, 'HabOrigem', NULL),
+(155, 'Desenrascar', 'Por causa das tuas condições de vida, tu estás habituado a improvisar, pode gastar 7 PdT para anular uma desvantagem.', NULL, 'HabOrigem', NULL),
+(156, 'Perícia Investigativa', 'Tu passaste por um extenso estudo investigativo, +4 em testes de Investigação.', NULL, 'HabOrigem', NULL),
+(157, 'Rezar', 'Uma vez por cena, podes gastar uma ação padrão e 7 PdT para rezar para a tua religião, pedindo auxílio divino, tu ganhas +1 em um atributo à tua escolha durante 1d3 rodadas. (Não ultrapassando o limite de 8)', NULL, 'HabOrigem', NULL),
+(158, 'Recompensado', 'Sempre recebes o dobro do dinheiro em missões ou trabalhos. Caso não exista sistema de dinheiro, vendedores darão certos pertences de graça ao personagem.', NULL, 'HabOrigem', NULL),
+(159, 'Manufaturar', 'Ao decompor 3 armas poderás criar qualquer arma na Lista de Armas. Ao decompor 2 utensílios poderás criar qualquer item na Lista de Utensílios.', NULL, 'HabOrigem', NULL),
+(160, 'Aprendizado', 'Por causa das tuas aulas, tu ganhaste conhecimento em diversas áreas, podes gastar 6 PdT para ter +4 em qualquer teste.', NULL, 'HabOrigem', NULL),
+(161, 'Conexão Prévia', 'Escolhe uma essência, por causa da exposição constante à Essência, tu começas com uma Magia/Aptidão da Essência escolhida.', NULL, 'HabOrigem', NULL),
+(162, 'Presente Hereditário', 'Tu começas com uma Magia extra a tua escolha.', NULL, 'HabOrigem', NULL),
+(163, 'Glorioso', 'Se um inimigo impor-te o estado de A Falecer, todos os teu aliados ganham um bónus de X1,5 de dano contra esse inimigo até perderes o estado. Cair em batalha é a maior honra de todas.', NULL, 'HabOrigem', NULL),
+(164, 'Sangue é Combustível', 'As tuas placas exteriores naturalmente sugam sangue e reciclam-lo como combustível, ao acertar um ataque armado, tu recuperas 1/3 do dano causado como PVs(não funciona em alvos com o estado Seco).', NULL, 'HabOrigem', NULL),
+(165, 'Treino Para Guerra', 'Por causa do teu treino com armas de fogo tu agora consegues disparar com muita precisão, +4 em testes de Pontaria.', NULL, 'HabOrigem', NULL),
+(166, 'Treino Policial', 'Depois de passar por diversos treinos, tanto em prática e tanto em ação, tu apuraste as tuas habilidades de autodefesa, +2 em DEF.', NULL, 'HabOrigem', NULL),
+(167, 'Boa Lábia', 'Tu já tiveste de mentir ou enganar muitas pessoas pelo que querias, tu tens +4 em testes de Enganação.', NULL, 'HabOrigem', NULL),
+(168, 'Acalmar', 'Ao gastar uma ação e 7 PdT tu podes acalmar alguém, a pessoa recupera 2d6 de SAN.', NULL, 'HabOrigem', NULL),
+(169, 'Esforço Maníaco', 'Sempre que realizares um esforço extra para cometer um ato grotesco desnecessário, recuperas 2d6 de PdT.', NULL, 'HabOrigem', NULL),
+(170, 'Sentidos Aprimorados', 'O constante perigo do teu ambiente fez com que desenvolvesses uma atenção especial aos teus arredores, +4 em testes de Perceção.', NULL, 'HabOrigem', NULL),
+(171, 'Predisposição', 'Por causa da tua maior sensibilidade, tens uma melhor noção do Desconhecido, +2 em testes para perceber e compreender o Desconhecido.', NULL, 'HabOrigem', NULL),
+(172, 'Alvo Marcado', 'Uma vez por cena, podes escolher um ser para virar o teu alvo, testes contra o teu alvo têm +4, porém testes contra outros seres têm -2, se o teu alvo morrer na mesma cena, tu recuperas 1d12+INTx2 de PdT.', NULL, 'HabOrigem', NULL),
+(173, 'Salvação', 'Tens +4 ao socorrer alguém no estado A Falecer. Itens ou feitiços de cura ganham +1D.', NULL, 'HabOrigem', NULL),
+(174, 'Ambiente Monstruoso', 'Por teres nascido e crescido no submundo, ver uma criatura não surte tanto efeito em ti, +4 em testes pra resistir a dano mental de criaturas.', NULL, 'HabOrigem', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `PoderCustom`
+--
+
+DROP TABLE IF EXISTS `PoderCustom`;
+CREATE TABLE `PoderCustom` (
+  `id` int NOT NULL,
+  `idUtilizador` int NOT NULL,
+  `nome` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `efeito` text COLLATE utf8mb4_general_ci NOT NULL,
+  `essencia` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `tipo` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `requisitos` text COLLATE utf8mb4_general_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `Sessao`
+--
+
+DROP TABLE IF EXISTS `Sessao`;
+CREATE TABLE `Sessao` (
+  `id` int NOT NULL,
+  `idCampanha` int NOT NULL,
+  `nome` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `numEp` int NOT NULL,
+  `enredo` text COLLATE utf8mb4_general_ci NOT NULL,
+  `notas` text COLLATE utf8mb4_general_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `Sessao`
+--
+
+INSERT INTO `Sessao` (`id`, `idCampanha`, `nome`, `numEp`, `enredo`, `notas`) VALUES
+(1, 1, 'ads', 1, 'adsasdadsadsads', '0');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `Utilizador`
+--
+
+DROP TABLE IF EXISTS `Utilizador`;
+CREATE TABLE `Utilizador` (
+  `id` int NOT NULL,
+  `nome` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `email` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `passe` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `admin` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `Utilizador`
+--
+
+INSERT INTO `Utilizador` (`id`, `nome`, `email`, `passe`, `admin`) VALUES
+(1, 'aaa', 'a@a', '$2y$10$5hBGnHD7pzHrynYGfpbA/.2smSWhc60E9BJ10D8urdpr8b4u/BLJO', 0),
+(2, 'admin', 'admin@admin', '$2y$10$6PLyjQxH3HcpwkB2K9X5guiG62rcgZ3nJKW/RXXdjeXbni74Q/1au', 1),
+(3, 'bbb', 'b@b', '$2y$10$wuoc1EPV5GCGibneltG6MuY1IEtpNZf0VypqkUXkZyZkUSBoC/Rcq', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura stand-in para vista `vw_aptidoes`
+-- (Veja abaixo para a view atual)
+--
+DROP VIEW IF EXISTS `vw_aptidoes`;
+CREATE TABLE `vw_aptidoes` (
+`efeito` text
+,`nome` varchar(100)
+,`requisitos` text
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura stand-in para vista `vw_armas`
+-- (Veja abaixo para a view atual)
+--
+DROP VIEW IF EXISTS `vw_armas`;
+CREATE TABLE `vw_armas` (
+`alcance` varchar(20)
+,`critico` varchar(20)
+,`dano` varchar(50)
+,`modCritico` varchar(20)
+,`nome` varchar(100)
+,`propriedades` text
+);
 
 -- --------------------------------------------------------
 
@@ -369,10 +792,52 @@ INSERT INTO `utilizador` (`id`, `nome`, `passe`) VALUES
 --
 DROP VIEW IF EXISTS `vw_campanhas_membros`;
 CREATE TABLE `vw_campanhas_membros` (
-`nomeCampanha` varchar(100)
-,`descricao` text
-,`nomeUtilizador` varchar(100)
+`descricao` text
 ,`mestre` tinyint(1)
+,`nomeCampanha` varchar(100)
+,`nomeUtilizador` varchar(100)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura stand-in para vista `vw_campanha_membros`
+-- (Veja abaixo para a view atual)
+--
+DROP VIEW IF EXISTS `vw_campanha_membros`;
+CREATE TABLE `vw_campanha_membros` (
+`descCampanha` text
+,`mestre` tinyint(1)
+,`nomeCampanha` varchar(100)
+,`nomeUtilizador` varchar(100)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura stand-in para vista `vw_campanha_sessoes`
+-- (Veja abaixo para a view atual)
+--
+DROP VIEW IF EXISTS `vw_campanha_sessoes`;
+CREATE TABLE `vw_campanha_sessoes` (
+`enredo` text
+,`nomeCampanha` varchar(100)
+,`nomeSessao` varchar(100)
+,`numEp` int
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura stand-in para vista `vw_classes_poderes`
+-- (Veja abaixo para a view atual)
+--
+DROP VIEW IF EXISTS `vw_classes_poderes`;
+CREATE TABLE `vw_classes_poderes` (
+`efeito` text
+,`nome` varchar(100)
+,`requisitos` text
+,`tipo` varchar(20)
 );
 
 -- --------------------------------------------------------
@@ -383,21 +848,21 @@ CREATE TABLE `vw_campanhas_membros` (
 --
 DROP VIEW IF EXISTS `vw_criaturas_fichas`;
 CREATE TABLE `vw_criaturas_fichas` (
-`nome` varchar(100)
+`agilidade` int
+,`carisma` int
+,`constituicao` int
+,`danoMental` varchar(40)
+,`def` int
 ,`essencia` varchar(20)
 ,`essenciaSec1` varchar(20)
 ,`essenciaSec2` varchar(20)
+,`forca` int
+,`inteligencia` int
+,`nome` varchar(100)
 ,`nomeFicha` varchar(100)
-,`forca` int(11)
-,`agilidade` int(11)
-,`constituicao` int(11)
-,`inteligencia` int(11)
-,`carisma` int(11)
-,`pvMax` int(11)
-,`def` int(11)
+,`pvMax` int
 ,`resistencias` text
-,`danoMental` varchar(40)
-,`rnMental` int(11)
+,`rnMental` int
 );
 
 -- --------------------------------------------------------
@@ -408,10 +873,10 @@ CREATE TABLE `vw_criaturas_fichas` (
 --
 DROP VIEW IF EXISTS `vw_fichas_acoes`;
 CREATE TABLE `vw_fichas_acoes` (
-`NomeCriatura` varchar(100)
-,`NomeFicha` varchar(100)
+`efeito` text
 ,`NomeAcao` varchar(100)
-,`efeito` text
+,`NomeCriatura` varchar(100)
+,`NomeFicha` varchar(100)
 );
 
 -- --------------------------------------------------------
@@ -422,11 +887,396 @@ CREATE TABLE `vw_fichas_acoes` (
 --
 DROP VIEW IF EXISTS `vw_fichas_efeitos`;
 CREATE TABLE `vw_fichas_efeitos` (
-`NomeCriatura` varchar(100)
-,`NomeFicha` varchar(100)
+`efeito` text
+,`NomeCriatura` varchar(100)
 ,`NomeEfeito` varchar(100)
-,`efeito` text
+,`NomeFicha` varchar(100)
 );
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura stand-in para vista `vw_habil_geral`
+-- (Veja abaixo para a view atual)
+--
+DROP VIEW IF EXISTS `vw_habil_geral`;
+CREATE TABLE `vw_habil_geral` (
+`efeito` text
+,`nome` varchar(100)
+,`requisitos` text
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura stand-in para vista `vw_origens_poderes`
+-- (Veja abaixo para a view atual)
+--
+DROP VIEW IF EXISTS `vw_origens_poderes`;
+CREATE TABLE `vw_origens_poderes` (
+`efeito` text
+,`nome` varchar(100)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura stand-in para vista `vw_personagem_itens`
+-- (Veja abaixo para a view atual)
+--
+DROP VIEW IF EXISTS `vw_personagem_itens`;
+CREATE TABLE `vw_personagem_itens` (
+`alcance` varchar(20)
+,`critico` varchar(20)
+,`dano` varchar(50)
+,`efeito` text
+,`modCritico` varchar(20)
+,`nomeItem` varchar(100)
+,`personagemNome` varchar(100)
+,`propriedades` text
+,`quantia` int
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura stand-in para vista `vw_personagem_itens_custom`
+-- (Veja abaixo para a view atual)
+--
+DROP VIEW IF EXISTS `vw_personagem_itens_custom`;
+CREATE TABLE `vw_personagem_itens_custom` (
+`alcance` varchar(20)
+,`critico` varchar(20)
+,`dano` varchar(50)
+,`efeito` text
+,`modCritico` varchar(20)
+,`nomeItem` varchar(100)
+,`personagemNome` varchar(100)
+,`propriedades` text
+,`quantia` int
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura stand-in para vista `vw_personagem_magias`
+-- (Veja abaixo para a view atual)
+--
+DROP VIEW IF EXISTS `vw_personagem_magias`;
+CREATE TABLE `vw_personagem_magias` (
+`custo` int
+,`efeito` text
+,`essencia` varchar(20)
+,`magiaNome` varchar(200)
+,`personagemNome` varchar(100)
+,`tempoExec` varchar(50)
+,`tipo` varchar(20)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura stand-in para vista `vw_personagem_magias_custom`
+-- (Veja abaixo para a view atual)
+--
+DROP VIEW IF EXISTS `vw_personagem_magias_custom`;
+CREATE TABLE `vw_personagem_magias_custom` (
+`custo` int
+,`efeito` text
+,`essencia` varchar(20)
+,`magiaNome` varchar(200)
+,`personagemNome` varchar(100)
+,`tempoExec` varchar(50)
+,`tipo` varchar(20)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura stand-in para vista `vw_personagem_poderes`
+-- (Veja abaixo para a view atual)
+--
+DROP VIEW IF EXISTS `vw_personagem_poderes`;
+CREATE TABLE `vw_personagem_poderes` (
+`efeito` text
+,`essencia` varchar(20)
+,`nomePoder` varchar(100)
+,`personagemNome` varchar(100)
+,`tipo` varchar(20)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura stand-in para vista `vw_personagem_poderes_custom`
+-- (Veja abaixo para a view atual)
+--
+DROP VIEW IF EXISTS `vw_personagem_poderes_custom`;
+CREATE TABLE `vw_personagem_poderes_custom` (
+`efeito` text
+,`essencia` varchar(20)
+,`nomePoder` varchar(100)
+,`personagemNome` varchar(100)
+,`tipo` varchar(20)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura stand-in para vista `vw_utensilios`
+-- (Veja abaixo para a view atual)
+--
+DROP VIEW IF EXISTS `vw_utensilios`;
+CREATE TABLE `vw_utensilios` (
+`efeito` text
+,`nome` varchar(100)
+);
+
+--
+-- Índices para tabelas despejadas
+--
+
+--
+-- Índices para tabela `AcaoCriaturas`
+--
+ALTER TABLE `AcaoCriaturas`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idFichaCriatura` (`idFichaCriatura`);
+
+--
+-- Índices para tabela `Campanha`
+--
+ALTER TABLE `Campanha`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices para tabela `Campanha_Utilizador`
+--
+ALTER TABLE `Campanha_Utilizador`
+  ADD KEY `idCampanha` (`idCampanha`,`idUtilizador`);
+
+--
+-- Índices para tabela `Criatura`
+--
+ALTER TABLE `Criatura`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices para tabela `EfeitoEspecial`
+--
+ALTER TABLE `EfeitoEspecial`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idFichaCriatura` (`idFichaCriatura`);
+
+--
+-- Índices para tabela `Equipamento`
+--
+ALTER TABLE `Equipamento`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices para tabela `EquipamentoCustom`
+--
+ALTER TABLE `EquipamentoCustom`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idUtilizador` (`idUtilizador`);
+
+--
+-- Índices para tabela `FichaCriaturas`
+--
+ALTER TABLE `FichaCriaturas`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idCriatura` (`idCriatura`);
+
+--
+-- Índices para tabela `Magia`
+--
+ALTER TABLE `Magia`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices para tabela `MagiaCustom`
+--
+ALTER TABLE `MagiaCustom`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idUtilizador` (`idUtilizador`);
+
+--
+-- Índices para tabela `Personagem`
+--
+ALTER TABLE `Personagem`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idUtilizador` (`idUtilizador`);
+
+--
+-- Índices para tabela `Perso_Equip`
+--
+ALTER TABLE `Perso_Equip`
+  ADD KEY `idPerso` (`idPerso`,`idEquip`);
+
+--
+-- Índices para tabela `Perso_EquipCustom`
+--
+ALTER TABLE `Perso_EquipCustom`
+  ADD KEY `idPerso` (`idPerso`,`idEquipCustom`);
+
+--
+-- Índices para tabela `Perso_Magia`
+--
+ALTER TABLE `Perso_Magia`
+  ADD KEY `idPerso` (`idPerso`,`idMagia`);
+
+--
+-- Índices para tabela `Perso_MagiaCustom`
+--
+ALTER TABLE `Perso_MagiaCustom`
+  ADD KEY `idPerso` (`idPerso`,`idMagiaCustom`);
+
+--
+-- Índices para tabela `Perso_Poder`
+--
+ALTER TABLE `Perso_Poder`
+  ADD KEY `idPerso` (`idPerso`,`idPoder`);
+
+--
+-- Índices para tabela `Perso_PoderCustom`
+--
+ALTER TABLE `Perso_PoderCustom`
+  ADD KEY `idPerso` (`idPerso`,`idPoderCustom`);
+
+--
+-- Índices para tabela `Poder`
+--
+ALTER TABLE `Poder`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices para tabela `PoderCustom`
+--
+ALTER TABLE `PoderCustom`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idUtilizador` (`idUtilizador`);
+
+--
+-- Índices para tabela `Sessao`
+--
+ALTER TABLE `Sessao`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idCampanha` (`idCampanha`);
+
+--
+-- Índices para tabela `Utilizador`
+--
+ALTER TABLE `Utilizador`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT de tabelas despejadas
+--
+
+--
+-- AUTO_INCREMENT de tabela `AcaoCriaturas`
+--
+ALTER TABLE `AcaoCriaturas`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `Campanha`
+--
+ALTER TABLE `Campanha`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de tabela `Criatura`
+--
+ALTER TABLE `Criatura`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `EfeitoEspecial`
+--
+ALTER TABLE `EfeitoEspecial`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `Equipamento`
+--
+ALTER TABLE `Equipamento`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+
+--
+-- AUTO_INCREMENT de tabela `EquipamentoCustom`
+--
+ALTER TABLE `EquipamentoCustom`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de tabela `FichaCriaturas`
+--
+ALTER TABLE `FichaCriaturas`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `Magia`
+--
+ALTER TABLE `Magia`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+
+--
+-- AUTO_INCREMENT de tabela `MagiaCustom`
+--
+ALTER TABLE `MagiaCustom`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `Personagem`
+--
+ALTER TABLE `Personagem`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de tabela `Poder`
+--
+ALTER TABLE `Poder`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=175;
+
+--
+-- AUTO_INCREMENT de tabela `PoderCustom`
+--
+ALTER TABLE `PoderCustom`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `Sessao`
+--
+ALTER TABLE `Sessao`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de tabela `Utilizador`
+--
+ALTER TABLE `Utilizador`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para vista `vw_aptidoes`
+--
+DROP TABLE IF EXISTS `vw_aptidoes`;
+
+DROP VIEW IF EXISTS `vw_aptidoes`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`appuser`@`%` SQL SECURITY DEFINER VIEW `vw_aptidoes`  AS SELECT `Poder`.`nome` AS `nome`, `Poder`.`efeito` AS `efeito`, `Poder`.`requisitos` AS `requisitos` FROM `Poder` WHERE (`Poder`.`tipo` like 'Aptidão') ;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para vista `vw_armas`
+--
+DROP TABLE IF EXISTS `vw_armas`;
+
+DROP VIEW IF EXISTS `vw_armas`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`appuser`@`%` SQL SECURITY DEFINER VIEW `vw_armas`  AS SELECT `Equipamento`.`nome` AS `nome`, `Equipamento`.`dano` AS `dano`, `Equipamento`.`critico` AS `critico`, `Equipamento`.`modCritico` AS `modCritico`, `Equipamento`.`alcance` AS `alcance`, `Equipamento`.`propriedades` AS `propriedades` FROM `Equipamento` WHERE (`Equipamento`.`tipo` like 'Arma') ;
 
 -- --------------------------------------------------------
 
@@ -436,7 +1286,37 @@ CREATE TABLE `vw_fichas_efeitos` (
 DROP TABLE IF EXISTS `vw_campanhas_membros`;
 
 DROP VIEW IF EXISTS `vw_campanhas_membros`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_campanhas_membros`  AS SELECT `campanha`.`nome` AS `nomeCampanha`, `campanha`.`descricao` AS `descricao`, `utilizador`.`nome` AS `nomeUtilizador`, `campanha_utilizador`.`mestre` AS `mestre` FROM ((`campanha` join `campanha_utilizador` on(`campanha_utilizador`.`idCampanha` = `campanha`.`id`)) join `utilizador` on(`campanha_utilizador`.`idUtilizador` = `utilizador`.`id`)) ORDER BY `campanha`.`nome` ASC, `campanha_utilizador`.`mestre` DESC ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`appuser`@`%` SQL SECURITY DEFINER VIEW `vw_campanhas_membros`  AS SELECT `Campanha`.`nome` AS `nomeCampanha`, `Campanha`.`descricao` AS `descricao`, `Utilizador`.`nome` AS `nomeUtilizador`, `Campanha_Utilizador`.`mestre` AS `mestre` FROM ((`Campanha` join `Campanha_Utilizador` on((`Campanha_Utilizador`.`idCampanha` = `Campanha`.`id`))) join `Utilizador` on((`Campanha_Utilizador`.`idUtilizador` = `Utilizador`.`id`))) ORDER BY `Campanha`.`nome` ASC, `Campanha_Utilizador`.`mestre` DESC ;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para vista `vw_campanha_membros`
+--
+DROP TABLE IF EXISTS `vw_campanha_membros`;
+
+DROP VIEW IF EXISTS `vw_campanha_membros`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`appuser`@`%` SQL SECURITY DEFINER VIEW `vw_campanha_membros`  AS SELECT `Campanha`.`nome` AS `nomeCampanha`, `Campanha`.`descricao` AS `descCampanha`, `Utilizador`.`nome` AS `nomeUtilizador`, `Campanha_Utilizador`.`mestre` AS `mestre` FROM ((`Campanha` join `Campanha_Utilizador` on((`Campanha_Utilizador`.`idCampanha` = `Campanha`.`id`))) join `Utilizador` on((`Campanha_Utilizador`.`idUtilizador` = `Utilizador`.`id`))) ;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para vista `vw_campanha_sessoes`
+--
+DROP TABLE IF EXISTS `vw_campanha_sessoes`;
+
+DROP VIEW IF EXISTS `vw_campanha_sessoes`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`appuser`@`%` SQL SECURITY DEFINER VIEW `vw_campanha_sessoes`  AS SELECT `Campanha`.`nome` AS `nomeCampanha`, `Sessao`.`nome` AS `nomeSessao`, `Sessao`.`numEp` AS `numEp`, `Sessao`.`enredo` AS `enredo` FROM (`Campanha` join `Sessao` on((`Sessao`.`idCampanha` = `Campanha`.`id`))) ;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para vista `vw_classes_poderes`
+--
+DROP TABLE IF EXISTS `vw_classes_poderes`;
+
+DROP VIEW IF EXISTS `vw_classes_poderes`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`appuser`@`%` SQL SECURITY DEFINER VIEW `vw_classes_poderes`  AS SELECT `Poder`.`nome` AS `nome`, `Poder`.`efeito` AS `efeito`, `Poder`.`tipo` AS `tipo`, `Poder`.`requisitos` AS `requisitos` FROM `Poder` WHERE ((`Poder`.`tipo` like 'Base%') OR (`Poder`.`tipo` like 'HabTécnico') OR (`Poder`.`tipo` like 'HabLutador')) ORDER BY `Poder`.`tipo` ASC ;
 
 -- --------------------------------------------------------
 
@@ -446,7 +1326,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 DROP TABLE IF EXISTS `vw_criaturas_fichas`;
 
 DROP VIEW IF EXISTS `vw_criaturas_fichas`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_criaturas_fichas`  AS SELECT `criatura`.`nome` AS `nome`, `criatura`.`essencia` AS `essencia`, `criatura`.`essenciaSec1` AS `essenciaSec1`, `criatura`.`essenciaSec2` AS `essenciaSec2`, `fichacriaturas`.`nome` AS `nomeFicha`, `fichacriaturas`.`forca` AS `forca`, `fichacriaturas`.`agilidade` AS `agilidade`, `fichacriaturas`.`constituicao` AS `constituicao`, `fichacriaturas`.`inteligencia` AS `inteligencia`, `fichacriaturas`.`carisma` AS `carisma`, `fichacriaturas`.`pvMax` AS `pvMax`, `fichacriaturas`.`def` AS `def`, `fichacriaturas`.`resistencias` AS `resistencias`, `fichacriaturas`.`danoMental` AS `danoMental`, `fichacriaturas`.`rnMental` AS `rnMental` FROM (`criatura` join `fichacriaturas` on(`fichacriaturas`.`idCriatura` = `criatura`.`id`)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`appuser`@`%` SQL SECURITY DEFINER VIEW `vw_criaturas_fichas`  AS SELECT `Criatura`.`nome` AS `nome`, `Criatura`.`essencia` AS `essencia`, `Criatura`.`essenciaSec1` AS `essenciaSec1`, `Criatura`.`essenciaSec2` AS `essenciaSec2`, `FichaCriaturas`.`nome` AS `nomeFicha`, `FichaCriaturas`.`forca` AS `forca`, `FichaCriaturas`.`agilidade` AS `agilidade`, `FichaCriaturas`.`constituicao` AS `constituicao`, `FichaCriaturas`.`inteligencia` AS `inteligencia`, `FichaCriaturas`.`carisma` AS `carisma`, `FichaCriaturas`.`pvMax` AS `pvMax`, `FichaCriaturas`.`def` AS `def`, `FichaCriaturas`.`resistencias` AS `resistencias`, `FichaCriaturas`.`danoMental` AS `danoMental`, `FichaCriaturas`.`rnMental` AS `rnMental` FROM (`Criatura` join `FichaCriaturas` on((`FichaCriaturas`.`idCriatura` = `Criatura`.`id`))) ;
 
 -- --------------------------------------------------------
 
@@ -456,7 +1336,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 DROP TABLE IF EXISTS `vw_fichas_acoes`;
 
 DROP VIEW IF EXISTS `vw_fichas_acoes`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_fichas_acoes`  AS SELECT `criatura`.`nome` AS `NomeCriatura`, `fichacriaturas`.`nome` AS `NomeFicha`, `acaocriaturas`.`nome` AS `NomeAcao`, `acaocriaturas`.`efeito` AS `efeito` FROM ((`fichacriaturas` join `acaocriaturas` on(`acaocriaturas`.`idFichaCriatura` = `fichacriaturas`.`id`)) join `criatura` on(`fichacriaturas`.`idCriatura` = `criatura`.`id`)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`appuser`@`%` SQL SECURITY DEFINER VIEW `vw_fichas_acoes`  AS SELECT `Criatura`.`nome` AS `NomeCriatura`, `FichaCriaturas`.`nome` AS `NomeFicha`, `AcaoCriaturas`.`nome` AS `NomeAcao`, `AcaoCriaturas`.`efeito` AS `efeito` FROM ((`FichaCriaturas` join `AcaoCriaturas` on((`AcaoCriaturas`.`idFichaCriatura` = `FichaCriaturas`.`id`))) join `Criatura` on((`FichaCriaturas`.`idCriatura` = `Criatura`.`id`))) ;
 
 -- --------------------------------------------------------
 
@@ -466,400 +1346,98 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 DROP TABLE IF EXISTS `vw_fichas_efeitos`;
 
 DROP VIEW IF EXISTS `vw_fichas_efeitos`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_fichas_efeitos`  AS SELECT `criatura`.`nome` AS `NomeCriatura`, `fichacriaturas`.`nome` AS `NomeFicha`, `efeitoespecial`.`nome` AS `NomeEfeito`, `efeitoespecial`.`efeito` AS `efeito` FROM ((`fichacriaturas` join `efeitoespecial` on(`efeitoespecial`.`idFichaCriatura` = `fichacriaturas`.`id`)) join `criatura` on(`fichacriaturas`.`idCriatura` = `criatura`.`id`)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`appuser`@`%` SQL SECURITY DEFINER VIEW `vw_fichas_efeitos`  AS SELECT `Criatura`.`nome` AS `NomeCriatura`, `FichaCriaturas`.`nome` AS `NomeFicha`, `EfeitoEspecial`.`nome` AS `NomeEfeito`, `EfeitoEspecial`.`efeito` AS `efeito` FROM ((`FichaCriaturas` join `EfeitoEspecial` on((`EfeitoEspecial`.`idFichaCriatura` = `FichaCriaturas`.`id`))) join `Criatura` on((`FichaCriaturas`.`idCriatura` = `Criatura`.`id`))) ;
 
 -- --------------------------------------------------------
 
 --
 -- Estrutura para vista `vw_habil_geral`
 --
+DROP TABLE IF EXISTS `vw_habil_geral`;
+
 DROP VIEW IF EXISTS `vw_habil_geral`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_habil_geral` AS
-SELECT
-  poder.nome,
-  poder.efeito,
-  poder.requisitos
-FROM poder
-WHERE poder.tipo LIKE 'Habilidade Geral';
+CREATE ALGORITHM=UNDEFINED DEFINER=`appuser`@`%` SQL SECURITY DEFINER VIEW `vw_habil_geral`  AS SELECT `Poder`.`nome` AS `nome`, `Poder`.`efeito` AS `efeito`, `Poder`.`requisitos` AS `requisitos` FROM `Poder` WHERE (`Poder`.`tipo` like 'Habilidade Geral') ;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para vista `vw_aptidoes`
+-- Estrutura para vista `vw_origens_poderes`
 --
-DROP VIEW IF EXISTS `vw_aptidoes`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_aptidoes` AS
-SELECT
-  poder.nome,
-  poder.efeito,
-  poder.requisitos
-FROM poder
-WHERE poder.tipo LIKE 'Aptidão';
+DROP TABLE IF EXISTS `vw_origens_poderes`;
 
--- --------------------------------------------------------
-
---
--- Estrutura para vista `vw_utensilios`
---
-DROP VIEW IF EXISTS `vw_utensilios`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_utensilios` AS
-SELECT
-  equipamento.nome,
-  equipamento.efeito
-FROM equipamento
-WHERE equipamento.tipo LIKE 'Utensílio';
-
--- --------------------------------------------------------
-
---
--- Estrutura para vista `vw_armas`
---
-DROP VIEW IF EXISTS `vw_armas`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_armas` AS
-SELECT
-  equipamento.nome,
-  equipamento.dano,
-  equipamento.criticio AS critico,
-  equipamento.modCritico,
-  equipamento.alcance,
-  equipamento.propriedades
-FROM equipamento
-WHERE equipamento.tipo LIKE 'Arma';
-
--- --------------------------------------------------------
-
---
--- Estrutura para vista `vw_campanha_membros`
---
-DROP VIEW IF EXISTS `vw_campanha_membros`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_campanha_membros` AS
-SELECT
-  campanha.nome AS nomeCampanha,
-  campanha.descricao AS descCampanha,
-  utilizador.nome AS nomeUtilizador,
-  campanha_utilizador.mestre
-FROM campanha
-INNER JOIN campanha_utilizador ON campanha_utilizador.idCampanha = campanha.id
-INNER JOIN utilizador ON campanha_utilizador.idUtilizador = utilizador.id;
-
--- --------------------------------------------------------
-
---
--- Estrutura para vista `vw_campanha_sessoes`
---
-DROP VIEW IF EXISTS `vw_campanha_sessoes`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_campanha_sessoes` AS
-SELECT
-  campanha.nome AS nomeCampanha,
-  sessao.nome AS nomeSessao,
-  sessao.numEp,
-  sessao.enredo
-FROM campanha
-INNER JOIN sessao ON sessao.idCampanha = campanha.id;
+DROP VIEW IF EXISTS `vw_origens_poderes`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`appuser`@`%` SQL SECURITY DEFINER VIEW `vw_origens_poderes`  AS SELECT `Poder`.`nome` AS `nome`, `Poder`.`efeito` AS `efeito` FROM `Poder` WHERE (`Poder`.`tipo` like 'HabOrigem') ;
 
 -- --------------------------------------------------------
 
 --
 -- Estrutura para vista `vw_personagem_itens`
 --
+DROP TABLE IF EXISTS `vw_personagem_itens`;
+
 DROP VIEW IF EXISTS `vw_personagem_itens`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_personagem_itens` AS
-SELECT
-  personagem.nome AS personagemNome,
-  perso_equip.quantia,
-  equipamento.nome AS nomeItem,
-  equipamento.dano,
-  equipamento.criticio AS critico,
-  equipamento.modCritico,
-  equipamento.alcance,
-  equipamento.propriedades,
-  equipamento.efeito
-FROM personagem
-INNER JOIN perso_equip ON perso_equip.idPerso = personagem.id
-INNER JOIN equipamento ON equipamento.id = perso_equip.idEquip
-ORDER BY personagem.id, equipamento.nome;
-
--- --------------------------------------------------------
-
---
--- Estrutura para vista `vw_personagem_poderes`
---
-DROP VIEW IF EXISTS `vw_personagem_poderes`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_personagem_poderes` AS
-SELECT
-  personagem.nome AS personagemNome,
-  poder.nome AS nomePoder,
-  poder.efeito,
-  poder.essencia,
-  poder.tipo
-FROM personagem
-INNER JOIN perso_poder ON perso_poder.idPerso = personagem.id
-INNER JOIN poder ON poder.id = perso_poder.idPoder
-ORDER BY personagem.id, poder.nome;
-
--- --------------------------------------------------------
-
---
--- Estrutura para vista `vw_personagem_magias`
---
-DROP VIEW IF EXISTS `vw_personagem_magias`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_personagem_magias` AS
-SELECT
-  personagem.nome AS personagemNome,
-  magia.nome AS magiaNome,
-  magia.essencia,
-  magia.tempoExec,
-  magia.custo,
-  magia.efeito,
-  perso_magia.tipo
-FROM personagem
-INNER JOIN perso_magia ON perso_magia.idPerso = personagem.id
-INNER JOIN magia ON magia.id = perso_magia.idMagia
-ORDER BY personagem.id, magia.nome;
+CREATE ALGORITHM=UNDEFINED DEFINER=`appuser`@`%` SQL SECURITY DEFINER VIEW `vw_personagem_itens`  AS SELECT `Personagem`.`nome` AS `personagemNome`, `Perso_Equip`.`quantia` AS `quantia`, `Equipamento`.`nome` AS `nomeItem`, `Equipamento`.`dano` AS `dano`, `Equipamento`.`critico` AS `critico`, `Equipamento`.`modCritico` AS `modCritico`, `Equipamento`.`alcance` AS `alcance`, `Equipamento`.`propriedades` AS `propriedades`, `Equipamento`.`efeito` AS `efeito` FROM ((`Personagem` join `Perso_Equip` on((`Perso_Equip`.`idPerso` = `Personagem`.`id`))) join `Equipamento` on((`Equipamento`.`id` = `Perso_Equip`.`idEquip`))) ORDER BY `Personagem`.`id` ASC, `Equipamento`.`nome` ASC ;
 
 -- --------------------------------------------------------
 
 --
 -- Estrutura para vista `vw_personagem_itens_custom`
 --
+DROP TABLE IF EXISTS `vw_personagem_itens_custom`;
+
 DROP VIEW IF EXISTS `vw_personagem_itens_custom`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_personagem_itens_custom` AS
-SELECT
-  personagem.nome AS personagemNome,
-  perso_equipcustom.quantia,
-  equipamentocustom.nome AS nomeItem,
-  equipamentocustom.dano,
-  equipamentocustom.criticio AS critico,
-  equipamentocustom.modCritico,
-  equipamentocustom.alcance,
-  equipamentocustom.propriedades,
-  equipamentocustom.efeito
-FROM personagem
-INNER JOIN perso_equipcustom ON perso_equipcustom.idPerso = personagem.id
-INNER JOIN equipamentocustom ON equipamentocustom.id = perso_equipcustom.idEquipCustom
-ORDER BY personagem.id, equipamentocustom.nome;
+CREATE ALGORITHM=UNDEFINED DEFINER=`appuser`@`%` SQL SECURITY DEFINER VIEW `vw_personagem_itens_custom`  AS SELECT `Personagem`.`nome` AS `personagemNome`, `Perso_EquipCustom`.`quantia` AS `quantia`, `EquipamentoCustom`.`nome` AS `nomeItem`, `EquipamentoCustom`.`dano` AS `dano`, `EquipamentoCustom`.`critico` AS `critico`, `EquipamentoCustom`.`modCritico` AS `modCritico`, `EquipamentoCustom`.`alcance` AS `alcance`, `EquipamentoCustom`.`propriedades` AS `propriedades`, `EquipamentoCustom`.`efeito` AS `efeito` FROM ((`Personagem` join `Perso_EquipCustom` on((`Perso_EquipCustom`.`idPerso` = `Personagem`.`id`))) join `EquipamentoCustom` on((`EquipamentoCustom`.`id` = `Perso_EquipCustom`.`idEquipCustom`))) ORDER BY `Personagem`.`id` ASC, `EquipamentoCustom`.`nome` ASC ;
 
 -- --------------------------------------------------------
+
 --
--- Estrutura para vista `vw_personagem_poderes_custom`
+-- Estrutura para vista `vw_personagem_magias`
 --
-DROP VIEW IF EXISTS `vw_personagem_poderes_custom`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_personagem_poderes_custom` AS
-SELECT
-  personagem.nome AS personagemNome,
-  podercustom.nome AS nomePoder,
-  podercustom.efeito,
-  podercustom.essencia,
-  podercustom.tipo
-FROM personagem
-INNER JOIN perso_podercustom ON perso_podercustom.idPerso = personagem.id
-INNER JOIN podercustom ON podercustom.id = perso_podercustom.idPoderCustom
-ORDER BY personagem.id, podercustom.nome;
+DROP TABLE IF EXISTS `vw_personagem_magias`;
+
+DROP VIEW IF EXISTS `vw_personagem_magias`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`appuser`@`%` SQL SECURITY DEFINER VIEW `vw_personagem_magias`  AS SELECT `Personagem`.`nome` AS `personagemNome`, `Magia`.`nome` AS `magiaNome`, `Magia`.`essencia` AS `essencia`, `Magia`.`tempoExec` AS `tempoExec`, `Magia`.`custo` AS `custo`, `Magia`.`efeito` AS `efeito`, `Perso_Magia`.`tipo` AS `tipo` FROM ((`Personagem` join `Perso_Magia` on((`Perso_Magia`.`idPerso` = `Personagem`.`id`))) join `Magia` on((`Magia`.`id` = `Perso_Magia`.`idMagia`))) ORDER BY `Personagem`.`id` ASC, `Magia`.`nome` ASC ;
 
 -- --------------------------------------------------------
+
 --
 -- Estrutura para vista `vw_personagem_magias_custom`
 --
+DROP TABLE IF EXISTS `vw_personagem_magias_custom`;
+
 DROP VIEW IF EXISTS `vw_personagem_magias_custom`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_personagem_magias_custom` AS
-SELECT
-  personagem.nome AS personagemNome,
-  magiacustom.nome AS magiaNome,
-  magiacustom.essencia,
-  magiacustom.tempoExec,
-  magiacustom.custo,
-  magiacustom.efeito,
-  perso_magiacustom.tipo
-FROM personagem
-INNER JOIN perso_magiacustom ON perso_magiacustom.idPerso = personagem.id
-INNER JOIN magiacustom ON magiacustom.id = perso_magiacustom.idMagiaCustom
-ORDER BY personagem.id, magiacustom.nome;
+CREATE ALGORITHM=UNDEFINED DEFINER=`appuser`@`%` SQL SECURITY DEFINER VIEW `vw_personagem_magias_custom`  AS SELECT `Personagem`.`nome` AS `personagemNome`, `MagiaCustom`.`nome` AS `magiaNome`, `MagiaCustom`.`essencia` AS `essencia`, `MagiaCustom`.`tempoExec` AS `tempoExec`, `MagiaCustom`.`custo` AS `custo`, `MagiaCustom`.`efeito` AS `efeito`, `Perso_MagiaCustom`.`tipo` AS `tipo` FROM ((`Personagem` join `Perso_MagiaCustom` on((`Perso_MagiaCustom`.`idPerso` = `Personagem`.`id`))) join `MagiaCustom` on((`MagiaCustom`.`id` = `Perso_MagiaCustom`.`idMagiaCustom`))) ORDER BY `Personagem`.`id` ASC, `MagiaCustom`.`nome` ASC ;
 
 -- --------------------------------------------------------
+
 --
--- Estrutura para vista `vw_origens_poderes`
+-- Estrutura para vista `vw_personagem_poderes`
 --
-DROP VIEW IF EXISTS `vw_origens_poderes`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_origens_poderes` AS
-SELECT
-  poder.nome,
-  poder.efeito
-FROM poder
-WHERE poder.tipo LIKE 'HabOrigem';
+DROP TABLE IF EXISTS `vw_personagem_poderes`;
+
+DROP VIEW IF EXISTS `vw_personagem_poderes`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`appuser`@`%` SQL SECURITY DEFINER VIEW `vw_personagem_poderes`  AS SELECT `Personagem`.`nome` AS `personagemNome`, `Poder`.`nome` AS `nomePoder`, `Poder`.`efeito` AS `efeito`, `Poder`.`essencia` AS `essencia`, `Poder`.`tipo` AS `tipo` FROM ((`Personagem` join `Perso_Poder` on((`Perso_Poder`.`idPerso` = `Personagem`.`id`))) join `Poder` on((`Poder`.`id` = `Perso_Poder`.`idPoder`))) ORDER BY `Personagem`.`id` ASC, `Poder`.`nome` ASC ;
 
 -- --------------------------------------------------------
---
--- Estrutura para vista `vw_classes_poderes`
---
-DROP VIEW IF EXISTS `vw_classes_poderes`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_classes_poderes` AS
-SELECT
-  poder.nome,
-  poder.efeito,
-  poder.tipo,
-  poder.requisitos
-FROM poder
-WHERE poder.tipo LIKE 'Base%'
-   OR poder.tipo LIKE 'HabTécnico'
-   OR poder.tipo LIKE 'HabLutador'
-ORDER BY tipo;
 
 --
--- Índices para tabelas despejadas
+-- Estrutura para vista `vw_personagem_poderes_custom`
 --
+DROP TABLE IF EXISTS `vw_personagem_poderes_custom`;
+
+DROP VIEW IF EXISTS `vw_personagem_poderes_custom`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`appuser`@`%` SQL SECURITY DEFINER VIEW `vw_personagem_poderes_custom`  AS SELECT `Personagem`.`nome` AS `personagemNome`, `PoderCustom`.`nome` AS `nomePoder`, `PoderCustom`.`efeito` AS `efeito`, `PoderCustom`.`essencia` AS `essencia`, `PoderCustom`.`tipo` AS `tipo` FROM ((`Personagem` join `Perso_PoderCustom` on((`Perso_PoderCustom`.`idPerso` = `Personagem`.`id`))) join `PoderCustom` on((`PoderCustom`.`id` = `Perso_PoderCustom`.`idPoderCustom`))) ORDER BY `Personagem`.`id` ASC, `PoderCustom`.`nome` ASC ;
+
+-- --------------------------------------------------------
 
 --
--- Índices para tabela `acaocriaturas`
+-- Estrutura para vista `vw_utensilios`
 --
-ALTER TABLE `acaocriaturas`
-  ADD PRIMARY KEY (`id`);
+DROP TABLE IF EXISTS `vw_utensilios`;
 
---
--- Índices para tabela `campanha`
---
-ALTER TABLE `campanha`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices para tabela `criatura`
---
-ALTER TABLE `criatura`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices para tabela `efeitoespecial`
---
-ALTER TABLE `efeitoespecial`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices para tabela `equipamento`
---
-ALTER TABLE `equipamento`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices para tabela `equipamentocustom`
---
-ALTER TABLE `equipamentocustom`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices para tabela `fichacriaturas`
---
-ALTER TABLE `fichacriaturas`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices para tabela `magia`
---
-ALTER TABLE `magia`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices para tabela `personagem`
---
-ALTER TABLE `personagem`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices para tabela `poder`
---
-ALTER TABLE `poder`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices para tabela `sessao`
---
-ALTER TABLE `sessao`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices para tabela `utilizador`
---
-ALTER TABLE `utilizador`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT de tabelas despejadas
---
-
---
--- AUTO_INCREMENT de tabela `acaocriaturas`
---
-ALTER TABLE `acaocriaturas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT de tabela `campanha`
---
-ALTER TABLE `campanha`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT de tabela `criatura`
---
-ALTER TABLE `criatura`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT de tabela `efeitoespecial`
---
-ALTER TABLE `efeitoespecial`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT de tabela `equipamento`
---
-ALTER TABLE `equipamento`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `equipamentocustom`
---
-ALTER TABLE `equipamentocustom`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `fichacriaturas`
---
-ALTER TABLE `fichacriaturas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT de tabela `magia`
---
-ALTER TABLE `magia`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `personagem`
---
-ALTER TABLE `personagem`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `poder`
---
-ALTER TABLE `poder`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `sessao`
---
-ALTER TABLE `sessao`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `utilizador`
---
-ALTER TABLE `utilizador`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+DROP VIEW IF EXISTS `vw_utensilios`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`appuser`@`%` SQL SECURITY DEFINER VIEW `vw_utensilios`  AS SELECT `Equipamento`.`nome` AS `nome`, `Equipamento`.`efeito` AS `efeito` FROM `Equipamento` WHERE (`Equipamento`.`tipo` like 'Utensílio') ;
 COMMIT;
-
-GRANT CREATE ON *.* TO 'appuser'@'%';
-GRANT SYSTEM_USER ON *.* TO 'appuser'@'%';
-FLUSH PRIVILEGES;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
