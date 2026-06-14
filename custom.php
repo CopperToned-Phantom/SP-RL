@@ -222,9 +222,17 @@ try {
         }
     }
 
-    $equipStmt = $mysqli->prepare('SELECT id, nome, tipo, dano, critico, modCritico, alcance, propriedades, efeito FROM EquipamentoCustom WHERE idUtilizador = ? ORDER BY nome ASC');
+    $isAdmin = intval($user['admin']) === 1;
+    
+    if ($isAdmin) {
+        $equipStmt = $mysqli->prepare('SELECT id, nome, tipo, dano, critico, modCritico, alcance, propriedades, efeito FROM EquipamentoCustom ORDER BY nome ASC');
+    } else {
+        $equipStmt = $mysqli->prepare('SELECT id, nome, tipo, dano, critico, modCritico, alcance, propriedades, efeito FROM EquipamentoCustom WHERE idUtilizador = ? ORDER BY nome ASC');
+    }
     if ($equipStmt) {
-        $equipStmt->bind_param('i', $user['id']);
+        if (!$isAdmin) {
+            $equipStmt->bind_param('i', $user['id']);
+        }
         $equipStmt->execute();
         $equipResult = $equipStmt->get_result();
         if ($equipResult) {
@@ -236,9 +244,15 @@ try {
         $equipStmt->close();
     }
 
-    $magiaStmt = $mysqli->prepare('SELECT id, nome, essencia, tempoExec, custo, efeito, requisitos FROM MagiaCustom WHERE idUtilizador = ? ORDER BY nome ASC');
+    if ($isAdmin) {
+        $magiaStmt = $mysqli->prepare('SELECT id, nome, essencia, tempoExec, custo, efeito, requisitos FROM MagiaCustom ORDER BY nome ASC');
+    } else {
+        $magiaStmt = $mysqli->prepare('SELECT id, nome, essencia, tempoExec, custo, efeito, requisitos FROM MagiaCustom WHERE idUtilizador = ? ORDER BY nome ASC');
+    }
     if ($magiaStmt) {
-        $magiaStmt->bind_param('i', $user['id']);
+        if (!$isAdmin) {
+            $magiaStmt->bind_param('i', $user['id']);
+        }
         $magiaStmt->execute();
         $magiaResult = $magiaStmt->get_result();
         if ($magiaResult) {
@@ -250,9 +264,15 @@ try {
         $magiaStmt->close();
     }
 
-    $poderStmt = $mysqli->prepare('SELECT id, nome, tipo, essencia, efeito, requisitos FROM PoderCustom WHERE idUtilizador = ? ORDER BY nome ASC');
+    if ($isAdmin) {
+        $poderStmt = $mysqli->prepare('SELECT id, nome, tipo, essencia, efeito, requisitos FROM PoderCustom ORDER BY nome ASC');
+    } else {
+        $poderStmt = $mysqli->prepare('SELECT id, nome, tipo, essencia, efeito, requisitos FROM PoderCustom WHERE idUtilizador = ? ORDER BY nome ASC');
+    }
     if ($poderStmt) {
-        $poderStmt->bind_param('i', $user['id']);
+        if (!$isAdmin) {
+            $poderStmt->bind_param('i', $user['id']);
+        }
         $poderStmt->execute();
         $poderResult = $poderStmt->get_result();
         if ($poderResult) {

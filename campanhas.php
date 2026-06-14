@@ -21,12 +21,12 @@ try {
             if ($nome === '') {
                 $error = 'O nome da campanha não pode ficar vazio.';
             } else {
-                $ins = $mysqli->prepare('INSERT INTO Campanha (nome, descricao, notas) VALUES (?, ?, ?)');
+                $campaignId = get_next_id($mysqli, 'Campanha');
+                $ins = $mysqli->prepare('INSERT INTO Campanha (id, nome, descricao, notas) VALUES (?, ?, ?, ?)');
                 if ($ins) {
                     $notas = '';
-                    $ins->bind_param('sss', $nome, $descricao, $notas);
+                    $ins->bind_param('isss', $campaignId, $nome, $descricao, $notas);
                     $ins->execute();
-                    $campaignId = $ins->insert_id;
                     $ins->close();
                     $link = $mysqli->prepare('INSERT INTO Campanha_Utilizador (idCampanha, idUtilizador, mestre) VALUES (?, ?, 1)');
                     if ($link) {
@@ -71,24 +71,45 @@ try {
         }
     }
 
-    $stmt = $mysqli->prepare(
-        'SELECT c.id, c.nome, c.descricao, cu.mestre
-         FROM Campanha c
-         JOIN Campanha_Utilizador cu ON cu.idCampanha = c.id
-         WHERE cu.idUtilizador = ?
-         ORDER BY c.nome ASC'
-    );
-    if ($stmt) {
-        $stmt->bind_param('i', $user['id']);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        if ($result) {
-            while ($row = $result->fetch_assoc()) {
-                $campanhas[] = $row;
+    if (intval($user['admin']) === 1) {
+        $stmt = $mysqli->prepare(
+            'SELECT c.id, c.nome, c.descricao, cu.mestre
+             FROM Campanha c
+             LEFT JOIN Campanha_Utilizador cu ON cu.idCampanha = c.id AND cu.idUtilizador = ?
+             ORDER BY c.nome ASC'
+        );
+        if ($stmt) {
+            $stmt->bind_param('i', $user['id']);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if ($result) {
+                while ($row = $result->fetch_assoc()) {
+                    $campanhas[] = $row;
+                }
+                $result->free();
             }
-            $result->free();
+            $stmt->close();
         }
-        $stmt->close();
+    } else {
+        $stmt = $mysqli->prepare(
+            'SELECT c.id, c.nome, c.descricao, cu.mestre
+             FROM Campanha c
+             JOIN Campanha_Utilizador cu ON cu.idCampanha = c.id
+             WHERE cu.idUtilizador = ?
+             ORDER BY c.nome ASC'
+        );
+        if ($stmt) {
+            $stmt->bind_param('i', $user['id']);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if ($result) {
+                while ($row = $result->fetch_assoc()) {
+                    $campanhas[] = $row;
+                }
+                $result->free();
+            }
+            $stmt->close();
+        }
     }
     $mysqli->close();
 } catch (Throwable $e) {
@@ -119,7 +140,10 @@ try {
                                     <h1 class="h3 mb-0">Campanhas</h1>
                                     <p class="text-muted mb-0">Clique em uma campanha para ver os detalhes.</p>
                                 </div>
-                                <a href="index.php" class="btn btn-secondary">Voltar</a>
+                                <div class="d-flex gap-2">
+                                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#createCampaignModal">Criar Campanha</button>
+                                    <a href="index.php" class="btn btn-secondary">Voltar</a>
+                                </div>
                             </div>
 
                             <?php if ($error): ?>
@@ -140,7 +164,16 @@ try {
                                                         <?php else: ?>
                                                             <span class="badge bg-secondary">Jogador</span>
                                                         <?php endif; ?>
-                                                        <a href="campanha.php?id=<?php echo intval($campanha['id']); ?>" class="btn btn-sm btn-outline-primary">Abrir</a>
+                                                        <div class="gap-2 d-flex">
+                                                            <a href="campanha.php?id=<?php echo intval($campanha['id']); ?>" class="btn btn-sm btn-outline-primary">Abrir</a>
+                                                            <?php if (intval($campanha['mestre']) === 1): ?>
+                                                                <form method="POST" style="display:inline;" onsubmit="return confirm('Tem a certeza que quer eliminar esta campanha?');">
+                                                                    <input type="hidden" name="delete_campaign" value="1">
+                                                                    <input type="hidden" name="campaign_id" value="<?php echo intval($campanha['id']); ?>">
+                                                                    <button type="submit" class="btn btn-sm btn-outline-danger">Eliminar</button>
+                                                                </form>
+                                                            <?php endif; ?>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -153,5 +186,38 @@ try {
                 </div>
             </div>
         </div>
+        
+        <!-- Create Campaign Modal -->
+        <div class="modal fade" id="createCampaignModal" tabindex="-1" aria-labelledby="createCampaignLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="createCampaignLabel">Criar Nova Campanha</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form method="POST">
+                        <div class="modal-body">
+                            <?php if ($success): ?>
+                                <div class="alert alert-success"><?php echo htmlspecialchars($success); ?></div>
+                            <?php endif; ?>
+                            <div class="mb-3">
+                                <label for="campaignName" class="form-label">Nome da Campanha</label>
+                                <input type="text" class="form-control" id="campaignName" name="nome" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="campaignDescription" class="form-label">Descrição</label>
+                                <textarea class="form-control" id="campaignDescription" name="descricao" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="submit" name="create_campaign" value="1" class="btn btn-success">Criar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     </body>
 </html>

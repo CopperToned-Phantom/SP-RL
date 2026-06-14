@@ -19,17 +19,34 @@ if ($id <= 0) {
 } else {
     try {
         $mysqli = get_db_connection();
-        $stmt = $mysqli->prepare(
-            'SELECT c.id, c.nome, c.descricao, c.notas, cu.mestre
-             FROM Campanha c
-             JOIN Campanha_Utilizador cu ON cu.idCampanha = c.id
-             WHERE c.id = ? AND cu.idUtilizador = ?
-             LIMIT 1'
-        );
-        if (!$stmt) {
-            throw new RuntimeException('Erro ao preparar consulta da campanha.');
+        $isAdmin = intval($user['admin']) === 1;
+        
+        if ($isAdmin) {
+            $stmt = $mysqli->prepare(
+                'SELECT c.id, c.nome, c.descricao, c.notas, COALESCE(cu.mestre, 0) as mestre
+                 FROM Campanha c
+                 LEFT JOIN Campanha_Utilizador cu ON cu.idCampanha = c.id AND cu.idUtilizador = ?
+                 WHERE c.id = ?
+                 LIMIT 1'
+            );
+            if (!$stmt) {
+                throw new RuntimeException('Erro ao preparar consulta da campanha.');
+            }
+            $stmt->bind_param('ii', $user['id'], $id);
+        } else {
+            $stmt = $mysqli->prepare(
+                'SELECT c.id, c.nome, c.descricao, c.notas, cu.mestre
+                 FROM Campanha c
+                 JOIN Campanha_Utilizador cu ON cu.idCampanha = c.id
+                 WHERE c.id = ? AND cu.idUtilizador = ?
+                 LIMIT 1'
+            );
+            if (!$stmt) {
+                throw new RuntimeException('Erro ao preparar consulta da campanha.');
+            }
+            $stmt->bind_param('ii', $id, $user['id']);
         }
-        $stmt->bind_param('ii', $id, $user['id']);
+        
         $stmt->execute();
         $result = $stmt->get_result();
         if ($result && $result->num_rows > 0) {
@@ -69,9 +86,10 @@ if ($id <= 0) {
                 if ($nomeSessao === '') {
                     $error = 'O nome da sessão não pode ficar vazio.';
                 } else {
-                    $ins = $mysqli->prepare('INSERT INTO Sessao (idCampanha, nome, numEp, enredo, notas) VALUES (?, ?, ?, ?, ?)');
+                    $sessaoId = get_next_id($mysqli, 'Sessao');
+                    $ins = $mysqli->prepare('INSERT INTO Sessao (id, idCampanha, nome, numEp, enredo, notas) VALUES (?, ?, ?, ?, ?, ?)');
                     if ($ins) {
-                        $ins->bind_param('isiis', $id, $nomeSessao, $numEp, $enredo, $notasSessao);
+                        $ins->bind_param('iissss', $sessaoId, $id, $nomeSessao, $numEp, $enredo, $notasSessao);
                         $ins->execute();
                         $ins->close();
                         $success = 'Sessão criada com sucesso.';

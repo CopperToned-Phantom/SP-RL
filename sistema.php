@@ -1,3 +1,26 @@
+<?php
+require_once __DIR__ . '/include/db.php';
+
+$criaturas = [];
+try {
+    $mysqli = get_db_connection();
+    $stmt = $mysqli->prepare('SELECT id, nome FROM Criatura ORDER BY nome ASC');
+    if ($stmt) {
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result) {
+            while ($row = $result->fetch_assoc()) {
+                $criaturas[] = $row;
+            }
+            $result->free();
+        }
+        $stmt->close();
+    }
+    $mysqli->close();
+} catch (Throwable $e) {
+    // ignore database load errors for bestiário section
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -170,6 +193,7 @@
                 <button command="show-modal" commandfor="Obscuro" class="btn btn-outline-light btn-lg">Obscuro</button>
                 <button command="show-modal" commandfor="Sabedoria" class="btn btn-outline-light btn-lg">Sabedoria</button>
                 <button command="show-modal" commandfor="Tempo" class="btn btn-outline-light btn-lg">Tempo</button>
+                <button command="show-modal" commandfor="bestiario" class="btn btn-outline-light btn-lg">Bestiário</button>
             </div> <br>
             
         
@@ -2492,7 +2516,19 @@
             <br>
             <button commandfor="Tempo" command="close" class="btn btn-outline-light btn-lg">Fechar</button>
         </dialog>
-        
+
+        <dialog id="bestiario" class="">
+            <h1>Bestiário</h1>
+            <p>Escolha uma criatura para ver a sua ficha completa.</p>
+            <div class="d-grid gap-2">
+                <?php foreach ($criaturas as $criatura): ?>
+                    <a href="criatura.php?id=<?php echo urlencode($criatura['id']); ?>" class="btn btn-outline-light btn-lg"><?php echo htmlspecialchars($criatura['nome'], ENT_QUOTES, 'UTF-8'); ?></a>
+                <?php endforeach; ?>
+            </div>
+            <br>
+            <button commandfor="bestiario" command="close" class="btn btn-outline-light btn-lg">Fechar</button>
+        </dialog>
+
         <dialog id="template" class="">
 
             <br>
