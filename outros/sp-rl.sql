@@ -238,7 +238,7 @@ CREATE TABLE `magia` (
 
 DROP TABLE IF EXISTS `personagem`;
 CREATE TABLE `personagem` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `idUtilizador` int(11) NOT NULL,
   `nome` varchar(100) NOT NULL,
   `ndp` int(11) NOT NULL,
@@ -253,7 +253,8 @@ CREATE TABLE `personagem` (
   `resistencias` text DEFAULT NULL,
   `pvMax` int(11) NOT NULL,
   `sanMax` int(11) NOT NULL,
-  `pdtMax` int(11) NOT NULL
+  `pdtMax` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -467,6 +468,242 @@ DROP TABLE IF EXISTS `vw_fichas_efeitos`;
 DROP VIEW IF EXISTS `vw_fichas_efeitos`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_fichas_efeitos`  AS SELECT `criatura`.`nome` AS `NomeCriatura`, `fichacriaturas`.`nome` AS `NomeFicha`, `efeitoespecial`.`nome` AS `NomeEfeito`, `efeitoespecial`.`efeito` AS `efeito` FROM ((`fichacriaturas` join `efeitoespecial` on(`efeitoespecial`.`idFichaCriatura` = `fichacriaturas`.`id`)) join `criatura` on(`fichacriaturas`.`idCriatura` = `criatura`.`id`)) ;
 
+-- --------------------------------------------------------
+
+--
+-- Estrutura para vista `vw_habil_geral`
+--
+DROP VIEW IF EXISTS `vw_habil_geral`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_habil_geral` AS
+SELECT
+  poder.nome,
+  poder.efeito,
+  poder.requisitos
+FROM poder
+WHERE poder.tipo LIKE 'Habilidade Geral';
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para vista `vw_aptidoes`
+--
+DROP VIEW IF EXISTS `vw_aptidoes`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_aptidoes` AS
+SELECT
+  poder.nome,
+  poder.efeito,
+  poder.requisitos
+FROM poder
+WHERE poder.tipo LIKE 'Aptidão';
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para vista `vw_utensilios`
+--
+DROP VIEW IF EXISTS `vw_utensilios`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_utensilios` AS
+SELECT
+  equipamento.nome,
+  equipamento.efeito
+FROM equipamento
+WHERE equipamento.tipo LIKE 'Utensílio';
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para vista `vw_armas`
+--
+DROP VIEW IF EXISTS `vw_armas`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_armas` AS
+SELECT
+  equipamento.nome,
+  equipamento.dano,
+  equipamento.criticio AS critico,
+  equipamento.modCritico,
+  equipamento.alcance,
+  equipamento.propriedades
+FROM equipamento
+WHERE equipamento.tipo LIKE 'Arma';
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para vista `vw_campanha_membros`
+--
+DROP VIEW IF EXISTS `vw_campanha_membros`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_campanha_membros` AS
+SELECT
+  campanha.nome AS nomeCampanha,
+  campanha.descricao AS descCampanha,
+  utilizador.nome AS nomeUtilizador,
+  campanha_utilizador.mestre
+FROM campanha
+INNER JOIN campanha_utilizador ON campanha_utilizador.idCampanha = campanha.id
+INNER JOIN utilizador ON campanha_utilizador.idUtilizador = utilizador.id;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para vista `vw_campanha_sessoes`
+--
+DROP VIEW IF EXISTS `vw_campanha_sessoes`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_campanha_sessoes` AS
+SELECT
+  campanha.nome AS nomeCampanha,
+  sessao.nome AS nomeSessao,
+  sessao.numEp,
+  sessao.enredo
+FROM campanha
+INNER JOIN sessao ON sessao.idCampanha = campanha.id;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para vista `vw_personagem_itens`
+--
+DROP VIEW IF EXISTS `vw_personagem_itens`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_personagem_itens` AS
+SELECT
+  personagem.nome AS personagemNome,
+  perso_equip.quantia,
+  equipamento.nome AS nomeItem,
+  equipamento.dano,
+  equipamento.criticio AS critico,
+  equipamento.modCritico,
+  equipamento.alcance,
+  equipamento.propriedades,
+  equipamento.efeito
+FROM personagem
+INNER JOIN perso_equip ON perso_equip.idPerso = personagem.id
+INNER JOIN equipamento ON equipamento.id = perso_equip.idEquip
+ORDER BY personagem.id, equipamento.nome;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para vista `vw_personagem_poderes`
+--
+DROP VIEW IF EXISTS `vw_personagem_poderes`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_personagem_poderes` AS
+SELECT
+  personagem.nome AS personagemNome,
+  poder.nome AS nomePoder,
+  poder.efeito,
+  poder.essencia,
+  poder.tipo
+FROM personagem
+INNER JOIN perso_poder ON perso_poder.idPerso = personagem.id
+INNER JOIN poder ON poder.id = perso_poder.idPoder
+ORDER BY personagem.id, poder.nome;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para vista `vw_personagem_magias`
+--
+DROP VIEW IF EXISTS `vw_personagem_magias`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_personagem_magias` AS
+SELECT
+  personagem.nome AS personagemNome,
+  magia.nome AS magiaNome,
+  magia.essencia,
+  magia.tempoExec,
+  magia.custo,
+  magia.efeito,
+  perso_magia.tipo
+FROM personagem
+INNER JOIN perso_magia ON perso_magia.idPerso = personagem.id
+INNER JOIN magia ON magia.id = perso_magia.idMagia
+ORDER BY personagem.id, magia.nome;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para vista `vw_personagem_itens_custom`
+--
+DROP VIEW IF EXISTS `vw_personagem_itens_custom`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_personagem_itens_custom` AS
+SELECT
+  personagem.nome AS personagemNome,
+  perso_equipcustom.quantia,
+  equipamentocustom.nome AS nomeItem,
+  equipamentocustom.dano,
+  equipamentocustom.criticio AS critico,
+  equipamentocustom.modCritico,
+  equipamentocustom.alcance,
+  equipamentocustom.propriedades,
+  equipamentocustom.efeito
+FROM personagem
+INNER JOIN perso_equipcustom ON perso_equipcustom.idPerso = personagem.id
+INNER JOIN equipamentocustom ON equipamentocustom.id = perso_equipcustom.idEquipCustom
+ORDER BY personagem.id, equipamentocustom.nome;
+
+-- --------------------------------------------------------
+--
+-- Estrutura para vista `vw_personagem_poderes_custom`
+--
+DROP VIEW IF EXISTS `vw_personagem_poderes_custom`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_personagem_poderes_custom` AS
+SELECT
+  personagem.nome AS personagemNome,
+  podercustom.nome AS nomePoder,
+  podercustom.efeito,
+  podercustom.essencia,
+  podercustom.tipo
+FROM personagem
+INNER JOIN perso_podercustom ON perso_podercustom.idPerso = personagem.id
+INNER JOIN podercustom ON podercustom.id = perso_podercustom.idPoderCustom
+ORDER BY personagem.id, podercustom.nome;
+
+-- --------------------------------------------------------
+--
+-- Estrutura para vista `vw_personagem_magias_custom`
+--
+DROP VIEW IF EXISTS `vw_personagem_magias_custom`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_personagem_magias_custom` AS
+SELECT
+  personagem.nome AS personagemNome,
+  magiacustom.nome AS magiaNome,
+  magiacustom.essencia,
+  magiacustom.tempoExec,
+  magiacustom.custo,
+  magiacustom.efeito,
+  perso_magiacustom.tipo
+FROM personagem
+INNER JOIN perso_magiacustom ON perso_magiacustom.idPerso = personagem.id
+INNER JOIN magiacustom ON magiacustom.id = perso_magiacustom.idMagiaCustom
+ORDER BY personagem.id, magiacustom.nome;
+
+-- --------------------------------------------------------
+--
+-- Estrutura para vista `vw_origens_poderes`
+--
+DROP VIEW IF EXISTS `vw_origens_poderes`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_origens_poderes` AS
+SELECT
+  poder.nome,
+  poder.efeito
+FROM poder
+WHERE poder.tipo LIKE 'HabOrigem';
+
+-- --------------------------------------------------------
+--
+-- Estrutura para vista `vw_classes_poderes`
+--
+DROP VIEW IF EXISTS `vw_classes_poderes`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_classes_poderes` AS
+SELECT
+  poder.nome,
+  poder.efeito,
+  poder.tipo,
+  poder.requisitos
+FROM poder
+WHERE poder.tipo LIKE 'Base%'
+   OR poder.tipo LIKE 'HabTécnico'
+   OR poder.tipo LIKE 'HabLutador'
+ORDER BY tipo;
+
 --
 -- Índices para tabelas despejadas
 --
@@ -619,6 +856,10 @@ ALTER TABLE `sessao`
 ALTER TABLE `utilizador`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
+
+GRANT CREATE ON *.* TO 'appuser'@'%';
+GRANT SYSTEM_USER ON *.* TO 'appuser'@'%';
+FLUSH PRIVILEGES;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

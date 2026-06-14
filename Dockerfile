@@ -68,10 +68,16 @@ FROM php:8.2-apache as final
 # https://github.com/docker-library/docs/tree/master/php#configuration
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
+# Install database extensions required by the application.
+RUN docker-php-ext-install mysqli pdo pdo_mysql
+
 # Copy the app dependencies from the previous install stage.
-COPY --from=deps app/vendor/ /var/www/html/vendor
-# Copy the app files from the app directory.
-COPY ./src /var/www/html
+COPY --from=deps /app/vendor/ /var/www/html/vendor
+# Copy the app files from the root directory.
+COPY . /var/www/html
+
+# Ensure correct ownership for Apache.
+RUN chown -R www-data:www-data /var/www/html
 
 # Switch to a non-privileged user (defined in the base image) that the app will run under.
 # See https://docs.docker.com/go/dockerfile-user-best-practices/

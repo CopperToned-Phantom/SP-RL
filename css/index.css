@@ -107,6 +107,19 @@ a {
   }
 }
 
+.fraction-input {
+  display: grid;
+  gap: 0.35rem;
+}
+.fraction-input input {
+  width: 100%;
+}
+.fraction-divider {
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #FFE5E5;
+}
 dialog::backdrop{
   background : rgba(30, 15, 15, 0.7);
 }
@@ -126,4 +139,68 @@ dialog{
     background-color: currentColor !important;
     border : solid !important;
     opacity: 1 !important;
+}
+
+/* Global palette overrides */
+.btn-primary,
+.btn-secondary,
+.badge.bg-primary,
+.badge.bg-secondary {
+    background-color: #96695A !important;
+    border-color: #96695A !important;
+    color: #FFE5E5 !important;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover,
+.btn-primary:focus,
+.btn-secondary:focus {
+    background-color: #7a4f45 !important;
+    border-color: #7a4f45 !important;
+    color: #FFE5E5 !important;
+}
+
+.btn-outline-primary,
+.btn-outline-light {
+    color: #FFE5E5 !important;
+    border-color: #FFE5E5 !important;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:focus,
+.btn-outline-light:hover,
+.btn-outline-light:focus {
+    background-color: rgba(150,105,90,0.18) !important;
+    color: #FFE5E5 !important;
+    border-color: #FFE5E5 !important;
+}
+
+.btn-link {
+    color: #FFE5E5 !important;
+    text-decoration: underline !important;
+}
+
+.card {
+    border-color: #FFE5E5 !important;
+    background-color: #1e0f0f !important;
+}
+
+.card .card-body {
+    color: #FFE5E5 !important;
+}
+
+.text-muted,
+.text-dark {
+    color: #FFE5E5 !important;
+    opacity: 0.9 !important;
+}
+
+.text-white {
+    color: #FFE5E5 !important;
+}
+
+.bg-secondary,
+.bg-light {
+    background-color: #1e0f0f !important;
+    color: #FFE5E5 !important;
 }

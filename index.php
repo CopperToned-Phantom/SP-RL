@@ -25,6 +25,11 @@
             <a href="campanhas.php" class="b_cont" style="display : inline-block" margin-bottom: 0 !important;>
                 <button type="button" class="btn btn-outline-light btn-lg btn-index"> Campanhas / Sessões </button> <br><br><br>
             </a>
+
+            <!--BOTÃO CUSTOMIZAÇÃO-->
+            <a href="custom.php" class="b_cont" style="display : inline-block" margin-bottom: 0 !important;>
+                <button type="button" class="btn btn-outline-light btn-lg btn-index"> Customização </button> <br><br><br>
+            </a>
             
             <!--BOTÃO SISTEMA-->
             <a href="sistema.php" class="b_cont" style="display : inline-block" margin-bottom: 0 !important;>
