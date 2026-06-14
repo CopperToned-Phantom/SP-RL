@@ -17,3 +17,21 @@ function get_db_connection(): mysqli
     $mysqli->set_charset('utf8mb4');
     return $mysqli;
 }
+
+function get_next_id(mysqli $mysqli, string $table): int
+{
+    if (!preg_match('/^[A-Za-z0-9_]+$/', $table)) {
+        throw new InvalidArgumentException('Nome de tabela inválido para get_next_id.');
+    }
+
+    $query = "SELECT COALESCE(MAX(id), 0) + 1 AS nextId FROM `" . $table . "`";
+    $result = $mysqli->query($query);
+    if (!$result) {
+        throw new RuntimeException('Falha ao obter próximo ID para ' . $table . '.');
+    }
+
+    $row = $result->fetch_assoc();
+    $result->free();
+
+    return intval($row['nextId'] ?? 1);
+}
