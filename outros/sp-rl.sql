@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Tempo de geração: 14-Jun-2026 às 19:07
+-- Tempo de geração: 14-Jun-2026 às 22:53
 -- Versão do servidor: 8.4.9
 -- versão do PHP: 8.3.26
 
@@ -20,7 +20,7 @@ SET time_zone = "+00:00";
 --
 -- Base de dados: `sp-rl`
 --
-CREATE DATABASE IF NOT EXISTS `sp-rl` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+CREATE DATABASE IF NOT EXISTS `sp-rl` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
 USE `sp-rl`;
 
 -- --------------------------------------------------------
@@ -33,9 +33,17 @@ DROP TABLE IF EXISTS `AcaoCriaturas`;
 CREATE TABLE `AcaoCriaturas` (
   `id` int NOT NULL,
   `idFichaCriatura` int NOT NULL,
-  `nome` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `efeito` text COLLATE utf8mb4_general_ci NOT NULL
+  `nome` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `efeito` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `AcaoCriaturas`
+--
+
+INSERT INTO `AcaoCriaturas` (`id`, `idFichaCriatura`, `nome`, `efeito`) VALUES
+(1, 1, 'Agredir', 'Agride um alvo a alcance curto, causando 1d8+2 de dano físico.'),
+(2, 1, 'Arranhar', 'Tenta cravar unhas na pele do alvo, causando 1d4 de dano cortante e causando Sangramento.');
 
 -- --------------------------------------------------------
 
@@ -46,9 +54,9 @@ CREATE TABLE `AcaoCriaturas` (
 DROP TABLE IF EXISTS `Campanha`;
 CREATE TABLE `Campanha` (
   `id` int NOT NULL,
-  `nome` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `descricao` text COLLATE utf8mb4_general_ci NOT NULL,
-  `notas` text COLLATE utf8mb4_general_ci
+  `nome` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `descricao` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `notas` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -57,7 +65,7 @@ CREATE TABLE `Campanha` (
 
 INSERT INTO `Campanha` (`id`, `nome`, `descricao`, `notas`) VALUES
 (1, 'testeteste', 'testeteste', NULL),
-(2, 'testeteste2', 'testeteste', NULL);
+(4, 'teste', 'teste', '');
 
 -- --------------------------------------------------------
 
@@ -79,7 +87,7 @@ CREATE TABLE `Campanha_Utilizador` (
 INSERT INTO `Campanha_Utilizador` (`idCampanha`, `idUtilizador`, `mestre`) VALUES
 (1, 1, 1),
 (1, 2, 0),
-(2, 1, 1);
+(4, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -90,14 +98,21 @@ INSERT INTO `Campanha_Utilizador` (`idCampanha`, `idUtilizador`, `mestre`) VALUE
 DROP TABLE IF EXISTS `Criatura`;
 CREATE TABLE `Criatura` (
   `id` int NOT NULL,
-  `nome` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `essencia` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
-  `essenciaSec1` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `essenciaSec2` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `nome` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `essencia` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `essenciaSec1` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `essenciaSec2` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `nivelDificuldade` int NOT NULL,
-  `narracao` text COLLATE utf8mb4_general_ci NOT NULL,
-  `descricao` text COLLATE utf8mb4_general_ci NOT NULL
+  `narracao` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `descricao` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `Criatura`
+--
+
+INSERT INTO `Criatura` (`id`, `nome`, `essencia`, `essenciaSec1`, `essenciaSec2`, `nivelDificuldade`, `narracao`, `descricao`) VALUES
+(1, 'Conexos', 'Carniça', NULL, NULL, 3, '\"Um sentimento fantasma, de que ele ainda está lá, que ele pode se mexer tão bem desde que te lembras. Um mecanismo simples de estender e contrair, uma força inata que nem consegues explicar, uma parte de ti já desde bebé, agora, não está mais lá, por mais que pareça. Os \"especialistas\" chamam de \"Síndrome do Membro Fantasma\", uma condição mental onde as respostas do comando neural nunca chegam de volta ao cérebro, pelo que, o membro já se foi, este pavor, só se sente quando se sabe o que é ter um membro arrancado.\"\r\n  \r\n\"Não para por aí, nós sabemos que não. Essa força, essa coisa de sentir ainda lá, é bom. Estes tais especializados na medicina não sabem a força do coração, da nossa carne, do nosso corpo. Não sabem que o braço ainda se endurece, ou que a perna ainda se estica. Não precisas te mexer. Garanto-te uma coisa, vai doer, mas não em mim. Fica só parado, umas costuras irão concertar-te, só lembra-te, o braço é teu, não é ele que te controla.\"', 'Os Conexos são manifestações da Carniça, e caracterizam-se pelo fenómeno de membros decepados ainda vivos e pulsantes que atacam qualquer ser vivo ao seu redor. Ainda tomados pela violência da separação do corpo original, membros, a partir do qual chamamos Conexos, irão debater-se e agredir imediatamente qualquer coisa que sintam.\r\n\r\nOriginam-se em casos de extrema assimilação com a Carniça ou outros fatores externos ainda ligados à essência. Surgem de pessoas, cujo o elemento seja Carniça, e que tenham sido decepadas em combate, através de ataques e feitiços da essência, ou até em locais cuja a sensação de brutalidade e crueldade perdura. Uma possibilidade também surge da criação desta criatura ou no seu encontro. Se um corpo, desmembrado, assimilado com Carniça (ou através de magias da essência caso a pessoa não seja assimilada) costurar um braço \"Conexo\" em si, poderá obter esse mesmo membro de volta, controlado a rede neural a partir da costura, algo que, no entanto, pode ser difícil de realizar contra uma criatura veloz e que dará um membro, por vezes, que ataca o próprio corpo ou não o obedece.\r\n\r\nO nome \"Conexo\" deriva da sua maior habilidade que é acoplar com outros membros decepados vivos, no caso, outras criaturas como ele mesmo. Capazes de se juntarem ilimitadamente em uma massa de braços e pernas que fica cada vez mais resistente mas mais pesada.');
 
 -- --------------------------------------------------------
 
@@ -109,9 +124,19 @@ DROP TABLE IF EXISTS `EfeitoEspecial`;
 CREATE TABLE `EfeitoEspecial` (
   `id` int NOT NULL,
   `idFichaCriatura` int NOT NULL,
-  `nome` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `efeito` text COLLATE utf8mb4_general_ci NOT NULL
+  `nome` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `efeito` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `EfeitoEspecial`
+--
+
+INSERT INTO `EfeitoEspecial` (`id`, `idFichaCriatura`, `nome`, `efeito`) VALUES
+(1, 1, 'Manha', 'Gira testes de ataque com AGI'),
+(2, 1, 'Evoluir', 'A criatura durante combate pode gastar uma ação de movimento para girar um teste de CON(RN : 20) para evoluir de alguma forma que concederá vantagem ou bónus. Como desenvolver uma boca, olhos, ou até pequenas patas.'),
+(3, 1, 'Acoplar', 'Caso toque em outra criatura semelhante, poderá acoplar, a qual dará +1d10+5 de PVs máximos e +1 em FOR ou AGI temporário. O bônus de atributo não acumula por cada nova ação de Acoplar.'),
+(4, 1, 'Ataque em Bando', 'Quando o alvo é atacado por mais que um Conexo, o próximo que atacar o mesmo alvo pode tentar desarma-lo com +4. A arma pode ser usada pelo Conexo. ');
 
 -- --------------------------------------------------------
 
@@ -122,14 +147,14 @@ CREATE TABLE `EfeitoEspecial` (
 DROP TABLE IF EXISTS `Equipamento`;
 CREATE TABLE `Equipamento` (
   `id` int NOT NULL,
-  `nome` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `dano` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `critico` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `modCritico` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `alcance` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `propriedades` text COLLATE utf8mb4_general_ci,
-  `efeito` text COLLATE utf8mb4_general_ci,
-  `tipo` varchar(50) COLLATE utf8mb4_general_ci NOT NULL
+  `nome` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `dano` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `critico` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `modCritico` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `alcance` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `propriedades` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
+  `efeito` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
+  `tipo` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -211,15 +236,23 @@ DROP TABLE IF EXISTS `EquipamentoCustom`;
 CREATE TABLE `EquipamentoCustom` (
   `id` int NOT NULL,
   `idUtilizador` int NOT NULL,
-  `nome` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `dano` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `critico` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `modCritico` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `alcance` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `propriedades` text COLLATE utf8mb4_general_ci,
+  `nome` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `dano` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `critico` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `modCritico` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `alcance` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `propriedades` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
   `efeito` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
-  `tipo` varchar(50) COLLATE utf8mb4_general_ci NOT NULL
+  `tipo` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `EquipamentoCustom`
+--
+
+INSERT INTO `EquipamentoCustom` (`id`, `idUtilizador`, `nome`, `dano`, `critico`, `modCritico`, `alcance`, `propriedades`, `efeito`, `tipo`) VALUES
+(3, 1, 'a', '', '', '', '', '', 'a', 'a'),
+(4, 1, 'czx', '', '', '', '', '', 'zcx', 'zcxcz');
 
 -- --------------------------------------------------------
 
@@ -231,7 +264,7 @@ DROP TABLE IF EXISTS `FichaCriaturas`;
 CREATE TABLE `FichaCriaturas` (
   `id` int NOT NULL,
   `idCriatura` int NOT NULL,
-  `nome` varchar(100) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `nome` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `forca` int NOT NULL,
   `agilidade` int NOT NULL,
   `constituicao` int NOT NULL,
@@ -239,10 +272,17 @@ CREATE TABLE `FichaCriaturas` (
   `carisma` int NOT NULL,
   `pvMax` int NOT NULL,
   `def` int NOT NULL,
-  `resistencias` text COLLATE utf8mb4_general_ci,
-  `danoMental` varchar(40) COLLATE utf8mb4_general_ci NOT NULL,
+  `resistencias` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
+  `danoMental` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `rnMental` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `FichaCriaturas`
+--
+
+INSERT INTO `FichaCriaturas` (`id`, `idCriatura`, `nome`, `forca`, `agilidade`, `constituicao`, `inteligencia`, `carisma`, `pvMax`, `def`, `resistencias`, `danoMental`, `rnMental`) VALUES
+(1, 1, NULL, 2, 4, 1, 0, 0, 45, 17, 'Resistência 10 a dano de Carniça\r\nVulnerabilidade 5 a dano Cortante', '1d4', 15);
 
 -- --------------------------------------------------------
 
@@ -253,12 +293,12 @@ CREATE TABLE `FichaCriaturas` (
 DROP TABLE IF EXISTS `Magia`;
 CREATE TABLE `Magia` (
   `id` int NOT NULL,
-  `nome` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
-  `essencia` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
-  `tempoExec` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `nome` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `essencia` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `tempoExec` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `custo` int NOT NULL,
-  `efeito` text COLLATE utf8mb4_general_ci NOT NULL,
-  `requisitos` text COLLATE utf8mb4_general_ci
+  `efeito` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `requisitos` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -352,13 +392,20 @@ DROP TABLE IF EXISTS `MagiaCustom`;
 CREATE TABLE `MagiaCustom` (
   `id` int NOT NULL,
   `idUtilizador` int NOT NULL,
-  `nome` varchar(200) COLLATE utf8mb4_general_ci NOT NULL,
-  `essencia` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
-  `tempoExec` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `nome` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `essencia` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `tempoExec` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `custo` int NOT NULL,
-  `efeito` text COLLATE utf8mb4_general_ci NOT NULL,
-  `requisitos` text COLLATE utf8mb4_general_ci
+  `efeito` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `requisitos` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `MagiaCustom`
+--
+
+INSERT INTO `MagiaCustom` (`id`, `idUtilizador`, `nome`, `essencia`, `tempoExec`, `custo`, `efeito`, `requisitos`) VALUES
+(1, 1, 'a', 'a', '0', 0, '0', '');
 
 -- --------------------------------------------------------
 
@@ -370,17 +417,17 @@ DROP TABLE IF EXISTS `Personagem`;
 CREATE TABLE `Personagem` (
   `id` int NOT NULL,
   `idUtilizador` int NOT NULL,
-  `nome` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `nome` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `ndp` int NOT NULL,
-  `classe` varchar(20) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `origem` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `notasPlayer` text COLLATE utf8mb4_general_ci,
+  `classe` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `origem` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `notasPlayer` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
   `forca` int NOT NULL,
   `agilidade` int NOT NULL,
   `constituicao` int NOT NULL,
   `inteligencia` int NOT NULL,
   `carisma` int NOT NULL,
-  `resistencias` text COLLATE utf8mb4_general_ci,
+  `resistencias` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
   `pvAtual` int NOT NULL,
   `pvMax` int NOT NULL,
   `sanAtual` int NOT NULL,
@@ -395,7 +442,9 @@ CREATE TABLE `Personagem` (
 
 INSERT INTO `Personagem` (`id`, `idUtilizador`, `nome`, `ndp`, `classe`, `origem`, `notasPlayer`, `forca`, `agilidade`, `constituicao`, `inteligencia`, `carisma`, `resistencias`, `pvAtual`, `pvMax`, `sanAtual`, `sanMax`, `pdtAtual`, `pdtMax`) VALUES
 (1, 1, 'SQL Test', 1, 'Test', 'Test', 'cli', 1, 1, 1, 1, 1, '', 10, 10, 5, 5, 0, 0),
-(2, 1, 'adsadsdas', 1, '', 'adsadsdas', '', 0, 0, 0, 0, 0, '', 0, 0, 0, 0, 0, 0);
+(2, 1, 'adsadsdas', 1, '', 'adsadsdas', '', 0, 0, 0, 0, 0, '', 0, 0, 0, 0, 0, 0),
+(3, 1, 'aaaa', 1, '', 'aaaa', '', 0, 0, 0, 0, 0, '', 0, 0, 0, 0, 0, 0),
+(4, 1, 'zcx', 1, '', 'zcx', '', 0, 0, 0, 0, 0, '', 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -415,7 +464,8 @@ CREATE TABLE `Perso_Equip` (
 --
 
 INSERT INTO `Perso_Equip` (`idPerso`, `idEquip`, `quantia`) VALUES
-(2, 25, 1);
+(2, 25, 1),
+(3, 53, 1);
 
 -- --------------------------------------------------------
 
@@ -430,6 +480,13 @@ CREATE TABLE `Perso_EquipCustom` (
   `quantia` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Extraindo dados da tabela `Perso_EquipCustom`
+--
+
+INSERT INTO `Perso_EquipCustom` (`idPerso`, `idEquipCustom`, `quantia`) VALUES
+(3, 3, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -440,7 +497,7 @@ DROP TABLE IF EXISTS `Perso_Magia`;
 CREATE TABLE `Perso_Magia` (
   `idPerso` int NOT NULL,
   `idMagia` int NOT NULL,
-  `tipo` varchar(20) COLLATE utf8mb4_general_ci NOT NULL
+  `tipo` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -448,7 +505,8 @@ CREATE TABLE `Perso_Magia` (
 --
 
 INSERT INTO `Perso_Magia` (`idPerso`, `idMagia`, `tipo`) VALUES
-(2, 68, '');
+(2, 68, ''),
+(3, 68, '');
 
 -- --------------------------------------------------------
 
@@ -460,8 +518,15 @@ DROP TABLE IF EXISTS `Perso_MagiaCustom`;
 CREATE TABLE `Perso_MagiaCustom` (
   `idPerso` int NOT NULL,
   `idMagiaCustom` int NOT NULL,
-  `tipo` varchar(20) COLLATE utf8mb4_general_ci NOT NULL
+  `tipo` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `Perso_MagiaCustom`
+--
+
+INSERT INTO `Perso_MagiaCustom` (`idPerso`, `idMagiaCustom`, `tipo`) VALUES
+(3, 1, '');
 
 -- --------------------------------------------------------
 
@@ -481,7 +546,8 @@ CREATE TABLE `Perso_Poder` (
 
 INSERT INTO `Perso_Poder` (`idPerso`, `idPoder`) VALUES
 (2, 70),
-(2, 171);
+(2, 171),
+(3, 28);
 
 -- --------------------------------------------------------
 
@@ -504,11 +570,11 @@ CREATE TABLE `Perso_PoderCustom` (
 DROP TABLE IF EXISTS `Poder`;
 CREATE TABLE `Poder` (
   `id` int NOT NULL,
-  `nome` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `efeito` text COLLATE utf8mb4_general_ci NOT NULL,
+  `nome` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `efeito` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `essencia` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `tipo` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
-  `requisitos` text COLLATE utf8mb4_general_ci
+  `tipo` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `requisitos` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -701,12 +767,19 @@ DROP TABLE IF EXISTS `PoderCustom`;
 CREATE TABLE `PoderCustom` (
   `id` int NOT NULL,
   `idUtilizador` int NOT NULL,
-  `nome` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `efeito` text COLLATE utf8mb4_general_ci NOT NULL,
+  `nome` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `efeito` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `essencia` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `tipo` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
-  `requisitos` text COLLATE utf8mb4_general_ci
+  `tipo` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `requisitos` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `PoderCustom`
+--
+
+INSERT INTO `PoderCustom` (`id`, `idUtilizador`, `nome`, `efeito`, `essencia`, `tipo`, `requisitos`) VALUES
+(1, 1, 'a', 'a', 'a', 'a', '');
 
 -- --------------------------------------------------------
 
@@ -718,10 +791,10 @@ DROP TABLE IF EXISTS `Sessao`;
 CREATE TABLE `Sessao` (
   `id` int NOT NULL,
   `idCampanha` int NOT NULL,
-  `nome` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `nome` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `numEp` int NOT NULL,
-  `enredo` text COLLATE utf8mb4_general_ci NOT NULL,
-  `notas` text COLLATE utf8mb4_general_ci
+  `enredo` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `notas` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -729,7 +802,9 @@ CREATE TABLE `Sessao` (
 --
 
 INSERT INTO `Sessao` (`id`, `idCampanha`, `nome`, `numEp`, `enredo`, `notas`) VALUES
-(1, 1, 'ads', 1, 'adsasdadsadsads', '0');
+(1, 1, 'ads', 1, 'adsasdadsadsads', '0'),
+(2, 4, 'teste', 1, '0', 'teste'),
+(3, 1, 'teste231', 2, '0', '');
 
 -- --------------------------------------------------------
 
@@ -740,9 +815,9 @@ INSERT INTO `Sessao` (`id`, `idCampanha`, `nome`, `numEp`, `enredo`, `notas`) VA
 DROP TABLE IF EXISTS `Utilizador`;
 CREATE TABLE `Utilizador` (
   `id` int NOT NULL,
-  `nome` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `email` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `passe` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `nome` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `passe` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `admin` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -753,7 +828,8 @@ CREATE TABLE `Utilizador` (
 INSERT INTO `Utilizador` (`id`, `nome`, `email`, `passe`, `admin`) VALUES
 (1, 'aaa', 'a@a', '$2y$10$5hBGnHD7pzHrynYGfpbA/.2smSWhc60E9BJ10D8urdpr8b4u/BLJO', 0),
 (2, 'admin', 'admin@admin', '$2y$10$6PLyjQxH3HcpwkB2K9X5guiG62rcgZ3nJKW/RXXdjeXbni74Q/1au', 1),
-(3, 'bbb', 'b@b', '$2y$10$wuoc1EPV5GCGibneltG6MuY1IEtpNZf0VypqkUXkZyZkUSBoC/Rcq', 0);
+(3, 'bbb', 'b@b', '$2y$10$wuoc1EPV5GCGibneltG6MuY1IEtpNZf0VypqkUXkZyZkUSBoC/Rcq', 0),
+(4, 'eee', 'e@e', '$2y$10$yXsOYLV0I5fJIE9PC6QpaujiH/g6ZRBNUg0pQDxeJNklfqCBDG4Je', 0);
 
 -- --------------------------------------------------------
 
@@ -1178,25 +1254,25 @@ ALTER TABLE `Utilizador`
 -- AUTO_INCREMENT de tabela `AcaoCriaturas`
 --
 ALTER TABLE `AcaoCriaturas`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `Campanha`
 --
 ALTER TABLE `Campanha`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `Criatura`
 --
 ALTER TABLE `Criatura`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `EfeitoEspecial`
 --
 ALTER TABLE `EfeitoEspecial`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `Equipamento`
@@ -1208,13 +1284,13 @@ ALTER TABLE `Equipamento`
 -- AUTO_INCREMENT de tabela `EquipamentoCustom`
 --
 ALTER TABLE `EquipamentoCustom`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `FichaCriaturas`
 --
 ALTER TABLE `FichaCriaturas`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `Magia`
@@ -1226,13 +1302,13 @@ ALTER TABLE `Magia`
 -- AUTO_INCREMENT de tabela `MagiaCustom`
 --
 ALTER TABLE `MagiaCustom`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `Personagem`
 --
 ALTER TABLE `Personagem`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `Poder`
@@ -1244,19 +1320,19 @@ ALTER TABLE `Poder`
 -- AUTO_INCREMENT de tabela `PoderCustom`
 --
 ALTER TABLE `PoderCustom`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `Sessao`
 --
 ALTER TABLE `Sessao`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `Utilizador`
 --
 ALTER TABLE `Utilizador`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 -- --------------------------------------------------------
 
