@@ -13,8 +13,13 @@
 Site feito com PHP e SQL com o intuito de oferecer auxílio a Jogadores e Mestres de Jogo que utilizam o "Sistema Suprenima"
 </p>
 
-php -S localhost:8000
+## Requisitos para executar localmente
 
-docker compose down
+Para rodar este projeto na sua máquina, é necessário ter instalado:
 
-docker compose up --build
+- PHP 8 e acima
+- Composer (para instalar dependências PHP, se for necessário)
+- Docker e Docker Compose
+- Visual Studio Code
+
+Ao baixar o zip, basta extrai-lo para uma pasta, abrir essa pasta com o Visual Studio Code. Dentro do VS Code, abrir um terminal e rodar "docker compose up --build" para iniciar o servidor e o php. Para parar o servidor basta rodar, no terminal, "docker compose down"
