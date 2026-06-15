@@ -21,9 +21,10 @@ if ($id <= 0) {
         $mysqli = get_db_connection();
 
         $stmt = $mysqli->prepare(
-            'SELECT nome, essencia, essenciaSec1, essenciaSec2, nomeFicha, forca, agilidade, constituicao, inteligencia, carisma, pvMax, def, resistencias, danoMental, rnMental
-             FROM vw_criaturas_fichas
-             WHERE nome = (SELECT nome FROM Criatura WHERE id = ? LIMIT 1)
+            'SELECT c.nome, c.narracao, c.descricao, c.essencia, c.essenciaSec1, c.essenciaSec2, f.nome AS nomeFicha, f.forca, f.agilidade, f.constituicao, f.inteligencia, f.carisma, f.pvMax, f.def, f.resistencias, f.danoMental, f.rnMental
+             FROM Criatura c
+             LEFT JOIN FichaCriaturas f ON f.idCriatura = c.id
+             WHERE c.id = ?
              LIMIT 1'
         );
         if (!$stmt) {
@@ -96,6 +97,21 @@ if ($id <= 0) {
                 <div class="alert alert-danger"><?php echo htmlspecialchars($error, ENT_QUOTES, 'UTF-8'); ?></div>
             <?php else: ?>
                 <h1><?php echo htmlspecialchars($criatura['nome'], ENT_QUOTES, 'UTF-8'); ?></h1>
+                <?php $hasNarracao = isset($criatura['narracao']) && trim($criatura['narracao']) !== '';?>
+                <?php $hasDescricao = isset($criatura['descricao']) && trim($criatura['descricao']) !== '';?>
+                <?php if ($hasNarracao || $hasDescricao): ?>
+                    <div class="mb-4">
+                        <?php if ($hasNarracao): ?>
+                            <p><?php echo nl2br(htmlspecialchars($criatura['narracao'], ENT_QUOTES, 'UTF-8')); ?></p>
+                        <?php endif; ?>
+                        <?php if ($hasNarracao && $hasDescricao): ?>
+                            <hr class="class-hr">
+                        <?php endif; ?>
+                        <?php if ($hasDescricao): ?>
+                            <p><?php echo nl2br(htmlspecialchars($criatura['descricao'], ENT_QUOTES, 'UTF-8')); ?></p>
+                        <?php endif; ?>
+                    </div>
+                <?php endif; ?>
                 <div class="row">
                     <div class="col-md-6">
                         <h4>Ficha</h4>

@@ -613,19 +613,277 @@ try {
         </dialog>
 
         <dialog id="baseCultista" class="">
+            <h1 id="status">Status</h1>
+            <table class="table table-bordered">
+            <thead>
+            <tr>
+            <th></th>
+            <th>Inicial</th>
+            <th>Por Nível</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+            <td><strong>PV</strong></td>
+            <td>25+CON*2</td>
+            <td>8+CON</td>
+            </tr>
+            <tr>
+            <td><strong>SAN</strong></td>
+            <td>7+CAR*2</td>
+            <td>1+CAR</td>
+            </tr>
+            <tr>
+            <td><strong>PdT</strong></td>
+            <td>13+INT*2</td>
+            <td>3+INT</td>
+            </tr>
+            </tbody>
+            </table>
+            <h1 id="por-n-vel">Por Nível</h1>
+            <table class="table table-bordered">
+            <thead>
+            <tr>
+            <th>Nível</th>
+            <th>Recompensa</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+            <td><strong>3</strong></td>
+            <td>Habilidades Base de Cultista</td>
+            </tr>
+            <tr>
+            <td><strong>4</strong></td>
+            <td>Assimilação a uma Essência</td>
+            </tr>
+            <tr>
+            <td><strong>5</strong></td>
+            <td>Habilidade Geral</td>
+            </tr>
+            <tr>
+            <td><strong>6</strong></td>
+            <td>2 Oferendas da Lista de Magias; +10 PV, SAN, PdT</td>
+            </tr>
+            <tr>
+            <td><strong>7</strong></td>
+            <td>Habilidade Geral</td>
+            </tr>
+            <tr>
+            <td><strong>8</strong></td>
+            <td>2 Oferendas da Lista de Magias</td>
+            </tr>
+            <tr>
+            <td><strong>9</strong></td>
+            <td>Habilidade Geral</td>
+            </tr>
+            <tr>
+            <td><strong>10</strong></td>
+            <td>2 Oferendas da Lista de Magias</td>
+            </tr>
+            <tr>
+            <td><strong>11</strong></td>
+            <td>2 Habilidades Gerais</td>
+            </tr>
+            <tr>
+            <td><strong>12</strong></td>
+            <td>3 Oferendas da Lista de Magias; +20 PV, SAN, PdT</td>
+            </tr>
+            </tbody>
+            </table>
+            <h1 id="habilidades-base">Habilidades Base</h1>
+            <blockquote>
+            <p><strong>Persistência Rubra</strong> - Ao chegar a metade dos PVs totais, tu ganhas cura acelerada igual à tua <strong>CON</strong>
+            <br><strong>Trocar Corpo e Mente</strong> - Se uma magia/habilidade/aptidão pedir um teste de <strong>INT</strong>/<strong>CAR</strong>, podes, ao invés disso, girar <strong>CON</strong>.</p>
+            <p>3 Oferendas da Lista de Magias</p>
+            </blockquote>
+
 
             <br>
             <button commandfor="baseCultista" command="close" class="btn btn-outline-light btn-lg">Fechar</button>
         </dialog>
 
         <dialog id="baseFeiticeiro" class="">
+            <h1 id="status">Status</h1>
+            <table class="table table-bordered">
+            <thead>
+            <tr>
+            <th></th>
+            <th>Inicial</th>
+            <th>Por Nível</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+            <td><strong>PV</strong></td>
+            <td>13+CON*2</td>
+            <td>4+CON</td>
+            </tr>
+            <tr>
+            <td><strong>SAN</strong></td>
+            <td>12+CAR*2</td>
+            <td>2+CAR</td>
+            </tr>
+            <tr>
+            <td><strong>PdT</strong></td>
+            <td>20+INT*2</td>
+            <td>6+INT</td>
+            </tr>
+            </tbody>
+            </table>
+            <h1 id="por-n-vel">Por Nível</h1>
+            <table class="table table-bordered">
+            <thead>
+            <tr>
+            <th>Nível</th>
+            <th>Recompensa</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+            <td><strong>3</strong></td>
+            <td>Habilidades Base de Feiticeiro</td>
+            </tr>
+            <tr>
+            <td><strong>4</strong></td>
+            <td>Assimilação a uma Essência</td>
+            </tr>
+            <tr>
+            <td><strong>5</strong></td>
+            <td>Habilidade Geral</td>
+            </tr>
+            <tr>
+            <td><strong>6</strong></td>
+            <td>2 Feitiços da Lista de Magias; +10 PV, SAN, PdT</td>
+            </tr>
+            <tr>
+            <td><strong>7</strong></td>
+            <td>Habilidade Geral</td>
+            </tr>
+            <tr>
+            <td><strong>8</strong></td>
+            <td>2 Feitiços da Lista de Magias</td>
+            </tr>
+            <tr>
+            <td><strong>9</strong></td>
+            <td>Habilidade Geral</td>
+            </tr>
+            <tr>
+            <td><strong>10</strong></td>
+            <td>2 Feitiços da Lista de Magias</td>
+            </tr>
+            <tr>
+            <td><strong>11</strong></td>
+            <td>2 Habilidades Gerais</td>
+            </tr>
+            <tr>
+            <td><strong>12</strong></td>
+            <td>3 Feitiços da Lista de Magias; +20 PV, SAN, PdT</td>
+            </tr>
+            </tbody>
+            </table>
+            <h1 id="habilidades-base">Habilidades Base</h1>
+            <blockquote>
+            <p><strong>Reabastecer</strong> - Uma vez por cena, podes gastar uma ação padrão para recuperar o teu Mod. de <strong>INT</strong> como PdTs.
+            <br><strong>Sono Energético</strong> - Ao dormir, a quantidade de PdTs recuperados aumenta em 1D.</p>
+            <p>3 Feitiços da Lista de Magias</p>
+            </blockquote>
 
             <br>
             <button commandfor="baseFeiticeiro" command="close" class="btn btn-outline-light btn-lg">Fechar</button>
         </dialog>
         
         <dialog id="baseLutador" class="">
-
+            <h1 id="status">Status</h1>
+            <table class="table table-bordered">
+            <thead>
+            <tr>
+            <th></th>
+            <th>Inicial</th>
+            <th>Por Nível</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+            <td><strong>PV</strong></td>
+            <td>20+CON*2</td>
+            <td>6+CON</td>
+            </tr>
+            <tr>
+            <td><strong>SAN</strong></td>
+            <td>10+CAR*2</td>
+            <td>2+CAR</td>
+            </tr>
+            <tr>
+            <td><strong>PdT</strong></td>
+            <td>15+INT*2</td>
+            <td>4+INT</td>
+            </tr>
+            </tbody>
+            </table>
+            <h1 id="por-n-vel">Por Nível</h1>
+            <table class="table table-bordered">
+            <thead>
+            <tr>
+            <th style="text-align:left">Nível</th>
+            <th style="text-align:left">Recompensa</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+            <td style="text-align:left"><strong>3</strong></td>
+            <td style="text-align:left">Habilidades Base de Lutador</td>
+            </tr>
+            <tr>
+            <td style="text-align:left"><strong>4</strong></td>
+            <td style="text-align:left">Assimilação a uma Essência</td>
+            </tr>
+            <tr>
+            <td style="text-align:left"><strong>5</strong></td>
+            <td style="text-align:left">Habilidade Geral</td>
+            </tr>
+            <tr>
+            <td style="text-align:left"><strong>6</strong></td>
+            <td style="text-align:left">2 Habilidades de Lutador; +10 PV, SAN, PdT</td>
+            </tr>
+            <tr>
+            <td style="text-align:left"><strong>7</strong></td>
+            <td style="text-align:left">Habilidade Geral</td>
+            </tr>
+            <tr>
+            <td style="text-align:left"><strong>8</strong></td>
+            <td style="text-align:left">2 Habilidades de Lutador</td>
+            </tr>
+            <tr>
+            <td style="text-align:left"><strong>9</strong></td>
+            <td style="text-align:left">Habilidade Geral</td>
+            </tr>
+            <tr>
+            <td style="text-align:left"><strong>10</strong></td>
+            <td style="text-align:left">2 Habilidades de Lutador</td>
+            </tr>
+            <tr>
+            <td style="text-align:left"><strong>11</strong></td>
+            <td style="text-align:left">2 Habilidades Gerais</td>
+            </tr>
+            <tr>
+            <td style="text-align:left"><strong>12</strong></td>
+            <td style="text-align:left">3 Habilidades de Lutador; +20 PV, SAN, PdT</td>
+            </tr>
+            </tbody>
+            </table class="table table-bordered">
+            <h1 id="habilidades-base">Habilidades Base</h1>
+            <blockquote>
+            <p><strong>Espírito de Batalha</strong> – Lutar é o que faz um Lutador sentir se vivo, a cada luta que passa, o Lutador aprende mais, torna-se mais motivado, ficando cada vez mais forte. Tu ganhas um novo status chamado de: <strong>PE(Ponto de Espírito)</strong>, tu podes gastar esses PE de 3 formas:</p>
+            <ul>
+            <li><strong>1 PE</strong> - Re-rolar um teste</li>
+            <li><strong>3 PE</strong> - Forçar um inimigo a re-rolar um teste(ficando com o pior resultado)</li>
+            <li><strong>5 PE</strong> - Passar num teste imediatamente.
+            Tu começas com 3 PE e ganhas 1 a cada batalha vencida</li>
+            </ul>
+            <p>2 habilidades de Lutador</p>
+            </blockquote>
+        
             <br>
             <button commandfor="baseLutador" command="close" class="btn btn-outline-light btn-lg">Fechar</button>
         </dialog>
@@ -655,13 +913,186 @@ try {
         </dialog>
         
         <dialog id="baseRitualista" class="">
-
+            <h1 id="status">Status</h1>
+            <table class="table table-bordered">
+            <thead>
+            <tr>
+            <th></th>
+            <th>Inicial</th>
+            <th>Por Nível</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+            <td><strong>PV</strong></td>
+            <td>15+CON*2</td>
+            <td>4+CON</td>
+            </tr>
+            <tr>
+            <td><strong>SAN</strong></td>
+            <td>20+CAR*2</td>
+            <td>6+CAR</td>
+            </tr>
+            <tr>
+            <td><strong>PdT</strong></td>
+            <td>10+INT*2</td>
+            <td>2+INT</td>
+            </tr>
+            </tbody>
+            </table>
+            <h1 id="por-n-vel">Por Nível</h1>
+            <table class="table table-bordered">
+            <thead>
+            <tr>
+            <th>Nível</th>
+            <th>Recompensa</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+            <td><strong>3</strong></td>
+            <td>Habilidades Base de Ritualista</td>
+            </tr>
+            <tr>
+            <td><strong>4</strong></td>
+            <td>Assimilação a uma Essência</td>
+            </tr>
+            <tr>
+            <td><strong>5</strong></td>
+            <td>Habilidade Geral</td>
+            </tr>
+            <tr>
+            <td><strong>6</strong></td>
+            <td>2 Rituais da Lista de Magias; +10 PV, SAN, PdT</td>
+            </tr>
+            <tr>
+            <td><strong>7</strong></td>
+            <td>Habilidade Geral</td>
+            </tr>
+            <tr>
+            <td><strong>8</strong></td>
+            <td>2 Rituais da Lista de Magias</td>
+            </tr>
+            <tr>
+            <td><strong>9</strong></td>
+            <td>Habilidade Geral</td>
+            </tr>
+            <tr>
+            <td><strong>10</strong></td>
+            <td>2 Rituais da Lista de Magias</td>
+            </tr>
+            <tr>
+            <td><strong>11</strong></td>
+            <td>2 Habilidades Gerais</td>
+            </tr>
+            <tr>
+            <td><strong>12</strong></td>
+            <td>3 Rituais da Lista de Magias; +20 PV, SAN, PdT</td>
+            </tr>
+            </tbody>
+            </table>
+            <h1 id="habilidades-base">Habilidades Base</h1>
+            <blockquote>
+            <p><strong>Mente Guardada</strong> - Tu ganhas resistência a dano mental igual ao teu <strong>CAR</strong>x2
+            <br><strong>Sono Confortante</strong> - Ao descansar, a quantidade de <strong>SAN</strong> recuperados aumenta em 1D.</p>
+            <p>3 Rituais da Lista de Magias</p>
+            </blockquote>
+        
             <br>
             <button commandfor="baseRitualista" command="close" class="btn btn-outline-light btn-lg">Fechar</button>
         </dialog>
         
         <dialog id="baseTecnico" class="">
-
+            <h1 id="status">Status</h1>
+            <table class="table table-bordered">
+            <thead>
+            <tr>
+            <th></th>
+            <th>Inicial</th>
+            <th>Por Nível</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+            <td><strong>PV</strong></td>
+            <td>12+CON*2</td>
+            <td>3+CON</td>
+            </tr>
+            <tr>
+            <td><strong>SAN</strong></td>
+            <td>16+CAR*2</td>
+            <td>4+CAR</td>
+            </tr>
+            <tr>
+            <td><strong>PdT</strong></td>
+            <td>17+INT*2</td>
+            <td>5+INT</td>
+            </tr>
+            </tbody>
+            </table>
+            <h1 id="por-n-vel">Por Nível</h1>
+            <table class="table table-bordered">
+            <thead>
+            <tr>
+            <th>Nível</th>
+            <th>Recompensa</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+            <td><strong>3</strong></td>
+            <td>Habilidades Base de Técnico</td>
+            </tr>
+            <tr>
+            <td><strong>4</strong></td>
+            <td>Assimilação a uma Essência</td>
+            </tr>
+            <tr>
+            <td><strong>5</strong></td>
+            <td>Habilidade Geral</td>
+            </tr>
+            <tr>
+            <td><strong>6</strong></td>
+            <td>2 Habilidades de Técnico; +10 PV, SAN, PdT</td>
+            </tr>
+            <tr>
+            <td><strong>7</strong></td>
+            <td>Habilidade Geral</td>
+            </tr>
+            <tr>
+            <td><strong>8</strong></td>
+            <td>2 Habilidades de Técnico</td>
+            </tr>
+            <tr>
+            <td><strong>9</strong></td>
+            <td>Habilidade Geral</td>
+            </tr>
+            <tr>
+            <td><strong>10</strong></td>
+            <td>2 Habilidades de Técnico</td>
+            </tr>
+            <tr>
+            <td><strong>11</strong></td>
+            <td>2 Habilidades Gerais</td>
+            </tr>
+            <tr>
+            <td><strong>12</strong></td>
+            <td>3 Habilidades de Técnico; +20 PV, SAN, PdT</td>
+            </tr>
+            </tbody>
+            </table>
+            <h1 id="habilidades-base">Habilidades Base</h1>
+            <blockquote>
+            <p><strong>Especialização</strong> – Todo o técnico é especializado em algo, algo que ele conhece bem, tu escolhes uma destas especializações, no nível 6 e 10 escolhes mais um:</p>
+            <ul>
+            <li><strong>Especialista em Combate</strong> – Tu giras testes de <em>Luta</em> com a tua <strong>INT</strong>.</li>
+            <li><strong>Especialista em Disparo</strong> – Tu giras testes de <em>Pontaria</em> com a tua <strong>INT</strong>.</li>
+            <li><strong>Especialista em Furtividade</strong> – Tu tens +2 em testes de <em>Furtividade</em> e, durante uma Cena de Furtividade, podes gastar 7 PdT para diminuir o teu nível de exposição em 1.</li>
+            <li><strong>Especialista em Medicina</strong> – Tu tens +2 em testes de Medicina e adicionas a tua <strong>INT</strong>x2 à cura.</li>
+            </ul>
+            <p>2 habilidades de Técnico</p>
+            </blockquote>
+        
             <br>
             <button commandfor="baseTecnico" command="close" class="btn btn-outline-light btn-lg">Fechar</button>
         </dialog>
@@ -2529,6 +2960,98 @@ try {
             <button commandfor="bestiario" command="close" class="btn btn-outline-light btn-lg">Fechar</button>
         </dialog>
 
+        <dialog id="recomAssi" class="">
+            <p>Ao assimilar, nível sim nível não deve escolher receber uma magia ou aptidão da essência assimilada. Tu ganhas a aptidão <em>Assimilação</em> e 1 aptidão/magia da tua essência.</p>
+            <ul>
+            <li><strong>Assimilação(Essências)</strong> - Tu ganhas 5 de resistência a dano de Essência e +2 em testes para conjurar/resistir a magias de Essência.</li>
+            </ul>
+            <p>Se assimilar a Apostasia, as regras mantém-se, ganhando aptidões de Apostasia nível sim nível não, porém ganhas a aptidão <em>Ignorância</em> e 1 aptidão de Apostasia.</p>
+            <ul>
+            <li><strong>Ignorância</strong> - Tu ganhas 5 de resistência a um tipo dano à escolha que não inclua essências nem físico.</li>
+            </ul>
+            <h1 id="aptid-es-das-ess-ncias">Aptidões das Essências</h1>
+            <h2 id="geral">Geral</h2>
+            <ul>
+            <li><strong>Resistência Aprimorada</strong> - A resistência para dano da tua essência assimilada aumenta para 10</li>
+            <li><strong>Bruxaria Aprimorada</strong> - O bônus no teste para realizar magias da tua essência assimilada aumenta para +4</li>
+            <li><strong>Defesa Aprimorada</strong> - O bônus no teste para resistir a magias da tua essência assimilada aumenta para +4</li>
+            <li><strong>Transmutação</strong> - Escolhe uma magia que possuas, a essência da magia muda para a tua essência (Se a magia der dano de essência, o dano também muda para o da tua essência). </li>
+            <li><strong>Aura Invasiva</strong> - Qualquer ataque físico feito por ti tem o seu tipo de dano alterado para o dano da tua essência.</li>
+            <li><strong>Manifestar Essência</strong> - A tua presença é imbuída com a tua essência, denunciando-a aos teus inimigos. Qualquer ataque teu que cause o dano da tua essência tem +2 no teste.</li>
+            </ul>
+            <h2 id="carni-a">Carniça</h2>
+            <ul>
+            <li><strong>Pele Armadurada</strong> - A tua pele torna-se espessa, mais resistente a danos, +2 de DEF.</li>
+            <li><strong>Células Vivas</strong> - As tuas células passam a agir como se tivessem consciência própria, tendo um foco em manterem-se vivas, a tua regeneração fica mais rápida, +1D de PVs recuperados ao descansar.</li>
+            <li><strong>Contra Medida</strong> - O teu corpo cria um reforço, reforço que só ativa quando te encontras mais fraco que o habitual, ao adquirir um estado, +2 em todos os testes até perder o estado (não acumula consigo mesmo).</li>
+            </ul>
+            <h2 id="energia">Energia</h2>
+            <ul>
+            <li><strong>Exterior Volátil</strong> - O teu corpo passa a estar coberto de uma fina camada de carga elétrica, carga essa que repele aqueles que a tocam, ao sofrer um ataque físico, o atacante sofre 1d8 de dano elétrico.</li>
+            <li><strong>Extração Vital</strong> - Após acertar um crítico, recuperas 1/3 do dano causado como PdTs.</li>
+            <li><strong>Sobrecarga</strong> - A cada magia de Energia que realizares acumulas 1 carga. Ao atingir 3, libertas automaticamente uma explosão que causa dano a todos em alcance curto, causando 1d10+5 de dano de Energia.</li>
+            <li><strong>Transferência Vital</strong> - Uma vez por rodada, podes roubar um estado a um aliado, trocando as suas dores com o bem-estar do teu corpo (não funciona com A Falecer ou A Enlouquecer).</li>
+            <li><strong>Rutura de Limite</strong> [Requisitos : NdP 5] - Podes usar habilidades mesmo com PdT a 0, entrando em dívida. Cada PdT negativo custa-te 2 de PV.</li>
+            <li><strong>Carga Total</strong> [Requisitos : NdP 5]  - Se tiveres os PdT cheios, a primeira Magia de Energia que realizares causa +2D de cura/dano.</li>
+            <li><strong>Descarga</strong> [Requisitos : NdP 5]  - Ao desacordares, recebes uma descarga que acelera o teu sistema cardiovascular e a adrenalina. Ganhas imunidade aos estados Desacordado e Atordoado.</li>
+            <li><strong>Fogo Vivo</strong> [Requisitos : NdP 6] - Ganhas imunidade a dano incendiário.</li>
+            </ul>
+            <h2 id="caos">Caos</h2>
+            <ul>
+            <li><strong>Aposta</strong> - Uma vez por cena, ao fazer um teste, ao invés de girar os dados normais, diz um número de 1 a 10 e gira 1d10, se calhar o número que disseste, tu passas o teste.</li>
+            <li><strong>Falha Proveitosa</strong> - Ao errar uma Magia, poderás desviá-la para outro inimigo e refazer o teste.</li>
+            <li><strong>Apesar de Tudo</strong> - Crer, mesmo quando tem tudo pra dar errado. Se obtiveres um sucesso em testes de ataque com condições negativas (desvantagem ou -4, etc…) ganhas um bónus de +2d10 de dano de Caos.</li>
+            <li><strong>Os Últimos Serão Primeiros</strong> - Em testes de Iniciativa, agora, se fores o último colocado, tornaste o primeiro a agir.</li>
+            <li><strong>Surpresa!</strong> [Requisitos : NdP 5] - Uma vez por cena, ao acertar um ataque com sucesso, podes forçar o teste a um crítico, independentemente do teste. O dano que for realizado no inimigo será também realizado em ti.</li>
+            <li><strong>Mente Fragmentada</strong> [Requisitos : NdP 5] - Ganhas resistência a dano mental, mas no início de cada batalha, a tua primeira ação padrão vai ser completamente aleatória.</li>
+            <li><strong>Instabilidade</strong> [Requisitos : NdP 5] - Quantas mais rodadas um combate durar, maior a tua chance de acertar um ataque. Primeira rodada seria +1, e assim por diante.</li>
+            </ul>
+            <h2 id="sabedoria">Sabedoria</h2>
+            <ul>
+            <li><strong>Leitura de Padrões</strong> – Se gastares um turno para observares um inimigo, estritamente sem o atacar durante esse tempo, passas a saber exatamente qual será a próxima ação dele.</li>
+            <li><strong>Estratégia</strong> – Qualquer ataque que realizes num combate sem ser um golpe da tua arma ou uma Magia/Poder, ou seja, uma ideia improvisada, terá +4 no teste.</li>
+            <li><strong>Declarar</strong> - A fim de confundir o inimigo, ao declarares a tua ação terás +2 no teste, no entanto se for um teste contra esse mesmo inimigo, ele já estará avisado da ação.</li>
+            <li><strong>Ponto Fraco</strong> - Com a tua visão atenta, ao acertares um segundo ataque seguido no mesmo inimigo, acertarás no ponto fraco do teu oponente, causando +2d8 de dano.</li>
+            <li><strong>Mente Encorpada</strong> [Requisitos : NdP 5] - O teu cérebro deixa de ser um ponto vital, és capaz de mover o corpo mesmo com a cabeça decepada. És imune a estrangulamento.</li>
+            <li><strong>Memória Perfeita</strong> [Requisitos : NdP 5] – Uma vez por batalha, podes “guardar” o resultado de um dado que rolaste e reutilizar novamente e unicamente num teste futuro. O valor que for guardado não pode ser alterado até ser usado.</li>
+            <li><strong>O Justo</strong> [Requisitos : NdP 6] - O teu corpo cobre-se em sigilos rosa sempre que és Flankeado ou atacado de surpresa, danificando a arma (ou membro) do agressor instantaneamente para equilibrar a tua justiça. Se danificar uma arma, a arma causará -1D de dano até ser polida, se danificar um membro do inimigo, ele ganha o estado Fraturado nesse membro.</li>
+            <li><strong>Zona Da Razão</strong> [Requisitos : NdP 6] - Ao atacarem-te corpo-a-corpo, seja com arma ou não, inimigos têm de impor-se contra a tua barreira de lógica para te acertarem, obrigando a um teste de INT em vez de FOR ou AGI. Caso optem por atacar sem INT, o conhecimento os castigará com 2d8 de dano de Sabedoria.</li>
+            </ul>
+            <h2 id="obscuro">Obscuro</h2>
+            <ul>
+            <li><strong>Visão Noturna</strong> - Tu passas a conseguir ver no escuro, ganhas imunidade aos efeitos de <em>Penumbra Total</em> e <em>Parcial</em>.</li>
+            <li><strong>Silêncio</strong> - Tudo que fazes é constantemente silencioso, +2 em testes de furtividade.</li>
+            <li><strong>Ser De Sombras</strong> - No início de cada batalha, independentemente se tiveres furtivo ou não, tu não te revelas até realizares o teu primeiro ataque. Inimigos apenas vêm-te antes disso se passarem um teste de Perceção(CAR)(RN : 8 + teste teu de CAR).</li>
+            <li><strong>Indiferença</strong> - Se um inimigo acertar um ataque em ti e não causar nenhum dano, recuperas +1d10+4 de PdT.</li>
+            <li><strong>Vácuo Vocal</strong> [Requisitos : NdP 5] - Ao acertares um inimigo, podes roubar a voz dele, podendo imita-la perfeitamente e tornando o alvo mudo até ele te acertar, onde recuperará a sua voz. Enquanto possuírem a voz do inimigo, não poderás usar a tua.</li>
+            <li><strong>Necrose</strong> [Requisitos : NdP 5] - Ao desacordares, a falta da tua consciência é preenchida pelo Obscuro. Continuarás a agir normalmente, durante este estado, que não pode ser induzido, ganhas imunidade a dano físico, sendo impossível sentires dor, mas após 2 rodadas és obrigado a acordar, com a chance da essência apoderar-se do teu corpo.</li>
+            </ul>
+            <h2 id="tempo">Tempo</h2>
+            <ul>
+            <li><strong>Fim da Linha</strong> - Ao finalizar a vida de um ser, recuperas +2d8+2 de PVs.</li>
+            <li><strong>Hora Final</strong> - Golpes teus são acelerados contra inimigos que estejam próximos do fim. +2 em testes de ataque contra inimigos abaixo da metade dos PVs totais.</li>
+            <li><strong>Saltar</strong> - Uma vez por cena, efeitos e estados temporários negativos podem ser saltados para ocorrerem apenas uma única vez.</li>
+            <li><strong>Tempo Extra</strong> - Em Cenas de Investigação, o tempo desacelera, permitindo uma abordagem mais meticulosa da cena. +2 em qualquer teste investigativo.</li>
+            <li><strong>Intervalos</strong> - Durante qualquer teste de CON, consegues congelar o tempo por um breve momento, recuperando o fôlego, ganhando +2 no teste.</li>
+            <li><strong>Barreira Anacrónica</strong> [Requisitos : NdP 5] - Tu ganhas uma aura especial a teu redor que desacelera aquilo que se aproxima, tu ganhas +4 de DEF.  </li>
+            <li><strong>Afiação Perpétua</strong> [Requisitos : NdP 5] - As armas que portas são aceleradas, estando sempre prontas para combate e mais fortes que armas comuns, no entanto, estas armas adquirem ferrugem e desgastam mais rapidamente. As tuas armas causam +1D de dano, porém, na 6ª batalha onde a arma é usada, ela perde 2/3 do seu dano permanentemente.</li>
+            </ul>
+            <h2 id="apostasia">Apostasia</h2>
+            <ul>
+            <li><strong>Ambição</strong> - A tua vontade pelo sucesso aumenta a um ponto impossível, criando uma aura dourada especial, como se a tua determinação moldasse a realidade a teu favor. Uma vez por cena, tu ignoras um teste falho, sucedendo nesse teste ao invés disso.</li>
+            <li><strong>Vontade Suprassuma</strong> - A tua vontade de interferir toma controle, uma vez por cena, tu podes escolher usar 1 ação no turno doutro ser.</li>
+            <li><strong>Última Lembrança</strong> - Ao portar um objeto por muito tempo(mínimo 5 cenas), é possível declará-lo como um totem de sorte, com o qual o personagem poderá atrelar e masterizar a sua utilidade. A tua vontade pode ser abaixar o crítico de uma arma, aumentar seu alcance, aumentar 1D de dano, impor uma propriedade customizada ou reduzir a necessidade de duas mãos. A perda de um objeto querido causará dano Mental.</li>
+            <li><strong>Palavra Profética</strong> - A tua vontade é manifestada pelo discurso poderoso da tua fala. Uma vez por cena, os aliados que ouvirem tua palavra terão +x (x = 6 a dividir pelo número de alvos Ex: 3 aliados=6/3=2) no próximo teste. </li>
+            <li><strong>Importância</strong> - A tua vontade é o que te trouxe até aqui, não morrerás, não hoje. Ao chegar a menos de 1/4 da vida máxima, o personagem causará dano a dobrar. </li>
+            <li><strong>Presença de Êxtase</strong> - A tua existência impõe hesitação. Inimigos que iniciem o turno contra ti ou ataquem-te de surpresa terão -4 nos seus testes. Criaturas muito mais fracas que tu escolherão não agir agressivamente contra ti.</li>
+            <li><strong>Cicatrizes de Batalha</strong> - Pelas cicatrizes que adquiriste aprendeste uma valiosa lição. Sempre que realizarem um ataque semelhante ao que outra hora feriu-te profundamente terás uma vantagem na reação. Uma cicatriz só considera-se quando um ataque retira mais de metade da vida ou impõem o efeito de A Falecer em ti. </li>
+            <li><strong>Repulsor</strong> - A tua vontade é desgostosa para criaturas. É possível, uma vez por cena, chamar a atenção de uma criatura e forçá-la a te atacar, independente do que esta esteja a fazer.</li>
+            </ul>
+        
+            <br>
+            <button commandfor="recomAssi" command="close" class="btn btn-outline-light btn-lg">Fechar</button>
+        </dialog>
+        
         <dialog id="template" class="">
 
             <br>

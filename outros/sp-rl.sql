@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Tempo de geração: 14-Jun-2026 às 22:53
+-- Tempo de geração: 15-Jun-2026 às 19:49
 -- Versão do servidor: 8.4.9
 -- versão do PHP: 8.3.26
 
@@ -43,7 +43,9 @@ CREATE TABLE `AcaoCriaturas` (
 
 INSERT INTO `AcaoCriaturas` (`id`, `idFichaCriatura`, `nome`, `efeito`) VALUES
 (1, 1, 'Agredir', 'Agride um alvo a alcance curto, causando 1d8+2 de dano físico.'),
-(2, 1, 'Arranhar', 'Tenta cravar unhas na pele do alvo, causando 1d4 de dano cortante e causando Sangramento.');
+(2, 1, 'Arranhar', 'Tenta cravar unhas na pele do alvo, causando 1d4 de dano cortante e causando Sangramento.'),
+(3, 2, 'Perturbar', 'Ataca a mente dum ser a alcance corpo-a-corpo, causando 1d6 de dano mental.'),
+(4, 2, 'Deitar a Baixo', 'Se acertar dois Perturbar num alvo na mesma rodada, pode, como ação livre, deixá-lo Vulnerável.');
 
 -- --------------------------------------------------------
 
@@ -65,7 +67,9 @@ CREATE TABLE `Campanha` (
 
 INSERT INTO `Campanha` (`id`, `nome`, `descricao`, `notas`) VALUES
 (1, 'testeteste', 'testeteste', NULL),
-(4, 'teste', 'teste', '');
+(4, 'teste', 'teste', ''),
+(5, 'asffazc', 'axcvxz', ''),
+(6, 'asd', 'asd', '');
 
 -- --------------------------------------------------------
 
@@ -87,7 +91,11 @@ CREATE TABLE `Campanha_Utilizador` (
 INSERT INTO `Campanha_Utilizador` (`idCampanha`, `idUtilizador`, `mestre`) VALUES
 (1, 1, 1),
 (1, 2, 0),
-(4, 1, 1);
+(4, 1, 1),
+(5, 1, 1),
+(4, 4, 0),
+(6, 1, 1),
+(6, 5, 0);
 
 -- --------------------------------------------------------
 
@@ -112,7 +120,8 @@ CREATE TABLE `Criatura` (
 --
 
 INSERT INTO `Criatura` (`id`, `nome`, `essencia`, `essenciaSec1`, `essenciaSec2`, `nivelDificuldade`, `narracao`, `descricao`) VALUES
-(1, 'Conexos', 'Carniça', NULL, NULL, 3, '\"Um sentimento fantasma, de que ele ainda está lá, que ele pode se mexer tão bem desde que te lembras. Um mecanismo simples de estender e contrair, uma força inata que nem consegues explicar, uma parte de ti já desde bebé, agora, não está mais lá, por mais que pareça. Os \"especialistas\" chamam de \"Síndrome do Membro Fantasma\", uma condição mental onde as respostas do comando neural nunca chegam de volta ao cérebro, pelo que, o membro já se foi, este pavor, só se sente quando se sabe o que é ter um membro arrancado.\"\r\n  \r\n\"Não para por aí, nós sabemos que não. Essa força, essa coisa de sentir ainda lá, é bom. Estes tais especializados na medicina não sabem a força do coração, da nossa carne, do nosso corpo. Não sabem que o braço ainda se endurece, ou que a perna ainda se estica. Não precisas te mexer. Garanto-te uma coisa, vai doer, mas não em mim. Fica só parado, umas costuras irão concertar-te, só lembra-te, o braço é teu, não é ele que te controla.\"', 'Os Conexos são manifestações da Carniça, e caracterizam-se pelo fenómeno de membros decepados ainda vivos e pulsantes que atacam qualquer ser vivo ao seu redor. Ainda tomados pela violência da separação do corpo original, membros, a partir do qual chamamos Conexos, irão debater-se e agredir imediatamente qualquer coisa que sintam.\r\n\r\nOriginam-se em casos de extrema assimilação com a Carniça ou outros fatores externos ainda ligados à essência. Surgem de pessoas, cujo o elemento seja Carniça, e que tenham sido decepadas em combate, através de ataques e feitiços da essência, ou até em locais cuja a sensação de brutalidade e crueldade perdura. Uma possibilidade também surge da criação desta criatura ou no seu encontro. Se um corpo, desmembrado, assimilado com Carniça (ou através de magias da essência caso a pessoa não seja assimilada) costurar um braço \"Conexo\" em si, poderá obter esse mesmo membro de volta, controlado a rede neural a partir da costura, algo que, no entanto, pode ser difícil de realizar contra uma criatura veloz e que dará um membro, por vezes, que ataca o próprio corpo ou não o obedece.\r\n\r\nO nome \"Conexo\" deriva da sua maior habilidade que é acoplar com outros membros decepados vivos, no caso, outras criaturas como ele mesmo. Capazes de se juntarem ilimitadamente em uma massa de braços e pernas que fica cada vez mais resistente mas mais pesada.');
+(1, 'Conexos', 'Carniça', NULL, NULL, 3, '\"Um sentimento fantasma, de que ele ainda está lá, que ele pode se mexer tão bem desde que te lembras. Um mecanismo simples de estender e contrair, uma força inata que nem consegues explicar, uma parte de ti já desde bebé, agora, não está mais lá, por mais que pareça. Os \"especialistas\" chamam de \"Síndrome do Membro Fantasma\", uma condição mental onde as respostas do comando neural nunca chegam de volta ao cérebro, pelo que, o membro já se foi, este pavor, só se sente quando se sabe o que é ter um membro arrancado.\"\r\n  \r\n\"Não para por aí, nós sabemos que não. Essa força, essa coisa de sentir ainda lá, é bom. Estes tais especializados na medicina não sabem a força do coração, da nossa carne, do nosso corpo. Não sabem que o braço ainda se endurece, ou que a perna ainda se estica. Não precisas te mexer. Garanto-te uma coisa, vai doer, mas não em mim. Fica só parado, umas costuras irão concertar-te, só lembra-te, o braço é teu, não é ele que te controla.\"', 'Os Conexos são manifestações da Carniça, e caracterizam-se pelo fenómeno de membros decepados ainda vivos e pulsantes que atacam qualquer ser vivo ao seu redor. Ainda tomados pela violência da separação do corpo original, membros, a partir do qual chamamos Conexos, irão debater-se e agredir imediatamente qualquer coisa que sintam.\r\n\r\nOriginam-se em casos de extrema assimilação com a Carniça ou outros fatores externos ainda ligados à essência. Surgem de pessoas, cujo o elemento seja Carniça, e que tenham sido decepadas em combate, através de ataques e feitiços da essência, ou até em locais cuja a sensação de brutalidade e crueldade perdura. Uma possibilidade também surge da criação desta criatura ou no seu encontro. Se um corpo, desmembrado, assimilado com Carniça (ou através de magias da essência caso a pessoa não seja assimilada) costurar um braço \"Conexo\" em si, poderá obter esse mesmo membro de volta, controlado a rede neural a partir da costura, algo que, no entanto, pode ser difícil de realizar contra uma criatura veloz e que dará um membro, por vezes, que ataca o próprio corpo ou não o obedece.\r\n\r\nO nome \"Conexo\" deriva da sua maior habilidade que é acoplar com outros membros decepados vivos, no caso, outras criaturas como ele mesmo. Capazes de se juntarem ilimitadamente em uma massa de braços e pernas que fica cada vez mais resistente mas mais pesada.'),
+(2, 'Mímico', 'Sabedoria', NULL, NULL, 2, 'A solidão de verdade não é algo alcançável, existe sempre algo que nos rodeia, sons, cheiros, paredes, objetos. Tudo que a mente humana reconhece, tudo que a mente humana vê e sente pode ser distorcido pela influência da Espiral. Tudo.\r\nNa Espiral, nada é confiável, nada é derradeiro, tudo pode ser um manifestação, até mesmo os objetos a nossa redor. Mesas, cadeiras, caixas, estantes, nada nos garante que não possam ser criaturas, que não possam saltar e nos atacar. Esses pensamentos são a base do poder da Espiral.', 'O Mímico é uma manifestação pura da essência de Sabedoria, surgindo quando uma alta quantia de aura de Sabedoria se mistura, comprimindo-se tanto que origina um ser puro, uma representação física do básico da própria essência. O Mímico costuma tomar formas diversas, tentando imitar objetos inanimados, fingindo ser um objeto apenas para surpreender a sua vítima, revelando uma forma agora perigosa e coberta de sigilos de Sabedoria.\r\n\r\nO Mímico parece ter como objetivo consumir os pensamentos e conhecimentos de seres vivos, saboreando tal sapiência e alimentando-se da mesma, precisando dela para se manter vivo. Por causa da sua fisiologia frágil, o Mímico foca-se em se esconder à vista de todos, costumando esperar em lugares que pessoas fracas costumam frequentar, esperando alguém estar completamente desatento para realizar um ataque rápido, deixar a pessoa num estado vegetal e, rapidamente, se esconder novamente. Os sigilos que cobrem seu corpo oferecem-lhe uma leve proteção mas não se provam o suficiente para combates diretos, por causa disso, o Mímico é uma criatura extremamente medrosa e cuidadosa.');
 
 -- --------------------------------------------------------
 
@@ -136,7 +145,9 @@ INSERT INTO `EfeitoEspecial` (`id`, `idFichaCriatura`, `nome`, `efeito`) VALUES
 (1, 1, 'Manha', 'Gira testes de ataque com AGI'),
 (2, 1, 'Evoluir', 'A criatura durante combate pode gastar uma ação de movimento para girar um teste de CON(RN : 20) para evoluir de alguma forma que concederá vantagem ou bónus. Como desenvolver uma boca, olhos, ou até pequenas patas.'),
 (3, 1, 'Acoplar', 'Caso toque em outra criatura semelhante, poderá acoplar, a qual dará +1d10+5 de PVs máximos e +1 em FOR ou AGI temporário. O bônus de atributo não acumula por cada nova ação de Acoplar.'),
-(4, 1, 'Ataque em Bando', 'Quando o alvo é atacado por mais que um Conexo, o próximo que atacar o mesmo alvo pode tentar desarma-lo com +4. A arma pode ser usada pelo Conexo. ');
+(4, 1, 'Ataque em Bando', 'Quando o alvo é atacado por mais que um Conexo, o próximo que atacar o mesmo alvo pode tentar desarma-lo com +4. A arma pode ser usada pelo Conexo. '),
+(5, 2, 'Manha', 'Gira testes de ataque com AGI'),
+(6, 2, 'Aparência Enganadora', 'Por ter um semblante idêntico ao de um objeto, o Mímico consegue esconder-se em lugares óbvios. +4 em testes de Furtividade.');
 
 -- --------------------------------------------------------
 
@@ -282,7 +293,8 @@ CREATE TABLE `FichaCriaturas` (
 --
 
 INSERT INTO `FichaCriaturas` (`id`, `idCriatura`, `nome`, `forca`, `agilidade`, `constituicao`, `inteligencia`, `carisma`, `pvMax`, `def`, `resistencias`, `danoMental`, `rnMental`) VALUES
-(1, 1, NULL, 2, 4, 1, 0, 0, 45, 17, 'Resistência 10 a dano de Carniça\r\nVulnerabilidade 5 a dano Cortante', '1d4', 15);
+(1, 1, NULL, 2, 4, 1, 0, 0, 45, 17, 'Resistência 10 a dano de Carniça\r\nVulnerabilidade 5 a dano Cortante', '1d4', 15),
+(2, 2, NULL, -1, 2, 0, 2, 2, 36, 14, 'Resistência 2 a dano', '1d4+1', 14);
 
 -- --------------------------------------------------------
 
@@ -405,7 +417,8 @@ CREATE TABLE `MagiaCustom` (
 --
 
 INSERT INTO `MagiaCustom` (`id`, `idUtilizador`, `nome`, `essencia`, `tempoExec`, `custo`, `efeito`, `requisitos`) VALUES
-(1, 1, 'a', 'a', '0', 0, '0', '');
+(1, 1, 'a', 'a', '0', 0, '0', ''),
+(2, 1, 'dasdasdasdas', 'adsdsads', '0', 0, '0', '');
 
 -- --------------------------------------------------------
 
@@ -441,10 +454,10 @@ CREATE TABLE `Personagem` (
 --
 
 INSERT INTO `Personagem` (`id`, `idUtilizador`, `nome`, `ndp`, `classe`, `origem`, `notasPlayer`, `forca`, `agilidade`, `constituicao`, `inteligencia`, `carisma`, `resistencias`, `pvAtual`, `pvMax`, `sanAtual`, `sanMax`, `pdtAtual`, `pdtMax`) VALUES
-(1, 1, 'SQL Test', 1, 'Test', 'Test', 'cli', 1, 1, 1, 1, 1, '', 10, 10, 5, 5, 0, 0),
 (2, 1, 'adsadsdas', 1, '', 'adsadsdas', '', 0, 0, 0, 0, 0, '', 0, 0, 0, 0, 0, 0),
-(3, 1, 'aaaa', 1, '', 'aaaa', '', 0, 0, 0, 0, 0, '', 0, 0, 0, 0, 0, 0),
-(4, 1, 'zcx', 1, '', 'zcx', '', 0, 0, 0, 0, 0, '', 0, 0, 0, 0, 0, 0);
+(3, 1, 'aaaa', 1, '', 'aaaa', 'gay, bisexual e aromantico', 0, 0, 0, 0, 0, '', 0, 0, 0, 0, 0, 0),
+(4, 1, 'zcx', 1, '', 'zcx', '', 0, 0, 0, 0, 0, '', 0, 0, 0, 0, 0, 0),
+(5, 1, 'dasads', 1, '', 'adsads', '', 0, 0, 0, 0, 0, '', 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -465,7 +478,8 @@ CREATE TABLE `Perso_Equip` (
 
 INSERT INTO `Perso_Equip` (`idPerso`, `idEquip`, `quantia`) VALUES
 (2, 25, 1),
-(3, 53, 1);
+(3, 53, 1),
+(3, 23, 1);
 
 -- --------------------------------------------------------
 
@@ -804,7 +818,13 @@ CREATE TABLE `Sessao` (
 INSERT INTO `Sessao` (`id`, `idCampanha`, `nome`, `numEp`, `enredo`, `notas`) VALUES
 (1, 1, 'ads', 1, 'adsasdadsadsads', '0'),
 (2, 4, 'teste', 1, '0', 'teste'),
-(3, 1, 'teste231', 2, '0', '');
+(3, 1, 'teste231', 2, '0', ''),
+(4, 5, 'cuh', 1, 'o hiolario morre', 'morre'),
+(5, 5, 'a', 2, 'a', 'a'),
+(6, 5, 'b', 3, 'b', 'b'),
+(7, 5, 'asd', 67, 'a', 'dsa'),
+(8, 5, 'A Morte Triste do Daniel Silva', -1, '', ''),
+(9, 6, 'sdsasaddsa', 1, 'dsadsadsa', 'dsadsadsa');
 
 -- --------------------------------------------------------
 
@@ -829,7 +849,9 @@ INSERT INTO `Utilizador` (`id`, `nome`, `email`, `passe`, `admin`) VALUES
 (1, 'aaa', 'a@a', '$2y$10$5hBGnHD7pzHrynYGfpbA/.2smSWhc60E9BJ10D8urdpr8b4u/BLJO', 0),
 (2, 'admin', 'admin@admin', '$2y$10$6PLyjQxH3HcpwkB2K9X5guiG62rcgZ3nJKW/RXXdjeXbni74Q/1au', 1),
 (3, 'bbb', 'b@b', '$2y$10$wuoc1EPV5GCGibneltG6MuY1IEtpNZf0VypqkUXkZyZkUSBoC/Rcq', 0),
-(4, 'eee', 'e@e', '$2y$10$yXsOYLV0I5fJIE9PC6QpaujiH/g6ZRBNUg0pQDxeJNklfqCBDG4Je', 0);
+(4, 'eee', 'e@e', '$2y$10$yXsOYLV0I5fJIE9PC6QpaujiH/g6ZRBNUg0pQDxeJNklfqCBDG4Je', 0),
+(5, 'skibidi', 'hilario@ferreira', '$2y$10$7Kwe/N.t6EvbXvdPC3QOsOYBD9XksoLfM7psXK1hcpR1DwsxW4nG6', 0),
+(6, 'masterofpuppets', 'aura@farm', '$2y$10$IcPdxsSYcazzgjlseZeHRevPwHaH5Bds85laq3PJMgyJIrY4asg6C', 0);
 
 -- --------------------------------------------------------
 
@@ -1254,25 +1276,25 @@ ALTER TABLE `Utilizador`
 -- AUTO_INCREMENT de tabela `AcaoCriaturas`
 --
 ALTER TABLE `AcaoCriaturas`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `Campanha`
 --
 ALTER TABLE `Campanha`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `Criatura`
 --
 ALTER TABLE `Criatura`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `EfeitoEspecial`
 --
 ALTER TABLE `EfeitoEspecial`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `Equipamento`
@@ -1290,7 +1312,7 @@ ALTER TABLE `EquipamentoCustom`
 -- AUTO_INCREMENT de tabela `FichaCriaturas`
 --
 ALTER TABLE `FichaCriaturas`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `Magia`
@@ -1302,13 +1324,13 @@ ALTER TABLE `Magia`
 -- AUTO_INCREMENT de tabela `MagiaCustom`
 --
 ALTER TABLE `MagiaCustom`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `Personagem`
 --
 ALTER TABLE `Personagem`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `Poder`
@@ -1326,13 +1348,13 @@ ALTER TABLE `PoderCustom`
 -- AUTO_INCREMENT de tabela `Sessao`
 --
 ALTER TABLE `Sessao`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de tabela `Utilizador`
 --
 ALTER TABLE `Utilizador`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 -- --------------------------------------------------------
 
