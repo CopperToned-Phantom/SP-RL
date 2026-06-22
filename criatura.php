@@ -43,10 +43,10 @@ if ($id <= 0) {
 
         if (!$error) {
             $acaoStmt = $mysqli->prepare(
-                'SELECT NomeAcao AS nome, efeito FROM vw_fichas_acoes WHERE NomeCriatura = ? ORDER BY NomeAcao ASC'
+                'SELECT ac.nome, ac.efeito FROM AcaoCriaturas ac INNER JOIN FichaCriaturas fc ON ac.idFichaCriatura = fc.id WHERE fc.idCriatura = ? ORDER BY ac.nome ASC'
             );
             if ($acaoStmt) {
-                $acaoStmt->bind_param('s', $criatura['nome']);
+                $acaoStmt->bind_param('i', $id);
                 $acaoStmt->execute();
                 $acaoResult = $acaoStmt->get_result();
                 if ($acaoResult) {
@@ -59,10 +59,10 @@ if ($id <= 0) {
             }
 
             $efeitoStmt = $mysqli->prepare(
-                'SELECT NomeEfeito AS nome, efeito FROM vw_fichas_efeitos WHERE NomeCriatura = ? ORDER BY NomeEfeito ASC'
+                'SELECT ee.nome, ee.efeito FROM EfeitoEspecial ee INNER JOIN FichaCriaturas fc ON ee.idFichaCriatura = fc.id WHERE fc.idCriatura = ? ORDER BY ee.nome ASC'
             );
             if ($efeitoStmt) {
-                $efeitoStmt->bind_param('s', $criatura['nome']);
+                $efeitoStmt->bind_param('i', $id);
                 $efeitoStmt->execute();
                 $efeitoResult = $efeitoStmt->get_result();
                 if ($efeitoResult) {
