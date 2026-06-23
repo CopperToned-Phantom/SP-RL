@@ -224,7 +224,7 @@ if (empty($error) && $personagem && $_SERVER['REQUEST_METHOD'] === 'POST') {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/index.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-        <title>Personagem</title>
+        <title><?php echo htmlspecialchars($personagem['nome'] ?? 'Personagem', ENT_QUOTES, 'UTF-8'); ?></title>
     </head>
     <body>
         <?php include('templates/header.php'); ?>
@@ -386,22 +386,22 @@ if (empty($error) && $personagem && $_SERVER['REQUEST_METHOD'] === 'POST') {
                                             $res = $m4->query('SELECT id, nome FROM Equipamento ORDER BY nome');
                                             if ($res) { while ($r = $res->fetch_assoc()) { $equipList[] = $r; } $res->free(); }
                                             $equipCustomList = [];
-                                            $res = $m4->query('SELECT id, nome FROM EquipamentoCustom ORDER BY nome');
-                                            if ($res) { while ($r = $res->fetch_assoc()) { $equipCustomList[] = $r; } $res->free(); }
+                                            $stmt = $m4->prepare('SELECT id, nome FROM EquipamentoCustom WHERE idUtilizador = ? ORDER BY nome');
+                                            if ($stmt) { $stmt->bind_param('i', $user['id']); $stmt->execute(); $res = $stmt->get_result(); if ($res) { while ($r = $res->fetch_assoc()) { $equipCustomList[] = $r; } $res->free(); } $stmt->close(); }
 
                                             $magiaList = [];
                                             $res = $m4->query('SELECT id, nome FROM Magia ORDER BY nome');
                                             if ($res) { while ($r = $res->fetch_assoc()) { $magiaList[] = $r; } $res->free(); }
                                             $magiaCustomList = [];
-                                            $res = $m4->query('SELECT id, nome FROM MagiaCustom ORDER BY nome');
-                                            if ($res) { while ($r = $res->fetch_assoc()) { $magiaCustomList[] = $r; } $res->free(); }
+                                            $stmt = $m4->prepare('SELECT id, nome FROM MagiaCustom WHERE idUtilizador = ? ORDER BY nome');
+                                            if ($stmt) { $stmt->bind_param('i', $user['id']); $stmt->execute(); $res = $stmt->get_result(); if ($res) { while ($r = $res->fetch_assoc()) { $magiaCustomList[] = $r; } $res->free(); } $stmt->close(); }
 
                                             $poderList = [];
                                             $res = $m4->query('SELECT id, nome FROM Poder ORDER BY nome');
                                             if ($res) { while ($r = $res->fetch_assoc()) { $poderList[] = $r; } $res->free(); }
                                             $poderCustomList = [];
-                                            $res = $m4->query('SELECT id, nome FROM PoderCustom ORDER BY nome');
-                                            if ($res) { while ($r = $res->fetch_assoc()) { $poderCustomList[] = $r; } $res->free(); }
+                                            $stmt = $m4->prepare('SELECT id, nome FROM PoderCustom WHERE idUtilizador = ? ORDER BY nome');
+                                            if ($stmt) { $stmt->bind_param('i', $user['id']); $stmt->execute(); $res = $stmt->get_result(); if ($res) { while ($r = $res->fetch_assoc()) { $poderCustomList[] = $r; } $res->free(); } $stmt->close(); }
 
                                             $m4->close();
                                         } catch (Throwable $e) {
