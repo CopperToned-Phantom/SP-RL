@@ -130,9 +130,10 @@ if ($id <= 0) {
                 <div class="alert alert-danger"><?php echo htmlspecialchars($error, ENT_QUOTES, 'UTF-8'); ?></div>
             <?php else: ?>
                 <div>
+                    <a href="sistema.php" class="btn btn-secondary">Voltar</a> <br><br>
                     <h1><?php echo htmlspecialchars($criatura['nome'], ENT_QUOTES, 'UTF-8'); ?></h1>
                     <?php if ($criatura['nivelDificuldade'] !== null): ?>
-                        <p><strong>Nível de Dificuldade:</strong> <?php echo htmlspecialchars($criatura['nivelDificuldade'], ENT_QUOTES, 'UTF-8'); ?></p>
+                        <h4><strong>Nível de Dificuldade:</strong> <?php echo htmlspecialchars($criatura['nivelDificuldade'], ENT_QUOTES, 'UTF-8'); ?></h4>
                     <?php endif; ?>
                 </div>
                 <?php $hasNarracao = isset($criatura['narracao']) && trim($criatura['narracao']) !== '';?>
@@ -160,8 +161,8 @@ if ($id <= 0) {
                                 <div class="card mb-4">
                                     <?php if ($ficha['nomeFicha'] !== null): ?>
                                         <div class="card-header">
-                                            <?php echo htmlspecialchars($ficha['nomeFicha'], ENT_QUOTES, 'UTF-8'); ?>
-                                        </div>
+                                            <?php echo htmlspecialchars($ficha['nomeFicha'], ENT_QUOTES, 'UTF-8'); ?>                                       
+                                        </div>                                    	
                                     <?php endif; ?>
                                     <div class="card-body">
                                         <table class="table table-bordered mb-3">
@@ -238,7 +239,6 @@ if ($id <= 0) {
                     </div>
                 </div>
             <?php endif; ?>
-            <a href="sistema.php" class="btn btn-secondary mt-3">Voltar ao Sistema</a>
         </div>
     </body>
 </html>

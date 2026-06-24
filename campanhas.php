@@ -142,7 +142,6 @@ try {
                                 </div>
                                 <div class="d-flex gap-2">
                                     <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#createCampaignModal">Criar Campanha</button>
-                                    <a href="index.php" class="btn btn-secondary">Voltar</a>
                                 </div>
                             </div>
 

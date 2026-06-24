@@ -2721,6 +2721,111 @@ try {
         </dialog>
         
         <dialog id="TipoDano" class="">
+            <p>Sendo um <em>Sistema de Combate</em>, existem diversos <em>Tipos de Dano</em>, alguns com efeitos especiais, outros sem, dano em geral possui a única função de diminuir status de seres. A não ser que seja dito o contrário, <em>Dano</em>, por defeito, diminui <strong>PVs</strong>. Ao sofrer <em>Dano</em>, as seguintes coisas devem ser tomadas em consideração :</p>
+            <ul>
+            <li><strong>Tipo do Dano</strong> - Qual o tipo de dano, dependendo de qual for, é possível que o ser ou possua resistências ou algo similar a esse tipo, é possível também que outros status, além de <strong>PVs</strong>, sejam diminuídos.</li>
+            <li><strong>Valor</strong> - O número total de dano que o ataque causou.</li>
+            <li><strong>Resistências e Outros</strong> - Aplicar os modificadores de <em>Resistências</em> e afins, diminuindo, aumentando ou até anulando o dano para assim obter o valor final e total de dano.</li>
+            <li><strong>Valor pós Dano</strong> - Calcular qual o valor do status atual após o Dano sofrido.</li>
+            </ul>
+            <h1 id="tipos-de-dano">Tipos de Dano</h1>
+            <table class="table table-bordered">
+            <thead>
+            <tr>
+            <th></th>
+            <th>Fonte</th>
+            <th>Efeito Especiais</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+            <td>Cortante</td>
+            <td>Dano vindo de objetos afiados e cortes.</td>
+            <td>Nenhum</td>
+            </tr>
+            <tr>
+            <td>Balístico</td>
+            <td>Dano vindo de projéteis a alta velocidade, como tiros.</td>
+            <td>Nenhum</td>
+            </tr>
+            <tr>
+            <td>Físico</td>
+            <td>Dano vindo de armas de contusão, ondas de choque e quedas.</td>
+            <td>Nenhum</td>
+            </tr>
+            <tr>
+            <td>Incendiário</td>
+            <td>Dano vindo de altas temperaturas e fogo.</td>
+            <td>Nenhum</td>
+            </tr>
+            <tr>
+            <td>Gélido</td>
+            <td>Dano vindo de baixas temperaturas e gelo.</td>
+            <td>Nenhum</td>
+            </tr>
+            <tr>
+            <td>Elétrico</td>
+            <td>Dano vindo de eletricidade.</td>
+            <td>Nenhum</td>
+            </tr>
+            <tr>
+            <td>Mental</td>
+            <td>Dano que fere a mente</td>
+            <td>Reduz <strong>SAN</strong> ao invés de <strong>PVs</strong></td>
+            </tr>
+            <tr>
+            <td>Explosivo</td>
+            <td>Dano vindo de explosões.</td>
+            <td>Nenhum</td>
+            </tr>
+            <tr>
+            <td>Necrótico</td>
+            <td>Dano vindo de podridão e envelhecimento.</td>
+            <td>O valor sofrido só pode ser curado na próxima rodada.</td>
+            </tr>
+            <tr>
+            <td>Venenoso</td>
+            <td>Dano vindo de venenos e doenças.</td>
+            <td>Nenhum</td>
+            </tr>
+            <tr>
+            <td>Químico</td>
+            <td>Dano vindo de compostos químicos.</td>
+            <td>Na rodada após ser atingido por este dano, volta a sofrer o mesmo dano -1D. <br>Este efeito só se aplica à primeira vez que o ser sofrer dano <em>Químico</em> na rodada.</td>
+            </tr>
+            <tr>
+            <td>Sónico</td>
+            <td>Dano vindo de sons altos.</td>
+            <td>Nenhum</td>
+            </tr>
+            <tr>
+            <td>Espiritual</td>
+            <td>Dano que fere a alma</td>
+            <td>Reduz <strong>PdTs</strong> ao invés de <strong>PVs</strong>. Se um ser com 0 de <strong>PdTs</strong> sofrer deste <em>Tipo de Dano</em>, reduz <strong>PVs</strong>.<br>Impossível ser resistente ou imune.</td>
+            </tr>
+            <tr>
+            <td>Essências<br>(Caos/Carniça/Energia/Obscuro/Sabedoria/Tempo)</td>
+            <td>Dano vindo da aura pura de uma das 6 essências.</td>
+            <td>Nenhum</td>
+            </tr>
+            </tbody>
+            </table>
+            <h1 id="resist-ncias-vulnerabilidades-e-imunidades">Resistências, Vulnerabilidades e Imunidades</h1>
+            <p>Modificadores aplicados ao dano recebido, aumentando, diminuindo ou anulando o mesmo, a quantia de mudança e a mudança em si varia de ser para ser. Deve ser especificado a que tipo de dano se aplica esse modificador.</p>
+            <h2 id="resist-ncias">Resistências</h2>
+            <p>Modificador que diminui o dano recebido, podendo ser aplicado de 2 formas :</p>
+            <ul>
+            <li><strong>Valor Bruto</strong> - Se um valor for especificado na resistência, ao sofrer desse tipo de dano, deve subtrair o valor da resistência ao dano.
+            Ex : Um ser com resistência 5 a dano cortante, ao ser alvo de 12 de dano cortante, só sofre 7.</li>
+            <li><strong>Divisão</strong> - Se nenhum valor for especificado na resistência, ao sofrer desse tipo de dano, deve reduzir o dano pela metade.
+            Ex : Um ser com resistência a dano cortante, ao ser alvo de 12 de dano cortante, só sofre 6.<h2 id="vulnerabilidade">Vulnerabilidade</h2>
+            Modificador que aumenta o dano recebido, podendo ser aplicado de 2 formas :</li>
+            <li><strong>Valor Bruto</strong> - Se um valor for especificado na vulnerabilidade, ao sofrer desse tipo de dano, deve adicionar o valor da vulnerabilidade ao dano. 
+            Ex : Um ser com vulnerabilidade 5 a dano cortante, ao ser alvo de 12 de dano cortante, sofre 17.</li>
+            <li><strong>Divisão</strong> - Se nenhum valor for especificado na vulnerabilidade, ao sofrer desse tipo de dano, deve dobrar o dano. 
+            Ex : Um ser com vulnerabilidade a dano cortante, ao ser alvo de 12 de dano cortante, sofre 24.<h2 id="imunidade">Imunidade</h2>
+            Modificador que anula o dano recebido, pode ser aplicado de uma única forma, ao sofrer desse tipo de dano, o valor do dano é reduzido a 0.</li>
+            </ul>
 
             <br>
             <button commandfor="TipoDano" command="close" class="btn btn-outline-light btn-lg">Fechar</button>
@@ -3050,6 +3155,119 @@ try {
         
             <br>
             <button commandfor="recomAssi" command="close" class="btn btn-outline-light btn-lg">Fechar</button>
+        </dialog>
+        
+        <dialog id="cenaCombate" class="">
+            <p>Em certos momentos, os personagens precisam de lutar, enfrentar uma ameaça de frente, para isso existem Cenas de Combate.</p>
+            <h1 id="rodadas-e-turnos">Rodadas e Turnos</h1>
+            <p>Cenas de Combate são divididas em rodadas e turnos.
+            No começo todos os seres envolvidos no combate giram um teste de Iniciativa(AGI), aqueles com os resultados mais altos agem primeiro (em caso de empates, os empatados giram entre si para desempatar).</p>
+            <p>Durante uma rodada, cada ser envolvido no combate tem 1 turno, a sua vez de agir, ao acabar uma rodada, uma nova começa, mantendo a ordem dos turnos.
+            Dentro de um turno, o personagem pode agir, gastando as suas ações padrão, ação de movimento e ações completas</p>
+            <h1 id="a-es">Ações</h1>
+            <h2 id="a-o-padr-o">Ação Padrão</h2>
+            <p>Uma ação normal, realizando uma tarefa não muito simples, mas também não muito complexa.
+            Todo o personagem possui um número de ações padrão definido pela sua AGI</p>
+            <table class="table table-bordered">
+            <thead>
+            <tr>
+            <th>Valor de AGI</th>
+            <th>Número de Ações</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+            <td>-1/0/1</td>
+            <td>1</td>
+            </tr>
+            <tr>
+            <td>2/3</td>
+            <td>2</td>
+            </tr>
+            <tr>
+            <td>4/5/6/7/8</td>
+            <td>3</td>
+            </tr>
+            </tbody>
+            </table>
+            <h3 id="tipos-de-a-es-padr-o">Tipos de Ações Padrão</h3>
+            <ul>
+            <li><strong>Ataque</strong> – Uma ação usada para fazer um ataque direto contra um ser, seja com uma arma ou desarmado, girando <em>Luta</em> para armas corpo-a-corpo e <em>Pontaria</em> para armas à distância, se o resultado obtido for maior ou igual à <strong>DEF</strong> do alvo, é um acerto, causando o dano especificado no alvo.</li>
+            <li><strong>Manobra</strong> – Uma ação usada para fazer um truque, não sendo um ataque direto mas causando uma desvantagem contra o ser, os tipos de manobra são:</li>
+            <li><strong>Derrubar</strong> – Tu tentas derrubar o oponente, tu fazes um teste de <strong>AGI</strong> contra o oponente, se passares, ele fica <em>Derrubado</em>.</li>
+            <li><strong>Empurrar</strong> - Tu tentas empurrar o oponente, tu fazes um teste de <strong>FOR</strong> contra o oponente, se passares empurras-lo para 1d3+<strong>FOR</strong> metros de distância. Empurrar um ser contra outro garante ao outro ser um ataque como ação livre.</li>
+            <li><strong>Agarrar</strong> - Tu tentas agarrar o oponente, tu fazes um teste de <strong>FOR</strong> contra o ser, se passares ele fica <em>Agarrado</em>.</li>
+            <li><strong>Desarmar</strong> - Tu tentas desarmar o oponente, tu fazes um teste de <strong>AGI</strong> contra o oponente, se passares derrubas a arma dele no chão.</li>
+            <li><strong>Atropelar</strong> - Tu tentas tomar o espaço dum oponente, tu fazes um teste de <strong>FOR</strong> contra o oponente, se passares empurras o ser para o lado e ocupas a sua posição, segue as mesmas regras que a manobra <em>Empurrar</em>.</li>
+            <li><strong>Apoiar</strong> - Tu ajudas um aliado, garantindo-lhe +2 em todos os testes até o fim da rodada, não pode ser usado no mesmo aliado mais que uma vez.</li>
+            <li><strong>Magia</strong> – Uma ação usada para conjurar uma magia.</li>
+            <li><strong>Usar item</strong> - Uma ação usada para fazer uso de um item.</li>
+            <li><strong>Outros</strong> – Qualquer outro tipo de ação que o ser possa desejar fazer</li>
+            </ul>
+            <h2 id="a-o-de-movimento">Ação de Movimento</h2>
+            <p>Uma ação rápida, realizando uma tarefa simples.
+            Todo o personagem possui 1 ação de movimento</p>
+            <h3 id="tipos-de-a-es-de-movimento">Tipos de Ações de Movimento</h3>
+            <ul>
+            <li><strong>Deslocar</strong> - Tu mexes-te para outro canto do campo de batalha. Subindo ou descendo uma categoria de distância em relação a outro ser.</li>
+            <li><strong>Sacar item</strong> - Tu sacas um dos itens no teu <em>Equipamento</em>.</li>
+            <li><strong>Usar item</strong> - Tu usas um dos itens que tenhas em mão.</li>
+            <li><strong>Magia</strong> - Uma ação usada para conjurar uma magia.</li>
+            <li><strong>Esconder-se</strong> - Tu escondes-te num canto do campo de batalha, tu fazes um teste de <em>Furtividade</em>(<strong>AGI</strong>), anotando o valor, seres precisam passar dum teste de <em>Perceção</em>(<strong>INT</strong>/<strong>CAR</strong>) contra esse valor para te notarem. Seres que falhem o teste, ficam <em>Desprevenidos</em> contra os teus ataques, cada ação feita enquanto furtivo diminui o valor necessário para te notar em 4.</li>
+            <li><strong>Fintar</strong> - Tu tentas fintar o oponente, fingindo fazer um ataque mas realizando outro, tu fazes um teste de <strong>CAR</strong> contra o oponente, se passares ele fica <em>Desprevenido</em> contra o teu próximo ataque.</li>
+            </ul>
+            <h2 id="a-o-completa">Ação Completa</h2>
+            <p>Uma ação lenta, realizando uma tarefa complexa.
+            Realizar uma ação completa gasta o teu turno inteiro.</p>
+            <h3 id="tipos-de-a-es-completas">Tipos de Ações Completas</h3>
+            <ul>
+            <li><strong>Investida</strong> - Tu segues em linha reta, movendo o equivalente a um <em>Deslocar</em>, realizando um ataque contra todos os seres nessa linha. </li>
+            <li><strong>Finalizar</strong> - Tu terminas a vida dum ser <em>A Falecer</em> que esteja a teu alcance, ignorando as rodadas restantes que possuía, matando-o imediatamente.</li>
+            <li><strong>Golpe Misericordioso</strong> - Tu atacas um ser indefeso a teu alcance, o ataque é crítico e causa o dano máximo. Se o ser for reduzido a 0 PVs desta forma, ele morre instantaneamente.</li>
+            <li><strong>Magia</strong> - Uma ação usada para conjurar uma magia.</li>
+            </ul>
+            <h2 id="a-o-livre">Ação Livre</h2>
+            <p>Uma ação extremamente rápida, realizando uma tarefa que não exigia esforço quase algum.</p>
+            <h3 id="tipos-de-a-es-livres">Tipos de Ações Livres</h3>
+            <ul>
+            <li><strong>Falar</strong> - Tu dizes uma frase curta.</li>
+            <li><strong>Soltar item</strong> - Tu soltas um item em tuas mãos, deixando-o cair no chão.</li>
+            <li><strong>Atrasar</strong> - Tu atrasas a tua vez na ordem de iniciativa, esperando para agir depois do turno dum ser. Muda a tua iniciativa para o resto da cena.</li>
+            <li><strong>Cair</strong> - Tu deixas-te cair ao chão, ficando <em>Derrubado</em>.</li>
+            <li><strong>Magia</strong> - Uma ação usada para conjurar uma magia.</li>
+            </ul>
+            <h2 id="rea-o">Reação</h2>
+            <p>Uma ação defensiva, feita como reação a um ataque inimigo.
+            Ao ser alvo de um ataque, o personagem atacado possui 1 reação por ataque</p>
+            <h3 id="tipos-de-rea-o">Tipos de Reação</h3>
+            <ul>
+            <li><strong>Esquivar</strong> - Gira um teste de <strong>AGI</strong> contra o teste de ataque, se tiveres um resultado maior, não sofres dano algum. No caso dum ataque em área (como uma explosão), apenas diminui o dano pela metade.</li>
+            <li><strong>Bloquear</strong> - Gira um teste de <strong>FOR</strong> contra o teste de ataque, se tiveres um resultado maior, não sofres dano algum. No caso dum ataque em área (como uma explosão), diminui o dano pela metade.</li>
+            <li><strong>Contra-Atacar</strong> - Tu sofres o ataque mas em troca, atacas o Atacante de volta. Não pode ser usado contra seres fora do teu alcance.</li>
+            </ul>
+        
+            <br>
+            <button commandfor="cenaCombate" command="close" class="btn btn-outline-light btn-lg">Fechar</button>
+        </dialog>
+        
+        <dialog id="cenaPerigo" class="">
+            <p>Em certos momentos, os personagens vão se encontrar numa situação perigosa que não pode ser resolvida com um simples “combate”, algo como enfrentar uma multidão, pra isso existem <em>Cenas de Perigo Complexo</em>.</p>
+            <p><em>Cenas de Perigo Complexo</em>, similar a <em>Cenas de Combate</em>, são divididas em rodadas e turnos, cada personagem tendo 1 turno, o objetivo principal das <em>Cenas de Perigo Complexo</em> é acumular sucessos.</p>
+            <p>Toda a <em>Cena de Perigo Complexo</em> possui um grupo de ações que os personagens podem realizar, toda a ação tem um <em>Teste</em> e uma <strong>RN</strong> associada a ela, tentar realizar a ação envolve primeiro girar o teste pedido pela mesma, deve também ser especificado se suceder nessa ação concede ao grupo um sucesso ou não(por norma, ações que ou são muito simples ou não abrandam o perigo não concedem sucesso). 
+            O número de sucessos necessário para suceder na cena deve ser decidido no começo da mesma e pode ou não ser dito aos envolvidos, o número de sucessos atuais é partilhado por todos os envolvidos, sendo o número de sucessos do grupo inteiro. Enquanto não sucederem, os personagens sofrerão dano por rodada(o dano pode ser reduzido/aumentado a meio da cena por meios exteriores ou pelas ações que os envolvidos tomarem).</p>
+            <h1 id="exemplo">Exemplo</h1>
+            <p>Num caso onde um grupo de 3 personagens entra num bar e causa uma comoção, começando uma luta de bar, o <em>Mestre</em> decide começar uma <em>Cena de Perigo Complexo</em>.
+            Por ser um confronto de dificuldade mediana para o grupo, o <em>Mestre</em> decide que precisarão de apenas 7 sucessos para sucederem e pararem a luta, sofrendo 1d8+1 de dano físico por rodada. Ele então decide que podem tomar as seguintes ações :</p>
+            <ul>
+            <li><strong>Lutar</strong> - Participa da luta, atacando um dos inimigos, girando <em>Luta</em>(<strong>FOR</strong>)/<em>Pontaria</em>(<strong>AGI</strong>) (<strong>RN</strong> : 16), se passar, concede 1 sucesso.</li>
+            <li><strong>Auxiliar</strong> - Auxilia um dos aliados a lutar, garantindo ao mesmo +2 em todos os testes durante esta rodada.</li>
+            <li><strong>Curar</strong> - Sara as feridas de um aliado, girando <em>Medicina</em>(<strong>INT</strong>) (<strong>RN</strong> : 18) e curando 2d10 de PVs.</li>
+            <li><strong>Atirar Copo</strong> - Atira um copo contra um dos inimigos, a fim de o desnortear, girando <em>Pontaria</em>(<strong>AGI</strong>) (<strong>RN</strong> : 18), se passar, concede 1 sucesso e diminui o dano para si mesmo em 4.</li>
+            <li><strong>Não fui eu!</strong> - Bate num inimigo, tentando convencê-lo que foi outra pessoa que o atacou, girando <em>Enganação</em>(<strong>CAR</strong>) (<strong>RN</strong> : 20), se passar, concede 1 sucesso e não sofre dano nesta rodada.</li>
+            </ul>
+        
+            <br>
+            <button commandfor="cenaPerigo" command="close" class="btn btn-outline-light btn-lg">Fechar</button>
         </dialog>
         
         <dialog id="template" class="">

@@ -13,6 +13,12 @@
 Site feito com PHP e SQL com o intuito de oferecer auxílio a Jogadores e Mestres de Jogo que utilizam o "Sistema Suprenima"
 </p>
 
+> URL : sp-rl.site.je
+
+## Login Base de Dados
+- user : appuser
+- pass : apppass
+
 ## Requisitos para executar localmente
 
 Para rodar este projeto na sua máquina, é necessário ter instalado:
